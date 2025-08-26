@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Portfólio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background-color: #3498db;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .sobre {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .foto-perfil {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #3498db;
+    }
+
+    .sobre-texto {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .sobre-texto h2 {
+      margin-bottom: 20px;
+      color: #3498db;
+    }
+
+    .projetos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .projeto-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .projeto-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .projeto-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .projeto-card .card-info {
+      padding: 15px;
+    }
+
+    .projeto-card .card-info h3 {
+      margin-bottom: 10px;
+      color: #3498db;
+    }
+
+    .contato {
+      text-align: center;
+    }
+
+    .contato a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .contato a:hover {
+      background-color: #2980b9;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .sobre {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav a {
+        margin-left: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>WanderWeb</h1>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section id="sobre" class="sobre">
+    <img src="img.jpg" alt="Minha Foto" class="foto-perfil">
+    <div class="sobre-texto">
+      <h2>Sobre Mim</h2>
+      <p>Olá! Sou um(a) desenvolvedor(a) web apaixonado(a) por criar sites modernos e funcionais. Aqui você pode ver alguns dos meus projetos mais recentes.</p>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <h2 style="color:#3498db; text-align:center; margin-bottom:40px;">Meus Projetos</h2>
+    <div class="projetos">
+      <div class="projeto-card">
+        <img src="projeto1.jpg" alt="Projeto 1">
+        <div class="card-info">
+          <h3>Projeto 1</h3>
+          <p>Descrição breve do projeto.</p>
+        </div>
+      </div>
+      <div class="projeto-card">
+        <img src="projeto2.jpg" alt="Projeto 2">
+        <div class="card-info">
+          <h3>Projeto 2</h3>
+          <p>Descrição breve do projeto.</p>
+        </div>
+      </div>
+      <!-- Adicione mais cards de projeto conforme precisar -->
+    </div>
+  </section>
+
+  <section id="contato" class="contato">
+    <h2 style="color:#3498db; margin-bottom:20px;">Contato</h2>
+    <p>Entre em contato comigo através das redes abaixo:</p>
+    <a href="mailto: wanderlims0@gmail.com">E-mail</a>
+    <a href="https://linkedin.com/in/seuperfil" target="_blank">LinkedIn</a>
+    </section>
+
+  <footer>
+    &copy; 2025 WanderWeb.dev. Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
