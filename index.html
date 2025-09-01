@@ -1,63 +1,281 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wweb Studio | Criação de Sites Profissionais</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vitral Sul — clone visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080606;
+    --panel:#0f0f10;
+    --muted:#9aa1a6;
+    --white:#ffffff;
+    --accent:#ffd100;
+    --whatsapp:#25D366;
+    --radius:18px;
+    --shadow-lg: 0 14px 40px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:Inter,system-ui,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  /* HEADER */
+  .header{
+    position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;
+    padding:12px 18px;background:linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.4));
+    z-index:60;border-bottom:1px solid rgba(255,255,255,.04);
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:46px;height:26px;border-radius:6px;background:linear-gradient(90deg,var(--accent),#ffd86a);
+    box-shadow:inset 0 -4px 8px rgba(0,0,0,.15);
+  }
+  .brand .name{font-weight:800;letter-spacing:.3px}
+  .hamburger{
+    width:48px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.06);
+    display:grid;place-items:center;background:transparent;color:var(--white);cursor:pointer;
+  }
+
+  /* BACKDROP + SIDEBAR */
+  #backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .2s;z-index:58}
+  #backdrop.show{opacity:1;pointer-events:auto}
+  .sidebar{
+    position:fixed;top:0;right:-320px;width:320px;height:100vh;background:#0b0b0c;padding:20px;box-shadow:-20px 16px 60px rgba(0,0,0,.7);
+    transition:right .28s cubic-bezier(.2,.9,.25,1);z-index:59;
+  }
+  .sidebar.open{right:0}
+  .sidebar .close{float:right;font-size:24px;cursor:pointer;color:var(--white)}
+  .sidebar nav{margin-top:28px}
+  .sidebar a{display:block;color:var(--white);text-decoration:none;padding:10px 6px;border-radius:8px;margin-bottom:6px;font-weight:600}
+  .sidebar a:hover{background:rgba(255,255,255,.03);color:var(--accent)}
+
+  /* HERO with background image */
+  .hero{
+    margin-top:68px;
+    min-height:60vh;
+    background: url('https://images.unsplash.com/photo-1505692794401-81c99a5536c9?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    position:relative;display:flex;align-items:center;justify-content:center;padding:44px 18px;
+  }
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.65));z-index:0}
+  .hero-inner{position:relative;z-index:2;max-width:980px;width:100%;text-align:center}
+
+  /* Search bar (top of hero) */
+  .search-wrap{display:flex;justify-content:center;margin-bottom:26px}
+  .search{
+    width:100%;max-width:720px;background:rgba(255,255,255,0.98);color:#111;padding:12px 14px;border-radius:999px;display:flex;gap:10px;align-items:center;
+    box-shadow:var(--shadow-lg);
+  }
+  .search input{flex:1;border:0;outline:0;font-size:16px;font-weight:600;background:transparent}
+  .search button{background:transparent;border:0;font-weight:800;cursor:pointer;color:#111;padding:6px 12px;border-radius:8px}
+
+  .hero h1{font-size:clamp(22px,4.5vw,40px);font-weight:800;line-height:1.05;margin-bottom:18px}
+  .hero p{color:var(--muted);margin-bottom:20px}
+
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:14px 26px;background:var(--white);color:#000;border-radius:14px;text-decoration:none;font-weight:800;
+    box-shadow:0 14px 40px rgba(0,0,0,.45)
+  }
+  .btn.ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.12)}
+
+  /* PRODUCTS */
+  .section{padding:52px 18px;max-width:1200px;margin:0 auto}
+  .section h2{font-size:20px;margin-bottom:18px;text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .card{
+    background:#0b0b0b;border-radius:14px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.6);text-align:center;border:1px solid rgba(255,255,255,.03)
+  }
+  .thumb{height:150px;border-radius:10px;overflow:hidden;margin-bottom:12px;background:#111;display:flex;align-items:center;justify-content:center}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:14px;margin-bottom:12px}
+
+  /* MAP AREA */
+  .map-area{padding:44px 18px;background:linear-gradient(180deg,#050505,#0b0b0b);text-align:center}
+  .map-wrap{max-width:760px;margin:18px auto;position:relative}
+  .map-svg{width:100%;height:auto;display:block;filter:brightness(1.05) invert(0) contrast(1.05)}
+  .pin{position:absolute;width:14px;height:20px;background:transparent;display:grid;place-items:center;transform:translate(-50%,-100%)}
+  .pin .dot{width:12px;height:12px;background:#ff6a1f;border-radius:50%;box-shadow:0 6px 18px rgba(255,106,31,.25)}
+  .map-legend{margin-top:12px;color:var(--muted);font-size:14px;letter-spacing:1px}
+
+  /* FOOTER */
+  footer{padding:30px 18px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,.03)}
+
+  /* WHATSAPP */
+  .fab{
+    position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:50%;background:var(--whatsapp);
+    display:grid;place-items:center;color:#fff;text-decoration:none;font-weight:800;z-index:80;box-shadow:var(--shadow-lg)
+  }
+  .fab:active{transform:scale(.98)}
+
+  /* responsive */
+  @media (max-width:720px){
+    .hero{padding:34px 12px;min-height:58vh}
+    .search{max-width:92%}
+  }
+</style>
 </head>
-<body class="bg-black text-white">
-  <!-- Navbar -->
-  <header class="w-full fixed top-0 bg-black/90 backdrop-blur-lg shadow-md z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="text-2xl font-bold text-purple-500">Wweb Studio</h1>
-      <nav class="space-x-6 hidden md:flex">
-        <a href="#sobre" class="hover:text-purple-400">Sobre</a>
-        <a href="#servicos" class="hover:text-purple-400">Serviços</a>
-        <a href="#contato" class="hover:text-purple-400">Contato</a>
-      </nav>
-      <a href="tel:79998954178" class="md:block hidden bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Ligar</a>
+<body>
+
+  <!-- header -->
+  <header class="header" role="banner">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div class="name">S.O.S SOLUCOES <span style="font-weight:600;color:rgba(255,255,255,.9)">Sul</span></div>
     </div>
-  </header>  <!-- Hero -->  <section class="h-screen flex items-center justify-center text-center px-6 bg-gradient-to-b from-black to-gray-900">
-    <div>
-      <h2 class="text-4xl md:text-6xl font-bold mb-4">Criação de Sites Profissionais</h2>
-      <p class="text-lg md:text-xl text-gray-300 mb-6">Transforme sua presença online com design moderno e performance de alto nível.</p>
-      <a href="#contato" class="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-semibold">Fale Conosco</a>
-    </div>
-  </section>  <!-- Sobre -->  <section id="sobre" class="py-20 px-6 max-w-6xl mx-auto">
-    <h3 class="text-3xl font-bold text-purple-500 mb-6">Sobre Nós</h3>
-    <p class="text-gray-300 leading-relaxed text-lg">
-      A <strong>Wweb Studio</strong> é especializada na criação de sites modernos, responsivos e otimizados para performance.
-      Nosso foco é ajudar empresas e empreendedores a construírem uma presença digital de impacto, com design exclusivo e estratégias que geram resultados.
-    </p>
-  </section>  <!-- Serviços -->  <section id="servicos" class="py-20 px-6 bg-gray-900">
-    <div class="max-w-6xl mx-auto">
-      <h3 class="text-3xl font-bold text-purple-500 mb-10">Nossos Serviços</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-black rounded-2xl p-6 shadow-lg border border-gray-800 hover:border-purple-600 transition">
-          <h4 class="text-xl font-semibold mb-4">Sites Profissionais</h4>
-          <p class="text-gray-400">Criação de sites personalizados, responsivos e com design exclusivo para sua marca.</p>
+    <button id="menuBtn" class="hamburger" aria-expanded="false" aria-controls="sidebar" title="Menu">☰</button>
+  </header>
+
+  <!-- backdrop + sidebar -->
+  <div id="backdrop" aria-hidden="true"></div>
+  <aside id="sidebar" class="sidebar" aria-hidden="true" role="dialog" aria-label="Menu">
+    <div class="close" id="closeSide" title="Fechar">×</div>
+    <nav>
+      <a href="#hero">Início</a>
+      <a href="#products">Produtos</a>
+      <a href="#map">Atuação</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </aside>
+
+  <!-- hero -->
+  <main>
+    <section id="hero" class="hero" role="region" aria-label="Destaque">
+      <div class="hero-inner">
+        <div class="search-wrap">
+          <div class="search" role="search" aria-label="Pesquisar produtos">
+            <input id="searchInput" type="text" placeholder="Pesquisar produto (ex: portão automático, galv.)" aria-label="Pesquisar produto" />
+            <button id="searchBtn" aria-label="Pesquisar">🔍</button>
+          </div>
         </div>
-        <div class="bg-black rounded-2xl p-6 shadow-lg border border-gray-800 hover:border-purple-600 transition">
-          <h4 class="text-xl font-semibold mb-4">Landing Pages</h4>
-          <p class="text-gray-400">Páginas otimizadas para conversão, ideais para campanhas e lançamentos.</p>
-        </div>
-        <div class="bg-black rounded-2xl p-6 shadow-lg border border-gray-800 hover:border-purple-600 transition">
-          <h4 class="text-xl font-semibold mb-4">Consultoria Digital</h4>
-          <p class="text-gray-400">Orientação estratégica para posicionar sua empresa no ambiente online.</p>
-        </div>
+
+        <h1>DA CONSTRUÇÃO À DECORAÇÃO, O ALUMÍNIO TRANSFORMA SEUS PROJETOS</h1>
+        <p style="color:var(--muted)">Portões, esquadrias, gradil e automação — soluções sob medida.</p>
+
+        <div class="cta-row">
+          <a class="btn" href="#products">🛒 Loja Online</a>
+            </div>
       </div>
-    </div>
-  </section>  <!-- Contato -->  <section id="contato" class="py-20 px-6 max-w-6xl mx-auto text-center">
-    <h3 class="text-3xl font-bold text-purple-500 mb-6">Entre em Contato</h3>
-    <p class="text-gray-300 mb-6">Pronto para dar o próximo passo? Fale com a gente agora mesmo.</p>
-    <a href="https://wa.me/5579998954178" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg text-white font-semibold inline-block mb-4">WhatsApp</a>
-    <p class="text-gray-400">Ou ligue: <a href="tel:79998954178" class="text-purple-400 hover:underline">(79) 99895-4178</a></p>
-  </section>  <!-- Footer -->  <footer class="bg-black py-8 text-center text-gray-500 text-sm">
-    <p>© 2025 Wweb Studio. Todos os direitos reservados.</p>
-  </footer>
+    </section>
+
+    <!-- products -->
+    <section id="products" class="section" aria-labelledby="productsTitle">
+      <h2 id="productsTitle">Nossos Produtos</h2>
+      <div class="grid" id="productGrid">
+        <!-- card 1 -->
+        <article class="card product-card" data-title="Portão de Alumínio">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=60" alt="Portão de Alumínio"></div>
+          <h3>Portão de Alumínio</h3>
+          <p>Acabamento premium, leve e resistente.</p>
+        </article>
+
+        <article class="card product-card" data-title="Portão Galvanizado">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1622681920631-43f1e5010d6e?auto=format&fit=crop&w=1200&q=60" alt="Portão Galvanizado"></div>
+          <h3>Portão Galvanizado</h3>
+          <p>Alta durabilidade e proteção contra corrosão.</p>
+        </article>
+
+        <article class="card product-card" data-title="Portão Automático">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1531162911635-ef4d2d5b7a83?auto=format&fit=crop&w=1200&q=60" alt="Portão Automático"></div>
+          <h3>Portão Automático</h3>
+          <p>Sistemas de automação, motores e controles.</p>
+        </article>
+
+        <article class="card product-card" data-title="Grade de Alumínio">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=60" alt="Grade de Alumínio"></div>
+          <h3>Grade de Alumínio</h3>
+          <p>Proteção com design moderno.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- map / atuação -->
+    <section id="map" class="map-area" aria-label="Mapa de atuação">
+      <h2 style="color:var(--white)">Atuação em Sergipe!</h2>
+      <div class="map-wrap" style="height:360px;">
+        <!-- Use an SVG/PNG map with transparent background. Below is a placeholder SVG outline (simplified). Replace with your SVG for precise pins. -->
+        <img class="map-svg" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Bahia_in_Brazil.svg" alt="Mapa da Bahia (outline)">
+        <!-- example positioned pins (adjust left/top in % to match your map) -->
+        <div class="pin" style="left:57%;top:40%;" title="Feira de Santana"><span class="dot"></span></div>
+        <div class="pin" style="left:71%;top:36%;" title="Salvador"><span class="dot"></span></div>
+        <div class="pin" style="left:64%;top:28%;" title="Alagoinhas"><span class="dot"></span></div>
+        <div class="pin" style="left:60%;top:30%;" title="Serrinha"><span class="dot"></span></div>
+      </div>
+      <div class="map-legend">Atendemos em todo sergipe!.</div>
+    </section>
+
+    <!-- sobre -->
+    <section id="sobre" class="section" style="padding-top:36px">
+      <h2>Sobre a S.O.S SOLUÇÕES</h2>
+      <div style="max-width:1000px;margin:12px auto;background:#0b0b0b;padding:18px;border-radius:12px;color:#cfd7d9">
+        <p>Somos especializados em portões, esquadrias e automação. Projetamos, fabricamos e instalamos com garantia e qualidade.</p>
+      </div>
+    </section>
+
+    <!-- contato / footer -->
+    <footer id="contato">
+      <div style="max-width:960px;margin:0 auto;padding-bottom:8px">
+        <p>📞 (99) 99999-9999 • ✉ contato@sossolucoes.com.br</p>
+        <p style="color:var(--muted)">© <span id="year">2025</span> Vitral Sul. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- whatsapp -->
+  <a class="fab" id="whatsapp" href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20em%20portões" target="_blank" rel="noopener">💬</a>
+
+<script>
+  // Sidebar open/close with backdrop
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('backdrop');
+  const closeSide = document.getElementById('closeSide');
+
+  function openSide(){ sidebar.classList.add('open'); backdrop.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); menuBtn.setAttribute('aria-expanded','true'); }
+  function closeSide(){ sidebar.classList.remove('open'); backdrop.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); }
+
+  menuBtn.addEventListener('click', (e)=>{ e.stopPropagation(); sidebar.classList.contains('open') ? closeSide() : openSide(); });
+  backdrop.addEventListener('click', closeSide);
+  closeSide && closeSide.addEventListener('click', closeSide);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSide(); });
+
+  // Search: filter product cards (simple client-side)
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const productCards = Array.from(document.querySelectorAll('.product-card'));
+
+  function normalize(s){ return s ? s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase() : ''; }
+
+  function filterProducts(){
+    const q = normalize(searchInput.value.trim());
+    if(!q){
+      productCards.forEach(c => c.style.display = '');
+      return;
+    }
+    productCards.forEach(c=>{
+      const title = normalize(c.dataset.title || c.querySelector('h3').innerText);
+      if(title.includes(q)) c.style.display = '';
+      else c.style.display = 'none';
+    });
+  }
+
+  searchBtn.addEventListener('click', filterProducts);
+  searchInput.addEventListener('keyup', (e) => {
+    if(e.key === 'Enter') filterProducts();
+    else filterProducts();
+  });
+
+  // set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
-</html>
+      </html>
