@@ -153,6 +153,34 @@ box-shadow:0 10px 30px rgba(0,0,0,0.4);
 .floating-contact img{width:26px;height:26px;display:block;border-radius:6px;}
 
 img, video {max-width:100%; box-sizing:border-box;}
+
+.whats-btn {
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  background-color: #25D366; /* verde WhatsApp */
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+}
+
+.whats-btn:hover {
+  background-color: #128C7E; /* verde mais escuro ao passar mouse */
+}
+
+.whats-icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -234,9 +262,9 @@ img, video {max-width:100%; box-sizing:border-box;}
     <div class="muted">© <span id="year"></span> SOS Soluções</div>
   </div>
 </footer>
-
-<a class="floating-contact" href="https://wa.me/5575997136131" target="_blank" rel="noopener" aria-label="Contato via WhatsApp">
-  <img src="img/wh-icon.png" alt="WhatsApp">
+  
+<a class="whats-btn" href="https://wa.me/5575997136131" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <img src="whatsapp.png" alt="WhatsApp" class="whats-icon">
   <span>Fale conosco</span>
 </a>
 
