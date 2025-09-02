@@ -1,65 +1,391 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOS SOLUÇOES</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RD Esquadrias em Alumínio</title>
+<meta name="description" content="Esquadrias premium em alumínio para projetos residenciais e comerciais. Segurança, durabilidade e requinte." />
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg-2:#111;
+    --text:#f2f2f2;
+    --muted:#b7b7b7;
+    --brand:#ff6a00;       /* laranja aceso */
+    --brand-2:#ff8a33;     /* laranja claro */
+    --card:#171717;
+    --stroke:#2a2a2a;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:min(1120px,92vw);margin:0 auto}
+
+  /* Header simples */
+  header{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(180deg, rgba(10,10,10,.85), rgba(10,10,10,.3));
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px
+  }
+  .logo-mark{
+    width:38px;height:28px;border-radius:6px;background:
+      linear-gradient(135deg,var(--brand),#b53c00);
+    display:grid;place-items:center;box-shadow:0 6px 18px rgba(255,106,0,.25);
+    font-weight:900;color:#111
+  }
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    background:transparent;
+    border:1.5px solid var(--brand);
+    color:var(--text);
+    padding:12px 18px;border-radius:999px;
+    box-shadow:inset 0 0 0 1px rgba(255,106,0,.15);
+    transition:.25s ease;
+    font-weight:600;
+  }
+  .cta:hover{background:var(--brand);color:#111;transform:translateY(-1px)}
+
+  /* HERO */
+  .hero{
+    position:relative;isolation:isolate;
+    min-height:82dvh;display:grid;place-items:center;
+    background: radial-gradient(1200px 600px at 20% 20%, rgba(255,106,0,.08), transparent 60%),
+                radial-gradient(800px 500px at 80% 70%, rgba(255,138,51,.08), transparent 60%),
+                #000;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background: url("https://images.unsplash.com/photo-1542848280-35467b8b31b8?q=80&w=1600&auto=format&fit=crop") right center/cover no-repeat;
+    opacity:.28;mix-blend:screen;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+  }
+  @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
+  .hero-copy h1{
+    margin:0 0 12px;font-size:clamp(28px,4.2vw,46px);line-height:1.15;font-weight:800;
+  }
+  .hero-copy h1 span{color:#fff}
+  .hero-copy .sub{
+    color:var(--muted);max-width:58ch;margin-bottom:24px;font-size:15px
+  }
+  .hero-card{
+    aspect-ratio: 16/11;border-radius:var(--radius);overflow:hidden;
+    background:#000;
+    border:1px solid var(--stroke);box-shadow:var(--shadow);
+    position:relative;
+  }
+  .hero-card img{width:100%;height:100%;object-fit:cover;opacity:.9}
+  .chevrons{
+    position:absolute;left:50%;bottom:22px;translate:-50% 0;display:grid;gap:4px;
+    filter:drop-shadow(0 4px 8px rgba(0,0,0,.6));
+  }
+  .chev{width:26px;height:26px;border-bottom:2px solid #fff;border-right:2px solid #fff;rotate:45deg;opacity:.8;animation:float 2.2s infinite}
+  .chev:nth-child(2){animation-delay:.25s}
+  @keyframes float{
+    0%{transform:translateY(0)}
+    50%{transform:translateY(6px)}
+    100%{transform:translateY(0)}
+  }
+
+  /* Section titles */
+  .sect{padding:64px 0}
+  .title{
+    font-size:clamp(22px,3.2vw,34px);font-weight:800;margin:0 0 10px
+  }
+  .kicker{color:var(--brand);font-weight:700;letter-spacing:.4px;font-size:13px;text-transform:uppercase}
+
+  /* Cards ofertas */
+  .cards{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px
+  }
+  @media (max-width: 980px){ .cards{grid-template-columns:1fr 1fr} }
+  @media (max-width: 640px){ .cards{grid-template-columns:1fr} }
+  .card{
+    position:relative;border-radius:16px;overflow:hidden;background:var(--card);
+    border:1px solid var(--stroke);min-height:260px;box-shadow:var(--shadow);
+  }
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88;transition:.35s ease}
+  .card::after{
+    content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.65) 70%);
+  }
+  .card:hover img{transform:scale(1.04)}
+  .card h4{
+    position:absolute;bottom:16px;left:16px;right:16px;margin:0;font-size:18px;font-weight:800;
+    text-shadow:0 6px 20px rgba(0,0,0,.6)
+  }
+
+  /* Quem somos */
+  .about{
+    position:relative;background:var(--bg-2);
+    border-block:1px solid var(--stroke);
+    overflow:hidden;
+  }
+  .about .rd-watermark{
+    position:absolute;inset:auto -10vw -120px auto;opacity:.13;pointer-events:none;
+    font-weight:900;font-size:min(42vw,560px);line-height:1;letter-spacing:2px;
+    color:#fff; -webkit-text-stroke:2px rgba(255,255,255,.28); color:transparent;
+  }
+  .about p{color:var(--muted);max-width:70ch}
+
+  .band-cta{
+    background:
+      radial-gradient(800px 360px at 20% 50%, rgba(255,106,0,.12), transparent 60%),
+      #0b0b0b;
+    border-top:1px solid var(--stroke);
+    border-bottom:1px solid var(--stroke);
+    padding:54px 0;
+    text-align:center;
+  }
+  .band-cta p{color:var(--muted);margin:8px auto 22px;max-width:70ch}
+
+  /* Sessão projetos e cidades */
+  .split{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start
+  }
+  @media (max-width: 980px){ .split{grid-template-columns:1fr} }
+  .twin{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px
+  }
+  .shadow{border-radius:var(--radius);overflow:hidden;border:1px solid var(--stroke);box-shadow:var(--shadow)}
+  .muted{color:var(--muted)}
+
+  /* Mapa Bahia (SVG simples com pins) */
+  .map{
+    background:#0b0b0b;border:1px solid var(--stroke);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow)
+  }
+  .map svg{width:100%;height:auto;display:block}
+  .pin{fill:var(--brand)}
+  .caption{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+  /* Galeria de obras */
+  .gallery{display:grid;gap:48px}
+  .figure{display:grid;gap:8px}
+  .figure small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--stroke);padding:28px 0;color:var(--muted);font-size:14px
+  }
+  .foot{
+    display:grid;gap:10px;grid-template-columns:1fr auto;align-items:center
+  }
+  @media (max-width: 700px){ .foot{grid-template-columns:1fr} }
+  .social{display:flex;gap:12px;align-items:center}
+  .pill{
+    border:1px solid var(--stroke);border-radius:999px;padding:8px 12px;background:#0d0d0d
+  }
+  .btn-link{
+    display:inline-flex;align-items:center;gap:10px;margin-top:10px
+  }
+  .btn-link .chev{width:18px;height:18px;border-color:var(--brand)}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo SOS SOLUCOES">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Banner -->
-    <section class="banner">
-        <img src="images/banner.jpg" alt="Banner RD Esquadrias">
-        <div class="banner-text">
-            <h1>Esquadrias de Alumínio e Vidro</h1>
-            <p>Qualidade e sofisticação para seu projeto</p>
-        </div>
-    </section>
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <div class="logo-mark">RD</div>
+      <div>Esquadrias em Alumínio</div>
+    </div>
+    <a href="#contato" class="cta">Solicite seu orçamento →</a>
+  </div>
+</header>
 
-    <!-- Produtos -->
-    <section class="produtos">
-        <h2>Nossos Produtos</h2>
-        <div class="cards">
-            <div class="card">
-                <img src="images/porta.jpg" alt="Porta de Alumínio">
-                <h3>Portas de Alumínio</h3>
-            </div>
-            <div class="card">
-                <img src="images/janela.jpg" alt="Janelas de Alumínio">
-                <h3>Janelas de Alumínio</h3>
-            </div>
-            <div class="card">
-                <img src="images/vidro.jpg" alt="Vidros e Espelhos">
-                <h3>Vidros e Espelhos</h3>
-            </div>
-        </div>
-    </section>
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">RD ESQUADRIAS</div>
+      <h1>Seu projeto com <br><span>esquadrias premium</span></h1>
+      <p class="sub">
+        Projetamos e executamos <b>portas, janelas e revestimentos</b> em alumínio de alto padrão, para
+        projetos residenciais e comerciais — com foco em segurança, durabilidade e requinte.
+      </p>
+      <a class="cta" href="#contato" aria-label="Solicite seu orçamento">Solicite seu orçamento →</a>
+    </div>
+    <div class="hero-card shadow">
+      <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1600&auto=format&fit=crop" alt="Ambiente com esquadrias de alumínio" />
+    </div>
+  </div>
+  <div class="chevrons">
+    <span class="chev"></span>
+    <span class="chev"></span>
+  </div>
+</section>
 
-    <!-- Contato -->
-    <section class="contato">
-        <h2>Fale Conosco</h2>
-        <p>Email: daniel@rdesquadrias.com.br</p>
-        <p>Telefone: (11) 93266-6490</p>
-    </section>
+<section class="sect">
+  <div class="wrap">
+    <p class="muted" style="text-align:center;max-width:70ch;margin:0 auto 20px">
+      Cuidamos de cada etapa, do orçamento à instalação. Projetos exclusivos com tecnologia, precisão e acabamento impecável.
+    </p>
+    <h3 class="title" style="text-align:center;margin-bottom:6px">O que nós oferecemos:</h3>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 S.O.S SOLUÇÕES . Todos os direitos reservados.</p>
-    </footer>
+    <div class="cards">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop" alt="">
+        <h4>Portas em ACM</h4>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1600&auto=format&fit=crop" alt="">
+        <h4>Janelas de Alto Desempenho</h4>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop" alt="">
+        <h4>Fachadas & Revestimentos</h4>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sect about" id="sobre">
+  <div class="wrap">
+    <div class="kicker">Quem somos?</div>
+    <h3 class="title" style="margin-top:6px">Somos inovação!</h3>
+    <p>
+      Especialistas em esquadrias de alumínio para projetos <b>residenciais e comerciais</b>, atuamos com
+      tecnologia de ponta e atendimento próximo, respeitoso e atento a cada detalhe.
+    </p>
+    <p>
+      Originada em 2001, a RD Esquadrias reúne know-how técnico e criatividade para entregar soluções
+      exclusivas em alumínio, com acabamento de alto padrão que valoriza arquitetura e design de interiores.
+    </p>
+    <div class="rd-watermark">RD</div>
+  </div>
+</section>
+
+<section class="band-cta" id="contato">
+  <div class="wrap">
+    <h3 class="title" style="margin:0">Então, vamos elevar seu projeto?</h3>
+    <p>Entre em contato e dê o próximo passo para ter esquadrias sob medida, feitas para valorizar cada detalhe.</p>
+    <a class="cta" href="https://wa.me/5575997136131" target="_blank" rel="noopener">Solicite seu orçamento →</a>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap split">
+    <div>
+      <div class="kicker">Soluções criativas e funcionais</div>
+      <h3 class="title">ACM com excelência</h3>
+      <p class="muted">Em parceria com a ESTAÇÃO 1 FSA, desenvolvemos uma solução em ACM para substituir a alvenaria: mais praticidade, menos manutenção e acabamento premium.</p>
+      <p class="kicker" style="margin:6px 0 12px">+ de 160 quadros de ACM</p>
+      <div class="twin">
+        <img class="shadow" src="https://images.unsplash.com/photo-1574362848149-122ec48a5408?q=80&w=1400&auto=format&fit=crop" alt="">
+        <img class="shadow" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1400&auto=format&fit=crop" alt="">
+      </div>
+    </div>
+    <div>
+      <h3 class="title">Diversos clientes por toda Bahia</h3>
+      <p class="muted">Soluções de alto padrão que transformam projetos em grandes resultados.</p>
+      <div class="map">
+        <!-- Mapa estilizado (silhueta genérica com pins) -->
+        <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" aria-label="Mapa da Bahia">
+          <defs>
+            <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <path d="M125 60 L340 50 L455 120 L440 200 L470 260 L410 330 L420 380 L360 430 L300 410 L240 455 L160 440 L120 380 L140 320 L100 260 L120 210 L90 150 Z"
+                fill="#0f0f0f" stroke="#2a2a2a" stroke-width="2" />
+          <!-- pins -->
+          <circle class="pin" cx="320" cy="130" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="380" cy="180" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="350" cy="220" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="300" cy="250" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="420" cy="300" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="260" cy="310" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="220" cy="350" r="7" filter="url(#glow)"/>
+          <circle class="pin" cx="330" cy="360" r="7" filter="url(#glow)"/>
+          <text x="220" y="120" fill="#fff" font-size="44" font-weight="800" opacity=".95">BAHIA</text>
+        </svg>
+        <div class="caption">Atendemos mais de 27 cidades.</div>
+      </div>
+
+      <div style="margin-top:18px">
+        <div class="kicker">Nosso projeto mais recente</div>
+        <p class="muted">Em plena execução em Riachão do Jacuípe: portas, janelas e acabamentos em alumínio com precisão.</p>
+        <a class="cta" href="https://wa.me/5575997136131" target="_blank" rel="noopener">Fale com nosso especialista →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap">
+    <div class="gallery">
+      <figure class="figure">
+        <img class="shadow" src="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1800&auto=format&fit=crop" alt="Obra 1">
+        <small>OBRA DAMAH — FEIRA DE SANTANA • RIPADO, PORTA EMBUTIDA, PERGOLADO, PORTÕES EM ALUMÍNIO</small>
+      </figure>
+
+      <figure class="figure">
+        <img class="shadow" src="https://images.unsplash.com/photo-1616596872639-6707d9a5a6ed?q=80&w=1800&auto=format&fit=crop" alt="Obra 2">
+        <small>OBRA — FEIRA DE SANTANA • FACHADA COM ACM AMADEIRADO</small>
+      </figure>
+
+      <figure class="figure">
+        <img class="shadow" src="https://images.unsplash.com/photo-1519710884009-85bfb6310f52?q=80&w=1800&auto=format&fit=crop" alt="Obra 3">
+        <small>PORTAS, JANELAS & GUARDACORPO EM ALUMÍNIO</small>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band-cta">
+  <div class="wrap">
+    <h3 class="title" style="margin:0">Estamos bem perto de você!</h3>
+    <p><b>Rua Adenil Falcão, 45 — Bairro Brasília, Feira de Santana.</b><br>Feira, Salvador, Alagoinhas, Serrinha, Riachão do Jacuípe, Santo Estêvão e mais.</p>
+    <a class="cta" href="https://maps.google.com" target="_blank" rel="noopener">Saiba como chegar →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="social" style="flex-wrap:wrap">
+        <span class="pill">📞 (75) 9 9713-6131</span>
+        <span class="pill">✉️ rd@rdsolu.com.br</span>
+        <span class="pill">🌐 RD Fabricações Ltda • CNPJ 25.275.158/0001-09</span>
+      </div>
+      <a class="btn-link" href="#inicio"><span class="chev"></span> Voltar ao topo</a>
+    </div>
+    <div class="muted">© <span id="y"></span> RD Esquadrias em Alumínio</div>
+  </div>
+</footer>
+
+<script>
+  // ano no rodapé
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // rolagem suave para âncoras
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id = a.getAttribute('href');
+      if(id.length>1 && document.querySelector(id)){
+        e.preventDefault();
+        document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+</script>
+
 </body>
-</html>
+    </html>
