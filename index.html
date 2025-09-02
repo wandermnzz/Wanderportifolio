@@ -26,56 +26,35 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 .bg-video, .bg-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 .bg-overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%);z-index:1;}
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 580px;
-  margin: 0 auto;
-  text-align: left; /* Alinha à esquerda */
-  padding: 80px 20px 40px;
-}
-
 .hero-logo {
-  width: 80px; /* ajuste o tamanho da logo */
+  width: 80px;
   height: auto;
   display: block;
-  margin-bottom: 16px; /* espaço entre logo e texto */
-}
-
-.hero-title-text {
-  display: flex;
-  flex-direction: column; /* coloca "Seu projeto com" em cima e "esquadraria Premium" embaixo */
+  margin-bottom: 16px;
+  float: left; /* logo no canto esquerdo */
 }
 
 .hero-title {
-  margin: 0;
   font-size: 36px;
   line-height: 1.2;
   color: #fff;
-}
-
-.hero-subtitle {
   margin: 0;
-  font-size: 24px;
-  font-weight: 400;
-  color: #fff;
+  text-align: center;
 }
 
-.cta-hero {
-  display: inline-block;
-  width: 320px;
-  max-width: 90%;
-  height: 38px;
-  line-height: 38px;
-  border-radius: 8px;
-  border: 2px solid var(--brand);
-  background: transparent;
+.hero-sub {
+  margin: 16px 0 0;
+  font-size: 18px;
   color: #fff;
-  font-weight: 400;
   text-align: center;
-  transition: all 0.3s;
-  margin-top: 20px;
 }
+
+.highlight {
+  font-weight: 700; /* destaque em negrito */
+  color: #FFD700;   /* ou outra cor de destaque que preferir */
+}
+
+
 .chev-wrap{position:absolute;left:50%;bottom:20px;translate:-50% 0;z-index:2}
 .chev{width:26px;height:26px;border-right:3px solid rgba(255,255,255,0.9);border-bottom:3px solid rgba(255,255,255,0.9);transform:rotate(45deg);opacity:.9;margin:6px 0;animation:updown 1.8s infinite}
 @keyframes updown{0%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(8px) rotate(45deg)}100%{transform:translateY(0) rotate(45deg)}}
@@ -148,10 +127,12 @@ img, video {max-width:100%; box-sizing:border-box;}
 
   <div class="hero-content">
   <img src="Logo.png" alt="Logo SOS Soluções" class="hero-logo">
-  <div class="hero-title-text">
-    <p class="hero-title">Seu projeto com</p>
-    <p class="hero-subtitle">esquadraria Premium</p>
-  </div>
+  <h1 class="hero-title">
+    Seu projeto com <span class="highlight">esquadraria Premium</span>
+  </h1>
+  <p class="hero-sub">
+    Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.
+  </p>
   <a href="#contato" class="cta-hero">Solicite seu orçamento →</a>
 </div>
 
