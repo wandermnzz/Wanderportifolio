@@ -1,160 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOS SOLUCOES</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; font-family: Arial, sans-serif; }
-
-    /* Fundo em vídeo */
-    .video-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      background: rgba(0,0,0,0.6);
-    }
-    header h1 {
-      display: flex;
-      align-items: center;
-      color: white;
-      font-size: 22px;
-      gap: 10px;
-    }
-    header img {
-      height: 40px;
-    }
-
-    .search-container {
-      padding: 15px;
-      display: flex;
-      justify-content: center;
-    }
-    .search-container input {
-      width: 100%;
-      max-width: 400px;
-      padding: 12px;
-      border-radius: 25px;
-      border: none;
-      font-size: 16px;
-    }
-
-    .btn {
-      display: block;
-      width: 80%;
-      margin: 10px auto;
-      padding: 14px;
-      border-radius: 30px;
-      font-size: 16px;
-      text-align: center;
-      text-decoration: none;
-      border: 2px solid white;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      font-weight: bold;
-    }
-
-    /* Produtos */
-    .produtos {
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
-    .produtos h2 {
-      margin-bottom: 15px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-    .produto {
-      background: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 10px;
-    }
-
-    /* Mapa Sergipe */
-    .mapa {
-      margin: 30px auto;
-      text-align: center;
-      color: white;
-    }
-    .mapa img {
-      max-width: 90%;
-      border: 2px solid white;
-      border-radius: 10px;
-    }
-
-    /* Botão WhatsApp fixo */
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 10;
-    }
-    .whatsapp img {
-      width: 60px;
-      height: 60px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS SOLUÇOES</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo SOS SOLUCOES">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Vídeo de fundo -->
-  <video autoplay muted loop class="video-bg">
-    <source src="video.mp4" type="video/mp4">
-  </video>
+    <!-- Banner -->
+    <section class="banner">
+        <img src="images/banner.jpg" alt="Banner RD Esquadrias">
+        <div class="banner-text">
+            <h1>Esquadrias de Alumínio e Vidro</h1>
+            <p>Qualidade e sofisticação para seu projeto</p>
+        </div>
+    </section>
 
-  <!-- Cabeçalho -->
-  <header>
-    <h1>
-      <img src="logo.png" alt="Logo">
-      MULTI MOVEIS
-    </h1>
-  </header>
+    <!-- Produtos -->
+    <section class="produtos">
+        <h2>Nossos Produtos</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="images/porta.jpg" alt="Porta de Alumínio">
+                <h3>Portas de Alumínio</h3>
+            </div>
+            <div class="card">
+                <img src="images/janela.jpg" alt="Janelas de Alumínio">
+                <h3>Janelas de Alumínio</h3>
+            </div>
+            <div class="card">
+                <img src="images/vidro.jpg" alt="Vidros e Espelhos">
+                <h3>Vidros e Espelhos</h3>
+            </div>
+        </div>
+    </section>
 
-  <!-- Barra de pesquisa -->
-  <div class="search-container">
-    <input type="text" placeholder="Pesquisar produto...">
-  </div>
+    <!-- Contato -->
+    <section class="contato">
+        <h2>Fale Conosco</h2>
+        <p>Email: daniel@rdesquadrias.com.br</p>
+        <p>Telefone: (11) 93266-6490</p>
+    </section>
 
-  <!-- Botões principais -->
-  <a href="#" class="btn">🛒 LOJA ONLINE</a>
-  <a href="#" class="btn">📑 CATÁLOGOS</a>
-
-  <!-- Produtos -->
-  <section class="produtos">
-    <h2>Produtos em destaque</h2>
-    <div class="grid">
-      <div class="produto">Produto 1</div>
-      <div class="produto">Produto 2</div>
-      <div class="produto">Produto 3</div>
-    </div>
-  </section>
-
-  <!-- Mapa Sergipe -->
-  <section class="mapa">
-    <h2>Onde estamos</h2>
-    <img src="mapasergipe.png" alt="Mapa Sergipe">
-    <br><br>
-    <a href="https://goo.gl/maps/xxxxx" target="_blank" class="btn">📍 Saiba como chegar</a>
-  </section>
-
-  <!-- Botão WhatsApp -->
-  <a href="https://wa.me/5599999999999" target="_blank" class="whatsapp">
-    <img src="whatsapp.png" alt="WhatsApp">
-  </a>
-
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 S.O.S SOLUÇÕES . Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
