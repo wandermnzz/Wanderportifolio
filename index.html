@@ -165,13 +165,19 @@ section{padding:56px 0;text-align: center;}
 .card {
   background: #111;
   overflow: hidden;
-  border: none;
-  position: relative;
+  border-radius: 12px;
+  width: 200px;   /* largura menor */
+  height: 300px;  /* altura maior que largura */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px; 
-  aspect-ratio: 1 / 1; /* força o card a ser quadrado */
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* garante que preencha todo o card e corte excesso */
+  display: block;
 }
 
 .card::after {
@@ -185,14 +191,6 @@ section{padding:56px 0;text-align: center;}
   background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
   pointer-events: none;
 }
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* mantém a imagem cobrindo todo o card */
-  display: block;
-}
-
-
 
 .card h4 {
   position: absolute;
