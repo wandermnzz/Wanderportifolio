@@ -114,7 +114,19 @@ section{padding:56px 0;text-align: center;}
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 12px; /* cantos arredondados */
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  border-radius: inherit; /* herda os cantos arredondados do card */
+  background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
+  pointer-events: none;
 }
 
 .card img {
@@ -124,17 +136,7 @@ section{padding:56px 0;text-align: center;}
   display: block;
 }
 
-/* sombra em degradê no rodapé da imagem */
-.card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40%; /* altura da sombra */
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  pointer-events: none; /* não atrapalha clique */
-}
+
 
 .card h4 {
   position: absolute;
