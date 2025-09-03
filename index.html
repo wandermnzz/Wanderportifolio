@@ -166,20 +166,19 @@ section{padding:56px 0;text-align: center;}
   background: #111;
   overflow: hidden;
   border-radius: 12px;
-  width: 200px;   /* largura menor */
-  height: 250px;  /* altura maior que largura */
+  width: 150px;   /* largura do card */
+  height: 250px;  /* altura do card */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;     /* centraliza verticalmente */
+  justify-content: center; /* centraliza horizontalmente */
 }
 
 .card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* garante que preencha todo o card e corte excesso */
+  max-width: 100%;   /* não ultrapassa a largura do card */
+  max-height: 100%;  /* não ultrapassa a altura do card */
+  object-fit: cover; /* cobre todo o card mantendo proporção */
   display: block;
 }
-
 .card::after {
   content: "";
   position: absolute;
