@@ -208,6 +208,7 @@ img, video {max-width:100%; box-sizing:border-box;}
   font-weight: 700; /*negrito*/
   } 
   .mapa-container {
+.mapa-container {
   max-width: 600px;
   margin: 50px auto;
   text-align: center;
@@ -222,22 +223,15 @@ img, video {max-width:100%; box-sizing:border-box;}
 .mapa-img {
   width: 100%;
   height: auto;
-  border: 2px solid #ed8936;
   border-radius: 12px;
-  opacity: 0; /* começa invisível */
-  transform: translateX(-100%); /* começa fora da tela à esquerda */
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 1.2s ease-out;
 }
 
-/* animação */
-.animate-map {
-  animation: slideIn 1.2s ease-out forwards;
-}
-
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.mapa-img.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>
 </head>
@@ -353,6 +347,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+  document.addEventListener("DOMContentLoaded", () => {
+    const mapa = document.querySelector(".mapa-img");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          mapa.classList.add("show");
+          observer.unobserve(mapa); // anima só uma vez
+        }
+      });
+    });
+
+    observer.observe(mapa);
+  });
 </script>
 </body>
 </html>
