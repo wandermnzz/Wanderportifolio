@@ -207,6 +207,38 @@ img, video {max-width:100%; box-sizing:border-box;}
   .bold-text {
   font-weight: 700; /*negrito*/
   } 
+  .mapa-container {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.mapa-titulo {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.mapa-img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #ed8936;
+  border-radius: 12px;
+  opacity: 0; /* começa invisível */
+  transform: translateX(-100%); /* começa fora da tela à esquerda */
+}
+
+/* animação */
+.animate-map {
+  animation: slideIn 1.2s ease-out forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 </style>
 </head>
 <body>
@@ -245,7 +277,10 @@ img, video {max-width:100%; box-sizing:border-box;}
     </div>
   </div>
 </section>
-
+<div class="mapa-container">
+  <h2 class="mapa-titulo">Atuamos em todo o estado de Sergipe</h2>
+  <img src="mapasergipe.png" alt="Mapa de Sergipe" class="mapa-img animate-map">
+</div>
 <section id="sobre">
   <div class="wrap">
     <div class="kicker">Quem somos?</div>
