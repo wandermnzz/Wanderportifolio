@@ -170,9 +170,9 @@ section{padding:56px 0;text-align: center;}
 /* Card visual */
 .card {
   background: #111;
-  border-radius: 12px;
+  border-radius: 1px;
   width: 100%;
-  max-width: 320px;   /* controla largura máxima */
+  max-width: 350px;   /* controla largura máxima */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -186,7 +186,16 @@ section{padding:56px 0;text-align: center;}
   object-fit: contain;   /* mostra a imagem completa */
   display: block;
 }
-
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%; /* ajuste a altura da sombra */
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
+  pointer-events: none;
+}
 /* Textos */
 .title.referencia {
   margin-top: 12px;
