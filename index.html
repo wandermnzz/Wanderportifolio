@@ -115,12 +115,19 @@ section{padding:56px 0;text-align: center;}
   align-items:center;
   justify-content:center;
 }
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  /* sombra embaixo */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.card img{
-  width:100%;
-  height:auto;
-  object-fit:contain;
-  display:block;
+.card img:hover {
+  transform: translateY(-5px); /* levanta levemente ao passar o mouse */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* sombra mais intensa */
 }
 
 .card h4{position:absolute;left:16px;bottom:14px;margin:0;font-weight:400;color:#fff;}
