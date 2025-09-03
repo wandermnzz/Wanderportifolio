@@ -166,12 +166,12 @@ section{padding:56px 0;text-align: center;}
   background: #111;
   overflow: hidden;
   border: none;
-  min-height: 240px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px; /* cantos arredondados */
+  border-radius: 12px; 
+  aspect-ratio: 1 / 1; /* força o card a ser quadrado */
 }
 
 .card::after {
@@ -185,11 +185,10 @@ section{padding:56px 0;text-align: center;}
   background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
   pointer-events: none;
 }
-
 .card img {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover; /* mantém a imagem cobrindo todo o card */
   display: block;
 }
 
