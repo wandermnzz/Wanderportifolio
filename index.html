@@ -84,11 +84,10 @@ font-weight:400;
 text-align:center;
 transition: all 0.3s;
 }
- .cta-herosaibamais {
-  display: block;      /* precisa ser block ou flex */
-  margin: 0 auto;      /* centraliza horizontalmente */
-  width: 320px;
-  max-width: 90%;
+.cta-herosaibamais {
+  display: block;          /* permite usar margin auto */
+  width: 80%;              /* ocupa 80% da largura do card */
+  max-width: 100%;         /* nunca ultrapassa o card */
   height: 38px;
   line-height: 38px;
   border-radius: 8px;
@@ -97,9 +96,10 @@ transition: all 0.3s;
   color: #fff;
   font-weight: 400;
   text-align: center;
+  margin: 0 auto;          /* centraliza horizontalmente */
+  cursor: pointer;
   transition: all 0.3s;
 }
-
 .cta-hero:hover {
 background: var(--brand);
 color:#111;
@@ -162,10 +162,11 @@ section{padding:56px 0;text-align: center;}
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 30px;
   max-width: 1000px;   /* ajusta conforme necessário */
   margin: 0 auto;      /* centraliza horizontalmente */
   padding: 0 20px;     /* opcional, para margem interna */
+  .cards {
 }
 
 @media (max-width: 980px) {
