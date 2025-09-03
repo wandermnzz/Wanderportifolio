@@ -170,6 +170,7 @@ section{padding:56px 0;text-align: center;}
 
 /* Card visual */
 .card {
+  position: relative;
   background: #111;
   border-radius: 1px;
   width: 100%;
@@ -186,6 +187,7 @@ section{padding:56px 0;text-align: center;}
   height: auto;          /* mantém proporção natural */
   object-fit: contain;   /* mostra a imagem completa */
   display: block;
+  z-index: 0;
 }
 .card::after {
   content: "";
@@ -196,6 +198,7 @@ section{padding:56px 0;text-align: center;}
   height: 45%; /* ajuste a altura da sombra */
   background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
   pointer-events: none;
+  z-index: 1;
 }
 /* Textos */
 .title.referencia {
