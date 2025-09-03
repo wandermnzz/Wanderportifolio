@@ -142,6 +142,19 @@ section{padding:56px 0;text-align: center;}
   display: inline-block; /* ESSENCIAL para o gradiente em texto pequeno */
   color: transparent !important; /* força transparência mesmo com herança */
 }
+  .gradient-text {
+  background: linear-gradient(
+    135deg,
+    #b8860b 0%,
+    #d4af37 30%,
+    #ffd700 50%,
+    #d4af37 70%,
+    #b8860b 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  }
   .muted{color:var(--muted);}
 
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -359,8 +372,10 @@ img, video {max-width:100%; box-sizing:border-box;}
       Oferecendo soluções de alto padrão em
 esquadrias que transformam projetos
 em grandes resultados  </p>
-  <h3 class="title.ref">Atendemos em todo sergipe!</h3>
-</div>
+<h3 class="title.ref">
+  <span class="gradient-text">Atendemos em todo Sergipe!</span>
+</h3>
+  </div>
 </div>
   
 </section>
