@@ -35,18 +35,18 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
   position: relative;
   overflow: hidden;
   min-height: 78vh;
-
   display: flex;
-  align-items: flex-start; /* joga o conteúdo para cima */
-  justify-content: center; /* mantém centralizado na horizontal */
+  flex-direction: column;
+  justify-content: flex-start; /* empurra tudo para cima */
+  align-items: center;
 }
 
 .hero-content {
-  position: absolute;  
-  top: 20%;           /* diminua esse valor para subir todo o conteúdo */
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
   text-align: center;
+  padding: 40px 20px; /* diminui o padding superior para subir o conteúdo */
 }
 
 .hero-title {
