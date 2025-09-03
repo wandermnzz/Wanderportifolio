@@ -337,6 +337,12 @@ img, video {max-width:100%; box-sizing:border-box;}
   opacity: 1;
   transform: translateX(0);
 }
+  /* Textos fora do card */
+.texto-lado-esquerdo {
+  text-align: left;     /* força alinhamento à esquerda */
+  max-width: 600px;     /* controla largura para não ficar esticado */
+  margin: 16px auto 0;  /* centraliza o bloco mas alinha o texto à esquerda */
+}
 </style>
 </head>
 <body>
@@ -383,7 +389,10 @@ img, video {max-width:100%; box-sizing:border-box;}
 </div>
   <div class="cards" style="margin-top:22px">
       <article class="card"><img src="servicoref2.jpg" alt="Serviço 1"></article>
-    <h2 class="title.referencia">Diversos clientes por todo sergipe</h2>
+  </div>
+    
+    <div class="texto-lado-esquerdo">
+      <h2 class="title.refetencia">Diversos clientes por todo sergipe</h2>
   <p class="muted">
       Oferecendo soluções de alto padrão em
 esquadrias que transformam projetos
