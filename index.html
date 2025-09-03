@@ -134,13 +134,14 @@ section{padding:56px 0;text-align: center;}
     #b8860b 100%
   );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; /* faz o gradiente aparecer */
   font-weight: 800;
-  font-size: 12px; /* bem pequena */
-  line-height: 1.4; /* para melhor legibilidade */
-  margin: 6px 0 10px; /* espaçamento abaixo */
-  display: inline-block; /* ajuda o gradiente a renderizar corretamente */
-}  
+  font-size: 12px; /* tamanho pequeno */
+  line-height: 1.4;
+  margin: 6px 0 10px;
+  display: inline-block; /* ESSENCIAL para o gradiente em texto pequeno */
+  color: transparent !important; /* força transparência mesmo com herança */
+}
   .muted{color:var(--muted);}
 
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
