@@ -84,20 +84,21 @@ font-weight:400;
 text-align:center;
 transition: all 0.3s;
 }
-  .cta-herosaibamais {
-display:inline-block;
-width:320px;
-max-width:90%;
-height:38px;
-line-height:38px;
-border-radius:8px;
-border:2px solid var(--brand);
-background:transparent;
-color:#fff;
-font-weight:400;
-text-align:center;
-transition: all 0.3s;
-  }
+ .cta-herosaibamais {
+  display: block;      /* precisa ser block ou flex */
+  margin: 0 auto;      /* centraliza horizontalmente */
+  width: 320px;
+  max-width: 90%;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 8px;
+  border: 2px solid var(--brand);
+  background: transparent;
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+  transition: all 0.3s;
+}
 
 .cta-hero:hover {
 background: var(--brand);
