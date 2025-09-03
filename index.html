@@ -42,12 +42,11 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 580px;
+  position: absolute;  
+  top: 20%;           /* diminua esse valor para subir todo o conteúdo */
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  margin-top: 60px; /* controla o espaço do topo */
-  padding: 40px 20px 20px; /* menos padding em cima */
 }
 
 .hero-title {
