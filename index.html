@@ -1,60 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SOS Soluções</title>
-<meta name="description" content="Soluções premium — vídeo de fundo, overlay de título e CTA no rodapé." />
-<style>
-:root{
-  --bg:#050505;
-  --muted:#bdbdbd;
-  --text:#ffffff;
-  --brand:#FFD700;
-  --card:#0f0f0f;
-  --stroke:rgba(255,255,255,0.06);
+<!DOCTYPE html>  <html lang="pt-BR">  
+<head>  
+<meta charset="utf-8" />  
+<meta name="viewport" content="width=device-width,initial-scale=1" />  
+<title>SOS Soluções</title>  
+<meta name="description" content="Soluções premium — vídeo de fundo, overlay de título e CTA no rodapé." />  
+<style>  
+:root{  
+  --bg:#050505;  
+  --muted:#bdbdbd;  
+  --text:#ffffff;  
+  --brand:#FFD700;  
+  --card:#0f0f0f;  
+  --stroke:rgba(255,255,255,0.06);  
+}  
+*{box-sizing:border-box;margin:0;padding:0;}  
+html,body{height:100%;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--text);}  
+a{color:inherit;text-decoration:none;overflow:hidden;}    
+.wrap{width:min(1120px,94vw);margin:0 auto;overflow:hidden;}  
+header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0));border-bottom:1px solid var(--stroke);}  
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;}  .bg-video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover; /* agora o vídeo cobre tudo /
+z-index: -1;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--text);}
-a{color:inherit;text-decoration:none;overflow:hidden;}  
-.wrap{width:min(1120px,94vw);margin:0 auto;overflow:hidden;}
-header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0));border-bottom:1px solid var(--stroke);}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;}
-
-  .bg-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover; /* agora o vídeo cobre tudo */
-  z-index: -1;
-  }
-    .bg-poster{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover; /* agora o vídeo cobre tudo */
-  z-index: -0;
-    }
+.bg-poster{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover; / agora o vídeo cobre tudo */
+z-index: -0;
+}
 .bg-overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%);z-index:1;}
 
 .hero {
-  position: relative;
-  overflow: hidden;
-  min-height: 78vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* empurra tudo para cima */
-  align-items: center;
+position: relative;
+overflow: hidden;
+min-height: 78vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-start; /* empurra tudo para cima */
+align-items: center;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 580px;
-  text-align: center;
-  padding: 40px 20px; /* diminui o padding superior para subir o conteúdo */
+position: relative;
+z-index: 1;
+max-width: 580px;
+text-align: center;
+padding: 40px 20px; /* diminui o padding superior para subir o conteúdo */
 }
 
 .hero-title {
@@ -85,20 +82,20 @@ text-align:center;
 transition: all 0.3s;
 }
 .cta-herosaibamais {
-  display: block;          /* permite usar margin auto */
-  width: 80%;              /* ocupa 80% da largura do card */
-  max-width: 100%;         /* nunca ultrapassa o card */
-  height: 38px;
-  line-height: 38px;
-  border-radius: 8px;
-  border: 2px solid var(--brand);
-  background: transparent;
-  color: #fff;
-  font-weight: 400;
-  text-align: center;
-  margin: 0 auto;          /* centraliza horizontalmente */
-  cursor: pointer;
-  transition: all 0.3s;
+display: block;          /* permite usar margin auto /
+width: 80%;              / ocupa 80% da largura do card /
+max-width: 100%;         / nunca ultrapassa o card /
+height: 38px;
+line-height: 38px;
+border-radius: 8px;
+border: 2px solid var(--brand);
+background: transparent;
+color: #fff;
+font-weight: 400;
+text-align: center;
+margin: 0 auto;          / centraliza horizontalmente */
+cursor: pointer;
+transition: all 0.3s;
 }
 .cta-hero:hover {
 background: var(--brand);
@@ -114,110 +111,110 @@ section{padding:56px 0;text-align: center;}
 .title.referencia{margin-bottom:8px;font-size:45px;}
 .title.services{font-weight:700;font-size:25px;font-weight:800;margin:6px 0 14px;}
 .title{background: linear-gradient(
-    135deg,
-    #b8860b 0%,
-    #d4af37 30%,
-    #ffd700 50%,
-    #d4af37 70%,
-    #b8860b 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;font-weight:700;font-size:40px;font-weight:800;margin:6px 0 14px;}
+135deg,
+#b8860b 0%,
+#d4af37 30%,
+#ffd700 50%,
+#d4af37 70%,
+#b8860b 100%
+);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-weight: bold;font-weight:700;font-size:40px;font-weight:800;margin:6px 0 14px;}
 
-  .title.ref {
-  background: linear-gradient(
-    135deg,
-    #b8860b 0%,
-    #d4af37 30%,
-    #ffd700 50%,
-    #d4af37 70%,
-    #b8860b 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* faz o gradiente aparecer */
-  font-weight: 800;
-  font-size: 12px; /* tamanho pequeno */
-  line-height: 1.4;
-  margin: 6px 0 10px;
-  display: inline-block; /* ESSENCIAL para o gradiente em texto pequeno */
-  color: transparent !important; /* força transparência mesmo com herança */
-  text-align: left;
+.title.ref {
+background: linear-gradient(
+135deg,
+#b8860b 0%,
+#d4af37 30%,
+#ffd700 50%,
+#d4af37 70%,
+#b8860b 100%
+);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; /* faz o gradiente aparecer /
+font-weight: 800;
+font-size: 12px; / tamanho pequeno /
+line-height: 1.4;
+margin: 6px 0 10px;
+display: inline-block; / ESSENCIAL para o gradiente em texto pequeno /
+color: transparent !important; / força transparência mesmo com herança */
+text-align: left;
 }
-  .gradient-text {
-  background: linear-gradient(
-    135deg,
-    #b8860b 0%,
-    #d4af37 30%,
-    #ffd700 50%,
-    #d4af37 70%,
-    #b8860b 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  }
-  .muted{color:var(--muted);}
+.gradient-text {
+background: linear-gradient(
+135deg,
+#b8860b 0%,
+#d4af37 30%,
+#ffd700 50%,
+#d4af37 70%,
+#b8860b 100%
+);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+display: inline-block;
+}
+.muted{color:var(--muted);}
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1000px;   /* ajusta conforme necessário */
-  margin: 0 auto;      /* centraliza horizontalmente */
-  padding: 0 20px;     /* opcional, para margem interna */
-  .cards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 30px;
+max-width: 1000px;   /* ajusta conforme necessário /
+margin: 0 auto;      / centraliza horizontalmente /
+padding: 0 20px;     / opcional, para margem interna */
+.cards {
 }
 
 @media (max-width: 980px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.cards {
+grid-template-columns: repeat(2, 1fr);
+}
 }
 
 @media (max-width: 640px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
+.cards {
+grid-template-columns: 1fr;
+}
 }
 
 .card {
-  background: #111;       /* fundo do card */
-  border-radius: 4px;
-  width: 250px;           /* largura menor */
-  height: 250px;          /* altura maior */
-  overflow: hidden;
-  display: flex;
-  align-items: center;    /* centraliza verticalmente */
-  justify-content: center; /* centraliza horizontalmente */
-  position: relative;
+background: #111;       /* fundo do card /
+border-radius: 4px;
+width: 250px;           / largura menor /
+height: 250px;          / altura maior /
+overflow: hidden;
+display: flex;
+align-items: center;    / centraliza verticalmente /
+justify-content: center; / centraliza horizontalmente */
+position: relative;
 }
 
 .card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* cobre todo o card mantendo proporção */
-  object-position: center; /* centraliza a imagem dentro do card */
-  display: block;
+width: 100%;
+height: 100%;
+object-fit: cover; /* cobre todo o card mantendo proporção /
+object-position: center; / centraliza a imagem dentro do card */
+display: block;
 }
 
 .card h4 {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
-  margin: 0;
-  font-weight: 500;
-  color: #fff;
+position: absolute;
+left: 16px;
+bottom: 14px;
+margin: 0;
+font-weight: 500;
+color: #fff;
 }
 .card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 45%; /* pode aumentar ou diminuir a área do sombreado */
-  background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
-  pointer-events: none;
+content: "";
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 45%; /* pode aumentar ou diminuir a área do sombreado */
+background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
+pointer-events: none;
 }
 .band-cta{
 background:linear-gradient(180deg, rgba(15,15,15,0.9), rgba(10,10,10,0.92));
@@ -247,17 +244,17 @@ margin-top:14px;
 .gallery{display:grid;gap:34px;}
 
 .gallery img{
-  width:100%;
-  height:auto;
-  object-fit:contain;
-  border:none;
+width:100%;
+height:auto;
+object-fit:contain;
+border:none;
 }
-  .gallery figure {
-  display: flex;
-  flex-direction: column; /* imagem em cima, descrição embaixo */
-  gap: 12px; /* espaço entre imagem e figcaption */
-  margin: 0; /* remove margens padrão do figure */
-  }
+.gallery figure {
+display: flex;
+flex-direction: column; /* imagem em cima, descrição embaixo /
+gap: 12px; / espaço entre imagem e figcaption /
+margin: 0; / remove margens padrão do figure */
+}
 
 footer{padding:28px 0;border-top:2px solid var(--brand);color:var(--muted);}
 .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:12px;}
@@ -274,209 +271,195 @@ box-shadow:0 10px 30px rgba(0,0,0,0.4);
 img, video {max-width:100%; box-sizing:border-box;}
 
 .whats-btn {
-  position: fixed;
-  right: 18px;
-  bottom: 20px;
-  z-index: 60;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  border-radius: 50px;
-  background-color: #25D366; /* verde WhatsApp */
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  transition: all 0.3s;
+position: fixed;
+right: 18px;
+bottom: 20px;
+z-index: 60;
+display: inline-flex;
+align-items: center;
+gap: 10px;
+padding: 12px 20px;
+border-radius: 50px;
+background-color: #25D366; /* verde WhatsApp */
+color: #fff;
+font-weight: 700;
+text-decoration: none;
+box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+transition: all 0.3s;
 }
 
 .whats-btn:hover {
-  background-color: #128C7E; /* verde mais escuro ao passar mouse */
+background-color: #128C7E; /* verde mais escuro ao passar mouse */
 }
 
 .whats-icon {
-  width: 26px;
-  height: 26px;
-  display: block;
+width: 26px;
+height: 26px;
+display: block;
 }
-  .bold-text {
-  font-weight: 700; /*negrito*/
-  } 
+.bold-text {
+font-weight: 700; /negrito/
+}
 
 .mapa-container {
-  max-width: 800px;
-  margin: 50px auto;
-  text-align: center;
+max-width: 800px;
+margin: 50px auto;
+text-align: center;
 }
 
 .mapa-titulo {
-  color: #fff;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+color: #fff;
+font-size: 1.5rem;
+margin-bottom: 20px;
 }
 
 .mapa-img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: all 1.2s ease-out;
+width: 100%;
+height: auto;
+border-radius: 12px;
+opacity: 0;
+transform: translateX(-100%);
+transition: all 1.2s ease-out;
 }
 
 .mapa-img.show {
-  opacity: 1;
-  transform: translateX(0);
+opacity: 1;
+transform: translateX(0);
 }
 </style>
-</head>
-<body>
-<header></header>
-<section class="hero" id="inicio">
-  <video class="bg-video" id="bgVideo" autoplay muted loop playsinline poster="poster.jpg">
-    <source src="hero.mp4" type="video/mp4">
-  </video>
-  <img class="bg-poster" src="poster.jpg" alt="Imagem de fundo" style="display:none"/>
-  <div class="bg-overlay" aria-hidden="true"></div>
-  <div class="hero-content">
-    <img src="Logo2.png" alt="Logo SOS Soluções" style="display:block;margin:0 auto 16px;width:80px;">
-    <h1 class="hero-title">
-  Seu projeto com <span class="bold-text">esquadrias premium</span>
-    </h1>
-    <p class="hero-sub">
-      Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.
-    </p>
-    <a href="#contato" class="cta-hero">Solicite seu orçamento →</a>
-  </div>
-  <div class="chev-wrap" aria-hidden="true">
-    <div class="chev"></div>
-  </div>
-</section>
 
-<section>
-  <div class="wrap">
-    <p class="muted" style="text-align:center;max-width:70ch;margin:0 auto 18px">
-      Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.
-    </p>
-    <h2 class="title.services" style="text-align:center">Nossos serviços</h2>
-    <div class="cards" style="margin-top:22px">
-  <article class="card"><img src="servico1.jpg" alt="Serviço 1"><h4></h4></article>
-  <article class="card"><img src="servico2.jpg" alt="Serviço 2"><h4></h4></article>
-  <article class="card"><img src="servico3.jpg" alt="Serviço 3"><h4></h4></article>
-</div>
-<div style="text-align:center; margin-top:20px;">
-  <a href="#contato" class="cta-herosaibamais">Saiba mais →</a>
-</div>
-  <div class="cards" style="margin-top:22px">
-      <article class="card"><img src="servicoref1.jpg" alt="Serviço 1"></article>
-    <h2 class="title.referencia">Soluções criativas e funcionais</h2>
-</div>
-</div>
-  <div class="cards" style="margin-top:22px">
-      <article class="card"><img src="servicoref2.jpg" alt="Serviço 1"></article>
-    <h2 class="title.referencia">Diversos clientes por todo sergipe</h2>
-  <p class="muted">
-      Oferecendo soluções de alto padrão em
-esquadrias que transformam projetos
-em grandes resultados  </p>
-<h3 class="title.ref">
-  <span class="gradient-text">Atendemos em todo Sergipe!</span>
-</h3>
-  </div>
-</div>
+</head>  
+<body>  
+<header></header>  
+<section class="hero" id="inicio">  
+  <video class="bg-video" id="bgVideo" autoplay muted loop playsinline poster="poster.jpg">  
+    <source src="hero.mp4" type="video/mp4">  
+  </video>  
+  <img class="bg-poster" src="poster.jpg" alt="Imagem de fundo" style="display:none"/>  
+  <div class="bg-overlay" aria-hidden="true"></div>  
+  <div class="hero-content">  
+    <img src="Logo2.png" alt="Logo SOS Soluções" style="display:block;margin:0 auto 16px;width:80px;">  
+    <h1 class="hero-title">  
+  Seu projeto com <span class="bold-text">esquadrias premium</span>  
+    </h1>  
+    <p class="hero-sub">  
+      Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.  
+    </p>  
+    <a href="#contato" class="cta-hero">Solicite seu orçamento →</a>  
+  </div>  
+  <div class="chev-wrap" aria-hidden="true">  
+    <div class="chev"></div>  
+  </div>  
+</section>  <section>  
+  <div class="wrap">  
+    <p class="muted" style="text-align:center;max-width:70ch;margin:0 auto 18px">  
+      Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.  
+    </p>  
+    <h2 class="title.services" style="text-align:center">Nossos serviços</h2>  
+    <div class="cards" style="margin-top:22px">  
+  <article class="card"><img src="servico1.jpg" alt="Serviço 1"><h4></h4></article>  
+  <article class="card"><img src="servico2.jpg" alt="Serviço 2"><h4></h4></article>  
+  <article class="card"><img src="servico3.jpg" alt="Serviço 3"><h4></h4></article>  
+</div>  
+<div style="text-align:center; margin-top:20px;">  
+  <a href="#contato" class="cta-herosaibamais">Saiba mais →</a>  
+</div>  
+  <div class="cards" style="margin-top:22px">  
+      <article class="card"><img src="servicoref1.jpg" alt="Serviço 1"></article>  
+    <h2 class="title.referencia">Soluções criativas e funcionais</h2>  
+</div>  
+</div>  
+  <div class="cards" style="margin-top:22px">  
+      <article class="card"><img src="servicoref2.jpg" alt="Serviço 1"></article>  
+    <h2 class="title.referencia">Diversos clientes por todo sergipe</h2>  
+  <p class="muted">  
+      Oferecendo soluções de alto padrão em  
+esquadrias que transformam projetos  
+em grandes resultados  </p>  
+<h3 class="title.ref">  
+  <span class="gradient-text">Atendemos em todo Sergipe!</span>  
+</h3>  
+  </div>  
+</div>  </section>  
+<div class="mapa-container">  
+  <h2 class="mapa-titulo">Atuamos em todo o estado de Sergipe</h2>  
+  <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img animate-map">  
+</div>  
+<section id="sobre">  
+  <div class="wrap">  
+    <div class="kicker">Quem somos?</div>  
+    <h3 class="title"> Somos inovação & Qualidade!</h3>  
+    <p class="muted">  
+      Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.  
+    </p>  
+  </div>  
+</section>  <section class="band-cta" id="contato">  
+  <div class="wrap">  
+    <h3 class="title" style="margin:0">Vamos juntos?</h3>  
+    <p class="muted" style="max-width:70ch;margin:8px auto 12px;color:#fff">  
+      Entre em contato e garanta soluções profissionais para o seu projeto.  
+    </p>  
+    <a class="btn-main" href="https://wa.me/5579998954178" target="_blank" rel="noopener">Solicite seu orçamento →</a>  
+  </div>  
+</section>  <section>  
+  <div class="wrap gallery">  
+    <figure>  
+      <img src="img/obra1.jpg" alt="Obra 1">  
+      <figcaption class="muted" style="margin-top:8px">Projeto residencial</figcaption>  
+    </figure>  
+    <figure>  
+      <img src="img/obra2.jpg" alt="Obra 2">  
+      <figcaption class="muted" style="margin-top:8px">Projeto comercial</figcaption>  
+    </figure>  
+  </div>  
+</section>  <footer>  
+  <div class="wrap footer-grid">  
+    <div>  
+      <div style="font-weight:700;color:#fff">SOS Soluções</div>  
+      <div class="muted" style="margin-top:8px">Rua Exemplo, 123 — Cidade • (00) 0 0000-0000 • contato@sossolucoes.com.br</div>  
+    </div>  
+    <div class="muted">© <span id="year"></span> SOS Soluções</div>  
+  </div>  
+</footer>  <a class="whats-btn" href="https://wa.me/5579998954178" target="_blank" rel="noopener" aria-label="WhatsApp">  
+  <img src="whatsapp.png" alt="WhatsApp" class="whats-icon">  
+  <span>Fale conosco</span>  
+</a>  <script>  
+document.getElementById('year').textContent = new Date().getFullYear();  
   
-</section>
-<div class="mapa-container">
-  <h2 class="mapa-titulo">Atuamos em todo o estado de Sergipe</h2>
-  <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img animate-map">
-</div>
-<section id="sobre">
-  <div class="wrap">
-    <div class="kicker">Quem somos?</div>
-    <h3 class="title"> Somos inovação & Qualidade!</h3>
-    <p class="muted">
-      Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.
-    </p>
-  </div>
-</section>
-
-<section class="band-cta" id="contato">
-  <div class="wrap">
-    <h3 class="title" style="margin:0">Vamos juntos?</h3>
-    <p class="muted" style="max-width:70ch;margin:8px auto 12px;color:#fff">
-      Entre em contato e garanta soluções profissionais para o seu projeto.
-    </p>
-    <a class="btn-main" href="https://wa.me/5579998954178" target="_blank" rel="noopener">Solicite seu orçamento →</a>
-  </div>
-</section>
-
-<section>
-  <div class="wrap gallery">
-    <figure>
-      <img src="img/obra1.jpg" alt="Obra 1">
-      <figcaption class="muted" style="margin-top:8px">Projeto residencial</figcaption>
-    </figure>
-    <figure>
-      <img src="img/obra2.jpg" alt="Obra 2">
-      <figcaption class="muted" style="margin-top:8px">Projeto comercial</figcaption>
-    </figure>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap footer-grid">
-    <div>
-      <div style="font-weight:700;color:#fff">SOS Soluções</div>
-      <div class="muted" style="margin-top:8px">Rua Exemplo, 123 — Cidade • (00) 0 0000-0000 • contato@sossolucoes.com.br</div>
-    </div>
-    <div class="muted">© <span id="year"></span> SOS Soluções</div>
-  </div>
-</footer>
+const v = document.getElementById('bgVideo');  
+v.addEventListener('error', () => {  
+  v.style.display='none';  
+  document.querySelector('.bg-poster').style.display='block';  
+});  
+setTimeout(() => {  
+  if(v && v.readyState===0){  
+    v.style.display='none';  
+    document.querySelector('.bg-poster').style.display='block';  
+  }  
+}, 900);  
   
-<a class="whats-btn" href="https://wa.me/5579998954178" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <img src="whatsapp.png" alt="WhatsApp" class="whats-icon">
-  <span>Fale conosco</span>
-</a>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-const v = document.getElementById('bgVideo');
-v.addEventListener('error', () => {
-  v.style.display='none';
-  document.querySelector('.bg-poster').style.display='block';
-});
-setTimeout(() => {
-  if(v && v.readyState===0){
-    v.style.display='none';
-    document.querySelector('.bg-poster').style.display='block';
-  }
-}, 900);
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if(id.length > 1 && document.querySelector(id)){
-      e.preventDefault();
-      document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});
-    }
-  });
-});
-  document.addEventListener("DOMContentLoaded", () => {
-    const mapa = document.querySelector(".mapa-img");
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          mapa.classList.add("show");
-          observer.unobserve(mapa); // anima só uma vez
-        }
-      });
-    });
-
-    observer.observe(mapa);
-  });
-</script>
-</body>
+document.querySelectorAll('a[href^="#"]').forEach(a => {  
+  a.addEventListener('click', e => {  
+    const id = a.getAttribute('href');  
+    if(id.length > 1 && document.querySelector(id)){  
+      e.preventDefault();  
+      document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});  
+    }  
+  });  
+});  
+  document.addEventListener("DOMContentLoaded", () => {  
+    const mapa = document.querySelector(".mapa-img");  
+  
+    const observer = new IntersectionObserver((entries) => {  
+      entries.forEach(entry => {  
+        if (entry.isIntersecting) {  
+          mapa.classList.add("show");  
+          observer.unobserve(mapa); // anima só uma vez  
+        }  
+      });  
+    });  
+  
+    observer.observe(mapa);  
+  });  
+</script>  </body>  
 </html>
