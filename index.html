@@ -123,7 +123,9 @@ section{padding:56px 0;text-align: center;}
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;font-weight:700;font-size:40px;font-weight:800;margin:6px 0 14px;}
-  .title.ref{background: linear-gradient(
+
+  .title.ref {
+  background: linear-gradient(
     135deg,
     #b8860b 0%,
     #d4af37 30%,
@@ -133,8 +135,12 @@ section{padding:56px 0;text-align: center;}
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: bold;font-weight:700;font-size:14px;font-weight:800;margin:6px 0 14px;}
-  
+  font-weight: 800;
+  font-size: 12px; /* bem pequena */
+  line-height: 1.4; /* para melhor legibilidade */
+  margin: 6px 0 10px; /* espaçamento abaixo */
+  display: inline-block; /* ajuda o gradiente a renderizar corretamente */
+}  
   .muted{color:var(--muted);}
 
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
