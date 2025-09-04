@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>SOS Soluções</title>
 <meta name="description" content="Soluções premium — vídeo de fundo, overlay de título e CTA no rodapé." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --bg:#050505;
   --text:#ffffff;
-  --muted:#ffffff;
+  --muted:rgba(255,255,255,0.7);
   --brand:#FFD700;
+  --brand-hover:#e6c200;
   --card:#111;
   --stroke:rgba(255,255,255,0.06);
 }
@@ -19,87 +23,48 @@
 * {margin:0;padding:0;box-sizing:border-box;}
 html,body {
   height:100%;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   background:var(--bg);
   color:var(--text);
   scroll-behavior:smooth;
+  line-height: 1.6;
 }
 
 a { color:inherit; text-decoration:none; }
 
 .wrap { width:min(1120px,94vw); margin:0 auto; }
 
+/* ===========================
+   HEADER
+=========================== */
 header {
-  position:sticky; top:0; z-index:30;
+  position:sticky; 
+  top:0; 
+  z-index:30;
   background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0));
   border-bottom:1px solid var(--stroke);
-}
-.nav { display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
-
-.hero {
-  position:relative; overflow:hidden; min-height:80vh;
-  display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
-  text-align:center;
-}
-.bg-video, .bg-poster { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.bg-video { z-index:0; }
-.bg-poster { z-index:-1; display:none; }
-.bg-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%); z-index:1; }
-
-.hero-content { position:relative; z-index:2; max-width:600px; padding:40px 20px; }
-.hero-title { font-size:2rem; line-height:1.3; margin-bottom:16px; color:#fff; }
-.hero-sub { margin:0 auto 24px; font-size:1rem; color:#fff; }
-.bold-text { font-weight:700; }
-
-.cta-hero, .cta-herosaibamais, .btn-main {
-  display:inline-block; width:320px; max-width:90%; height:42px;
-  line-height:42px; border-radius:8px; border:2px solid var(--brand);
-  background:transparent; color:#fff; font-weight:500; text-align:center;
-  transition:.3s; cursor:pointer;
-}
-.cta-hero:hover, .cta-herosaibamais:hover, .btn-main:hover {
-  background:var(--brand); color:#111;
-}
-.cta-herosaibamais { margin:15px auto 10px; display:block; }
-
-.chev-wrap { position:absolute; left:50%; bottom:20px; transform:translateX(-50%); z-index:2; }
-.chev {
-  width:26px; height:26px;
-  border-right:3px solid rgba(255,255,255,0.9);
-  border-bottom:3px solid rgba(255,255,255,0.9);
-  transform:rotate(45deg); opacity:.9; margin:6px 0;
-  animation:updown 1.8s infinite;
-}
-@keyframes updown { 0%,100%{transform:translateY(0) rotate(45deg);} 50%{transform:translateY(8px) rotate(45deg);} }
-
-section { padding:40px 20px; text-align:center; }
-.kicker { margin-bottom:8px; font-size:1.2rem; color:#fff; }
-.title {
-  font-weight:800; margin:6px 0 14px; color:#fff;
-}
-/* ===========================
-   VARIÁVEIS E BASE
-=========================== */
-:root {
-  --bg:#050505;
-  --muted:rgba(255,255,255,0.7); /* descrições com opacidade */
-  --text:#ffffff; /* textos principais */
-  --brand:#FFD700; /* gold */
-  --card:#111;
-  --stroke:rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
 }
 
-* {margin:0;padding:0;box-sizing:border-box;}
-html,body {
-  height:100%;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  background:var(--bg);
-  color:var(--text);
-  scroll-behavior:smooth;
+.nav { 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  padding:12px 0; 
 }
 
-a {color:inherit;text-decoration:none;}
-.wrap {width:min(1120px,94vw);margin:0 auto;}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: auto;
+}
 
 /* ===========================
    HERO
@@ -110,140 +75,278 @@ a {color:inherit;text-decoration:none;}
   min-height:80vh;
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
+  justify-content:center;
   align-items:center;
   text-align:center;
 }
+
 .bg-video, .bg-poster {
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  position:absolute; 
+  inset:0; 
+  width:100%; 
+  height:100%; 
+  object-fit:cover;
 }
-.bg-video {z-index:0;}
-.bg-poster {z-index:-1;display:none;}
+
+.bg-video {
+  z-index:0;
+}
+
+.bg-poster {
+  z-index:-1;
+  display:none;
+}
+
 .bg-overlay {
-  position:absolute; inset:0;
+  position:absolute; 
+  inset:0;
   background:linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%);
   z-index:1;
 }
+
 .hero-content {
-  position:relative; z-index:2; max-width:600px; padding:40px 20px;
+  position:relative; 
+  z-index:2; 
+  max-width:600px; 
+  padding:40px 20px;
 }
+
 .hero-title {
   font-size:2.5rem; 
   line-height:1.3;
   margin-bottom:16px;
-  text-align:center; 
   color:var(--text);
+  font-weight: 800;
 }
+
 .hero-sub {
   margin:0 auto 24px;
   font-size:1.1rem;
   color:var(--muted);
+  max-width: 90%;
 }
-.bold-text {font-weight:700;}
+
+.bold-text {
+  font-weight:700;
+  color: var(--brand);
+}
 
 /* ===========================
-   CTA
+   CTA BUTTONS
 =========================== */
 .cta-hero, .cta-herosaibamais, .btn-main {
   display:inline-block;
-  width:320px;
+  width:280px;
   max-width:90%;
-  height:42px;
-  line-height:42px;
+  height:50px;
+  line-height:46px;
   border-radius:8px;
   border:2px solid var(--brand);
   background:transparent;
   color:#fff;
-  font-weight:500;
+  font-weight:600;
   text-align:center;
-  transition:.3s;
+  transition:all 0.3s ease;
   cursor:pointer;
+  font-size: 1rem;
 }
+
 .cta-hero:hover, .cta-herosaibamais:hover, .btn-main:hover {
   background:var(--brand);
   color:#111;
-  border-color:var(--brand);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
 }
+
 .cta-hero:active, .cta-herosaibamais:active, .btn-main:active {
-  background:#e6c200;
-  border-color:#e6c200;
-  color:#111;
+  background:var(--brand-hover);
+  border-color:var(--brand-hover);
+  transform: translateY(0);
 }
-.cta-herosaibamais {margin:15px auto 10px; display:block;}
+
+.cta-herosaibamais {
+  margin:25px auto 10px; 
+  display:block;
+}
 
 /* ===========================
-   SEÇÕES
+   CHEVRON INDICATOR
 =========================== */
-section {padding:40px 20px;text-align:center;}
-.kicker {margin-bottom:8px;font-size:1.4rem;text-align:center;color:var(--text);}
+.chev-wrap { 
+  position:absolute; 
+  left:50%; 
+  bottom:20px; 
+  transform:translateX(-50%); 
+  z-index:2; 
+}
+
+.chev {
+  width:26px; 
+  height:26px;
+  border-right:3px solid rgba(255,255,255,0.9);
+  border-bottom:3px solid rgba(255,255,255,0.9);
+  transform:rotate(45deg); 
+  opacity:.9; 
+  margin:6px 0;
+  animation:updown 1.8s infinite;
+}
+
+@keyframes updown { 
+  0%,100%{
+    transform:translateY(0) rotate(45deg);
+  } 
+  50%{
+    transform:translateY(8px) rotate(45deg);
+  } 
+}
+
+/* ===========================
+   SECTIONS
+=========================== */
+section { 
+  padding:60px 20px;
+  text-align:center;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.kicker {
+  margin-bottom:8px;
+  font-size:1.2rem; 
+  color:var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
 .title {
+  font-weight:800; 
+  margin:6px 0 14px; 
+  color:#fff;
+  font-size: 2.2rem;
+}
+
+.title.gradient {
   background:linear-gradient(135deg,#b8860b 0%,#d4af37 30%,#ffd700 50%,#d4af37 70%,#b8860b 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  font-weight:800;
-  margin:6px 0 14px;
-  text-align:center;
-  font-size:2rem; 
+  display: inline-block;
 }
-.title.referencia {
-  color:var(--text); 
-  font-size:1.6rem; 
-  text-align:center;
-  margin:14px 0 10px;
-}
-.gradient-text {
-  background:linear-gradient(135deg,#b8860b 0%,#d4af37 30%,#ffd700 50%,#d4af37 70%,#b8860b 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  display:inline-block;
-  font-size:1.2rem;
-}
+
 .muted {
   color:var(--muted);
   font-size:1rem;
   margin-top:8px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===========================
    CARDS
 =========================== */
-.cards {display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-top:22px;}
+.cards {
+  display:flex; 
+  flex-wrap:wrap; 
+  justify-content:center; 
+  gap:30px; 
+  margin-top:30px;
+}
+
 .card {
   position:relative;
   background:var(--card);
-  border-radius:1px;
+  border-radius:8px;
   max-width:350px;
   width:100%;
   overflow:hidden;
-  transition:.3s;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-.card:hover {border-color:#e6c200;}
-.card img {width:100%;height:auto;object-fit:cover;}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-color:#e6c200;
+}
+
+.card img {
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
 .card::after {
   content:"";
   position:absolute;
-  bottom:0; left:0;
-  width:100%; height:40%;
-  background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+  bottom:0; 
+  left:0;
+  width:100%; 
+  height:40%;
+  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
 }
-.card h4 {position:absolute; left:16px; bottom:14px; font-weight:500; color:#fff;}
+
+.card h4 {
+  position:absolute; 
+  left:16px; 
+  bottom:14px; 
+  font-weight:600; 
+  color:#fff;
+  z-index: 2;
+  font-size: 1.2rem;
+}
 
 /* ===========================
    MAPA
 =========================== */
-.mapa-container {max-width:800px;margin:30px auto 10px;}
-.mapa-img {width:100%; max-width:600px; height:auto; border-radius:12px; opacity:0; transform:translateX(-100%); transition:all 1.2s ease-out;}
-.mapa-img.show {opacity:1;transform:translateX(0);}
+.mapa-container {
+  max-width:800px;
+  margin:40px auto 20px;
+  text-align: center;
+}
+
+.mapa-img {
+  width:100%; 
+  max-width:600px; 
+  height:auto; 
+  border-radius:12px; 
+  opacity:0; 
+  transform:translateX(-50px); 
+  transition:all 1s ease-out;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.mapa-img.show {
+  opacity:1;
+  transform:translateX(0);
+}
+
 .texto-lado-esquerdo {
   text-align:center; 
-  max-width:600px;margin:20px auto; padding:0 15px;
+  max-width:600px;
+  margin:30px auto;
+  padding:0 15px;
 }
-  .texto-lado-esquerdo2 {
-  text-align:left; 
-  max-width:600px;margin:20px auto; padding:0 15px;
-  }
-.texto-lado-esquerdo h2 {font-size:1.8rem; color:var(--text);}
-.texto-lado-esquerdo p {color:var(--muted); font-size:1rem; opacity:0.8;}
+
+.texto-lado-esquerdo h2 {
+  font-size:1.8rem; 
+  color:var(--text);
+  margin-bottom: 15px;
+}
+
+.texto-lado-esquerdo p {
+  color:var(--muted); 
+  font-size:1rem; 
+  margin-bottom: 15px;
+}
 
 /* ===========================
    BAND CTA
@@ -253,33 +356,142 @@ section {padding:40px 20px;text-align:center;}
   border-top:2px solid var(--brand);
   border-bottom:2px solid var(--brand);
   text-align:center;
-  padding:56px 20px;
-  border-radius:10px;
+  padding:60px 20px;
+  margin: 40px 0;
+}
+
+.band-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 /* ===========================
    GALERIA
 =========================== */
-.gallery {display:grid; gap:34px;}
-.gallery img {width:100%;height:auto;}
-.gallery figure {margin:0;}
-.gallery figcaption {color:var(--muted); font-size:1rem; text-align:center;}
+.gallery {
+  display:grid; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap:30px;
+  margin-top: 30px;
+}
+
+.gallery img {
+  width:100%;
+  height:auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.02);
+}
+
+.gallery figure {
+  margin:0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.gallery figcaption {
+  color:var(--muted); 
+  font-size:1rem; 
+  text-align:center;
+  margin-top: 10px;
+}
+
+/* ===========================
+   FORMULÁRIO
+=========================== */
+.form-container {
+  background: var(--card);
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--stroke);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
 
 /* ===========================
    FOOTER
 =========================== */
-footer {padding:28px 0; border-top:2px solid var(--brand); color:var(--muted);}
-.footer-grid {display:flex; align-items:center; justify-content:space-between; gap:12px;}
-@media(max-width:760px){.footer-grid {flex-direction:column;align-items:center;}}
+footer {
+  padding:40px 0; 
+  border-top:2px solid var(--brand); 
+  color:var(--muted);
+  background: rgba(0,0,0,0.3);
+}
+
+.footer-grid {
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  gap:20px;
+}
+
+.footer-info {
+  text-align: left;
+}
+
+.footer-brand {
+  font-weight:800; 
+  color:#fff; 
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.footer-copyright {
+  text-align: right;
+}
 
 /* ===========================
    FLOATING WHATSAPP
 =========================== */
 .whats-btn {
-  position:fixed; right:18px; bottom:20px;
+  position:fixed; 
+  right:20px; 
+  bottom:20px;
   z-index:60;
   display:inline-flex;
-  align-items:center; gap:10px;
+  align-items:center; 
+  gap:10px;
   padding:12px 20px;
   border-radius:50px;
   background:#25D366;
@@ -288,39 +500,131 @@ footer {padding:28px 0; border-top:2px solid var(--brand); color:var(--muted);}
   box-shadow:0 10px 20px rgba(0,0,0,0.3);
   transition:.3s;
 }
-.whats-btn:hover {background:#128C7E;}
-.whats-icon {width:26px;height:26px;}
+
+.whats-btn:hover {
+  background:#128C7E;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+.whats-icon {
+  width:26px;
+  height:26px;
+}
 
 /* ===========================
-   RESPONSIVIDADE EXTRA
+   RESPONSIVIDADE
 =========================== */
-@media(max-width:1024px){
-  .hero-title {font-size:2.2rem;}
-  .title {font-size:1.8rem;}
-  .title.services {font-size:1.8rem;}
-  .title.referencia {font-size:1.5rem;}
-  .texto-lado-esquerdo h2 {font-size:1.5rem;}
-}
-@media(max-width:640px){
-  .hero-title {font-size:1.8rem;}
-  .hero-sub {font-size:1rem;}
-  .card {max-width:90%;}
-  .mapa-img {max-width:320px;width:90%;}
-  .title {font-size:1.5rem;}
-  .title.services {font-size:1.5rem;}
-  .title.referencia {font-size:1.3rem;}
-  .texto-lado-esquerdo h2 {font-size:1.4rem;}
-}
-  .title.services {
-  color: #ffffff;       /* deixa branco */
-  background: none;     /* remove o gradient */
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
-  text-align: center;   /* centralizado */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size:2.2rem;
   }
+  
+  .title {
+    font-size:2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    flex-direction:column;
+    align-items:center;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .footer-info, .footer-copyright {
+    text-align: center;
+  }
+  
+  .card {
+    max-width:100%;
+  }
+  
+  .form-container {
+    padding: 25px;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size:1.8rem;
+  }
+  
+  .hero-sub {
+    font-size:1rem;
+  }
+  
+  .title {
+    font-size:1.7rem;
+  }
+  
+  .mapa-img {
+    max-width:320px;
+    width:90%;
+  }
+  
+  .cta-hero, .cta-herosaibamais, .btn-main {
+    width: 240px;
+    height: 46px;
+    line-height: 42px;
+  }
+  
+  .whats-btn span {
+    display: none;
+  }
+  
+  .whats-btn {
+    padding: 15px;
+    bottom: 25px;
+    right: 25px;
+  }
+}
+
+/* Utilidades */
+.text-center {
+  text-align: center;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+/* Animações suaves para elementos ao rolar */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="logo">
+      <img src="Logo2.png" alt="SOS Soluções" class="logo-img">
+      <span>SOS Soluções</span>
+    </a>
+    <nav>
+      <!-- Menu pode ser adicionado aqui posteriormente -->
+    </nav>
+  </div>
+</header>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -331,7 +635,7 @@ footer {padding:28px 0; border-top:2px solid var(--brand); color:var(--muted);}
   <div class="bg-poster"></div>
   <div class="bg-overlay"></div>
 
-  <div class="hero-content">
+  <div class="hero-content fade-in">
     <img src="Logo2.png" alt="Logo SOS Soluções" style="margin:0 auto 16px;width:80px;">
     <h1 class="hero-title">Seu projeto com <span class="bold-text">esquadrias premium</span></h1>
     <p class="hero-sub">Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.</p>
@@ -341,79 +645,177 @@ footer {padding:28px 0; border-top:2px solid var(--brand); color:var(--muted);}
 </section>
 
 <!-- SERVIÇOS -->
-<div class="wrap">
-  <p class="muted" style="text-align:center;max-width:70ch;margin:0 auto 18px">
-    Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.
-  </p>
-  <h2 class="title.services">Nossos serviços:</h2>
-  <div class="cards">
-    <article class="card"><img src="servico1.jpg" alt="Serviço 1"></article>
-    <article class="card"><img src="servico2.jpg" alt="Serviço 2"></article>
-    <article class="card"><img src="servico3.jpg" alt="Serviço 3"></article>
+<section>
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <p class="kicker">Nossos Serviços</p>
+      <h2 class="title gradient">Excelência em cada detalhe</h2>
+      <p class="muted">Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.</p>
+    </div>
+    
+    <div class="cards">
+      <article class="card fade-in">
+        <img src="servico1.jpg" alt="Serviço 1">
+        <h4>Esquadrias de Alumínio</h4>
+      </article>
+      <article class="card fade-in">
+        <img src="servico2.jpg" alt="Serviço 2">
+        <h4>Vidros Temperados</h4>
+      </article>
+      <article class="card fade-in">
+        <img src="servico3.jpg" alt="Serviço 3">
+        <h4>Projetos Personalizados</h4>
+      </article>
+    </div>
+    
+    <a href="#contato" class="cta-herosaibamais fade-in">Saiba mais →</a>
   </div>
-  <a href="#contato" class="cta-herosaibamais">Saiba mais →</a>
-</div>
+</section>
 
 <!-- REFERÊNCIAS -->
-<div class="wrap">
-  <div class="cards">
-    <article class="card"><img src="servicoref1.jpg" alt="Referência 1"></article>
+<section style="background: rgba(10,10,10,0.7);">
+  <div class="wrap">
+    <div class="cards">
+      <article class="card fade-in">
+        <img src="servicoref1.jpg" alt="Referência 1">
+        <h4>Projeto Residencial</h4>
+      </article>
+    </div>
+    
+    <div class="texto-lado-esquerdo fade-in">
+      <h2>Soluções criativas e funcionais</h2>
+      <p class="muted">Desenvolvemos uma solução em ACM para substituir projetos em alvenaria, garantindo mais praticidade e um acabamento de excelência.</p>
+    </div>
+    
+    <div class="cards">
+      <article class="card fade-in">
+        <img src="servicoref2.jpg" alt="Referência 2">
+        <h4>Projeto Comercial</h4>
+      </article>
+    </div>
+    
+    <div class="texto-lado-esquerdo fade-in">
+      <h2>Diversos clientes por todo Sergipe</h2>
+      <p class="muted">Oferecendo soluções de alto padrão em esquadrias que transformam projetos em grandes resultados</p>
+      <h3 class="title gradient">Atendemos em todo Sergipe!</h3>
+    </div>
   </div>
-  <h2 class="texto-lado-esquerdo">Soluções criativas e funcionais</h2>
-  <p class="muted">Desenvolvemos uma solução em ACM para substituir projetos em alvenaria, garantindo mais praticidade e um acabamento de excelência.</p>
-  <div class="cards">
-    <article class="card"><img src="servicoref2.jpg" alt="Referência 2"></article>
-  </div>
-  <div class="texto-lado-esquerdo2">
-    <h2 class="texto-lado-esquerdo2">Diversos clientes por todo Sergipe</h2>
-    <p class="muted">Oferecendo soluções de alto padrão em esquadrias que transformam projetos em grandes resultados</p>
-    <h3><span class="gradient-text">Atendemos em todo Sergipe!</span></h3>
-  </div>
-</div>
+</section>
 
 <!-- MAPA -->
-<div class="texto-lado-esquerdo">
-  <h2>Estamos bem <strong>perto de você!</strong></h2>
-  <p>Avenida General Euclides Figueiredo, 133 - Aracaju/SE</p>
-  <p>Atuamos em todo o estado de Sergipe, levando qualidade e atendimento próximo a você!</p>
-  <a href="#" class="cta-herosaibamais">Saiba como chegar →</a>
-</div>
+<section>
+  <div class="texto-lado-esquerdo fade-in">
+    <h2>Estamos bem <strong>perto de você!</strong></h2>
+    <p>Avenida General Euclides Figueiredo, 133 - Aracaju/SE</p>
+    <p>Atuamos em todo o estado de Sergipe, levando qualidade e atendimento próximo a você!</p>
+    <a href="https://goo.gl/maps/example" target="_blank" class="cta-herosaibamais">Saiba como chegar →</a>
+  </div>
 
-<div class="mapa-container">
- <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img animate-map">
-</div>
+  <div class="mapa-container fade-in">
+    <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img">
+  </div>
+</section>
 
 <!-- SOBRE -->
 <section id="sobre">
-  <div class="texto-lado-esquerdo2">
-    <div class="kicker">Quem somos?</div>
-    <h3 class="title">Somos inovação & Qualidade!</h3>
-    <p class="muted">Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.</p>
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <p class="kicker">Quem somos</p>
+      <h2 class="title gradient">Somos inovação & Qualidade!</h2>
+      <p class="muted">Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.</p>
+    </div>
   </div>
 </section>
 
 <!-- GALERIA -->
-<section>
-  <div class="wrap gallery">
-    <figure>
-      <img src="servico1.jpg" alt="Obra 1">
-      <figcaption class="muted">Projeto residencial</figcaption>
-    </figure>
-    <figure>
-      <img src="servico2.jpg" alt="Obra 2">
-      <figcaption class="muted">Projeto comercial</figcaption>
-    </figure>
+<section style="background: rgba(10,10,10,0.7);">
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <p class="kicker">Nossos Trabalhos</p>
+      <h2 class="title gradient">Projetos Realizados</h2>
+    </div>
+    
+    <div class="gallery">
+      <figure class="fade-in">
+        <img src="servico1.jpg" alt="Obra 1">
+        <figcaption class="muted">Projeto residencial</figcaption>
+      </figure>
+      <figure class="fade-in">
+        <img src="servico2.jpg" alt="Obra 2">
+        <figcaption class="muted">Projeto comercial</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="section-title fade-in">
+      <p class="kicker">Entre em Contato</p>
+      <h2 class="title gradient">Solicite seu orçamento</h2>
+      <p class="muted">Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.</p>
+    </div>
+    
+    <div class="form-container fade-in">
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Nome completo</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Telefone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="service">Serviço de interesse</label>
+          <select id="service" name="service" required>
+            <option value="">Selecione um serviço</option>
+            <option value="esquadrias">Esquadrias de Alumínio</option>
+            <option value="vidros">Vidros Temperados</option>
+            <option value="projetos">Projetos Personalizados</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        
+        <button type="submit" class="cta-hero" style="width: 100%">Enviar solicitação →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BAND CTA -->
+<div class="band-cta fade-in">
+  <div class="wrap">
+    <h2>Pronto para transformar seu projeto?</h2>
+    <p class="muted mb-20">Entre em contato conosco e solicite um orçamento sem compromisso</p>
+    <a href="#contato" class="cta-hero">Solicitar orçamento →</a>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="wrap footer-grid">
-    <div>
-      <div style="font-weight:700;color:#fff">SOS Soluções</div>
-      <div class="muted" style="text-align:center;">Avenida General Euclides Figueiredo, 133 — Cidade • (00) 0 0000-0000 • contato@sossolucoes.com.br</div>
+    <div class="footer-info">
+      <span class="footer-brand">SOS Soluções</span>
+      <div class="muted">Avenida General Euclides Figueiredo, 133 — Aracaju/SE</div>
+      <div class="muted">(79) 99989-54178 • contato@sossolucoes.com.br</div>
     </div>
-    <div class="muted" style="text-align:center;">© <span id="year"></span> SOS Soluções</div>
+    <div class="footer-copyright">
+      <div class="muted">© <span id="year"></span> SOS Soluções. Todos os direitos reservados.</div>
+    </div>
   </div>
 </footer>
 
@@ -425,18 +827,60 @@ footer {padding:28px 0; border-top:2px solid var(--brand); color:var(--muted);}
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-const v = document.getElementById('bgVideo');
-v.addEventListener('error', () => { v.style.display='none'; document.querySelector('.bg-poster').style.display='block'; });
-setTimeout(() => { if(v && v.readyState===0){ v.style.display='none'; document.querySelector('.bg-poster').style.display='block'; } }, 900);
 
+// Fallback para o vídeo de fundo
+const v = document.getElementById('bgVideo');
+if (v) {
+  v.addEventListener('error', () => { 
+    v.style.display='none'; 
+    document.querySelector('.bg-poster').style.display='block'; 
+  });
+  
+  setTimeout(() => { 
+    if(v && v.readyState === 0) { 
+      v.style.display='none'; 
+      document.querySelector('.bg-poster').style.display='block'; 
+    } 
+  }, 900);
+}
+
+// Animação de aparecimento ao rolar
 document.addEventListener("DOMContentLoaded", () => {
   const mapa = document.querySelector(".mapa-img");
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) { mapa.classList.add("show"); observer.unobserve(mapa); }
+      if (entry.isIntersecting) { 
+        mapa.classList.add("show"); 
+        observer.unobserve(mapa); 
+      }
     });
   });
   observer.observe(mapa);
+  
+  // Observador para elementos com classe fade-in
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  fadeElements.forEach(el => {
+    fadeObserver.observe(el);
+  });
+  
+  // Form submission
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Obrigado pelo seu interesse! Em breve nossa equipe entrará em contato.');
+      contactForm.reset();
+    });
+  }
 });
 </script>
 </body>
