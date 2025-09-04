@@ -116,7 +116,7 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 @keyframes updown{0%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(8px) rotate(45deg)}100%{transform:translateY(0) rotate(45deg)}}
 
 section{padding:56px 0;text-align: center;}
-.kicker{margin-bottom:8px;font-size:40px;}
+.kicker{margin-bottom:8px;font-size:1.2rem;}
 .title.referencia{margin-bottom:8px;font-size:45px;}
 .title.services{font-weight:700;font-size:25px;font-weight:800;margin:6px 0 14px;}
 .title{background: linear-gradient(
@@ -129,7 +129,7 @@ section{padding:56px 0;text-align: center;}
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: bold;font-weight:700;font-size:40px;font-weight:800;margin:6px 0 14px;}
+  font-weight: bold;font-weight:700;font-size:1.2rem;font-weight:800;margin:6px 0 14px;}
 
 .gradient-text {
   background: linear-gradient(
@@ -299,24 +299,34 @@ img, video {max-width:100%; box-sizing:border-box;}
 .bold-text {font-weight:700;} 
 
 .mapa-container {
+  width: 100%;
   max-width: 800px;
   margin: 50px auto;
   text-align: center;
+}
+
+.mapa-img {
+  width: 100%;
+  max-width: 600px; /* tamanho máximo do mapa em telas grandes */
+  height: auto;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 1.2s ease-out;
+}
+
+/* Mobile: controla o tamanho no celular */
+@media (max-width: 768px) {
+  .mapa-img {
+    max-width: 320px; /* mantém parecido com o tamanho “normal” */
+    width: 90%;       /* nunca estoura a tela */
+  }
 }
 
 .mapa-titulo {
   color: #fff;
   font-size: 1.5rem;
   margin-bottom: 20px;
-}
-
-.mapa-img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: all 1.2s ease-out;
 }
 
 .mapa-img.show {
