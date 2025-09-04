@@ -343,27 +343,32 @@ img, video {max-width:100%; box-sizing:border-box;}
 <body>
 <header></header>
 <section class="hero" id="inicio">
-  <video class="bg-video" id="bgVideo" autoplay muted loop playsinline poster="poster.jpg">
-    <source src="https://drive.google.com/uc?export=download&id=1YdvPxuCLepEn5r4ORP7sJpRBBuCkyH43" type="video/mp4">
+  <!-- Vídeo de fundo -->
+  <video class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
+    <source src="hero.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos em HTML5.
   </video>
-  <img class="bg-poster" src="poster.jpg" alt="Imagem de fundo" style="display:none"/>
+
+  <!-- Overlay escuro -->
   <div class="bg-overlay" aria-hidden="true"></div>
+
+  <!-- Conteúdo do hero -->
   <div class="hero-content">
     <img src="Logo2.png" alt="Logo SOS Soluções" style="display:block;margin:0 auto 16px;width:80px;">
     <h1 class="hero-title">
-  Seu projeto com <span class="bold-text">esquadrias premium</span>
+      Seu projeto com <span class="bold-text">esquadrias premium</span>
     </h1>
     <p class="hero-sub">
       Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.
     </p>
     <a href="#contato" class="cta-hero">Solicite seu orçamento →</a>
   </div>
+
+  <!-- Chevrons de rolagem -->
   <div class="chev-wrap" aria-hidden="true">
     <div class="chev"></div>
   </div>
 </section>
-
-<section>
   <div class="wrap">
     <p class="muted" style="text-align:center;max-width:70ch;margin:0 auto 18px">
       Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.
