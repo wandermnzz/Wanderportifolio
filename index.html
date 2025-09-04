@@ -5,506 +5,442 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>SOS Soluções</title>
 <meta name="description" content="Soluções premium — vídeo de fundo, overlay de título e CTA no rodapé." />
+
 <style>
-:root{
+/* ===========================
+   VARIÁVEIS E BASE
+=========================== */
+:root {
   --bg:#050505;
   --muted:#bdbdbd;
   --text:#ffffff;
   --brand:#FFD700;
-  --card:#0f0f0f;
+  --card:#111;
   --stroke:rgba(255,255,255,0.06);
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--text);}
-a{color:inherit;text-decoration:none;overflow:hidden;}  
-.wrap{width:min(1120px,94vw);margin:0 auto;overflow:hidden;}
-header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0));border-bottom:1px solid var(--stroke);}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;}
 
-.bg-video{
+* {margin:0;padding:0;box-sizing:border-box;}
+html,body {
+  height:100%;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background:var(--bg);
+  color:var(--text);
+  scroll-behavior:smooth;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+/* Containers */
+.wrap {
+  width:min(1120px,94vw);
+  margin:0 auto;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+header {
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0));
+  border-bottom:1px solid var(--stroke);
+}
+
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 0;
+}
+
+/* ===========================
+   HERO
+=========================== */
+.hero {
+  position:relative;
+  overflow:hidden;
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  text-align:center;
+}
+
+.bg-video,
+.bg-poster {
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index: 0;
 }
-.bg-poster{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index: -1;
-}
-.bg-overlay{
+
+.bg-video {z-index:0;}
+.bg-poster {z-index:-1;display:none;}
+
+.bg-overlay {
   position:absolute;
   inset:0;
   background:linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%);
   z-index:1;
 }
 
-.hero {
-  position: relative;
-  overflow: hidden;
-  min-height: 78vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 580px;
-  text-align: center;
-  padding: 40px 20px;
+  position:relative;
+  z-index:2;
+  max-width:600px;
+  padding:40px 20px;
 }
 
 .hero-title {
-  color:#fff;
-  font-size:36px;
-  line-height:1.2;
+  font-size:2rem;
+  line-height:1.3;
   margin-bottom:16px;
 }
 
 .hero-sub {
-  color:#fff;
-  max-width:100%;
   margin:0 auto 24px;
+  font-size:1rem;
+  color:#f1f1f1;
 }
 
-.cta-hero {
+.bold-text {font-weight:700;}
+
+/* CTA */
+.cta-hero,
+.cta-herosaibamais,
+.btn-main {
   display:inline-block;
   width:320px;
   max-width:90%;
-  height:38px;
-  line-height:38px;
+  height:42px;
+  line-height:42px;
   border-radius:8px;
   border:2px solid var(--brand);
   background:transparent;
   color:#fff;
-  font-weight:400;
+  font-weight:500;
   text-align:center;
-  transition: all 0.3s;
+  transition:.3s;
+  cursor:pointer;
 }
 
-.cta-herosaibamais {
-  display: block;
-  width: 100%;         /* ocupa toda a largura do container */
-  max-width: 350px;    /* mesma largura máxima dos cards */
-  height: 38px;
-  line-height: 38px;
-  border-radius: 8px;
-  border: 2px solid var(--brand);
-  background: transparent;
-  color: #fff;
-  font-weight: 400;
-  text-align: center;
-  margin: 15px auto 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-/* Ajuste mobile igual aos cards */
-@media (max-width: 640px) {
-  .cta-herosaibamais {
-    max-width: 90%;   /* mantém proporção com as imagens */
-  }
-}
-.cta-hero:hover {
-  background: var(--brand);
+.cta-hero:hover,
+.cta-herosaibamais:hover,
+.btn-main:hover {
+  background:var(--brand);
   color:#111;
 }
 
-.chev-wrap{position:absolute;left:50%;bottom:20px;translate:-50% 0;z-index:2}
-.chev{width:26px;height:26px;border-right:3px solid rgba(255,255,255,0.9);border-bottom:3px solid rgba(255,255,255,0.9);transform:rotate(45deg);opacity:.9;margin:6px 0;animation:updown 1.8s infinite}
-@keyframes updown{0%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(8px) rotate(45deg)}100%{transform:translateY(0) rotate(45deg)}}
+.cta-herosaibamais {
+  margin:15px auto 10px;
+  display:block;
+}
 
-section{padding:56px 0;text-align: center;}
-.kicker{margin-bottom:8px;font-size:1.2rem;}
-.title.services{font-weight:700;font-size:25px;font-weight:800;margin:6px 0 14px;}
-.title{background: linear-gradient(
-    135deg,
-    #b8860b 0%,
-    #d4af37 30%,
-    #ffd700 50%,
-    #d4af37 70%,
-    #b8860b 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;font-weight:700;font-size:1.2rem;font-weight:800;margin:6px 0 14px;}
+/* Chevron animado */
+.chev-wrap {
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  z-index:2;
+}
+.chev {
+  width:26px;height:26px;
+  border-right:3px solid rgba(255,255,255,0.9);
+  border-bottom:3px solid rgba(255,255,255,0.9);
+  transform:rotate(45deg);
+  opacity:.9;
+  margin:6px 0;
+  animation:updown 1.8s infinite;
+}
+@keyframes updown {
+  0%,100% {transform:translateY(0) rotate(45deg);}
+  50% {transform:translateY(8px) rotate(45deg);}
+}
 
+/* ===========================
+   SEÇÕES
+=========================== */
+section {padding:40px 20px;text-align:center;}
+.kicker {margin-bottom:8px;font-size:1.2rem;}
+.title {
+  background:linear-gradient(135deg,#b8860b 0%,#d4af37 30%,#ffd700 50%,#d4af37 70%,#b8860b 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:800;
+  margin:6px 0 14px;
+}
+.title.services {font-size:1.6rem;}
+.title.referencia {color:#fff;font-size:1.2rem;}
 .gradient-text {
-  background: linear-gradient(
-    135deg,
-    #b8860b 0%,
-    #d4af37 30%,
-    #ffd700 50%,
-    #d4af37 70%,
-    #b8860b 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  font-size: 14px;
+  background:linear-gradient(135deg,#b8860b 0%,#d4af37 30%,#ffd700 50%,#d4af37 70%,#b8860b 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  display:inline-block;
 }
-.muted{color:var(--muted);}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 22px;
-  gap: 30px;
-}
-  @media(min-width: 768px) {
-  .cards {
-    flex-direction: row;   /* coloca os cards lado a lado */
-    justify-content: center;
-    flex-wrap: wrap;       /* permite quebrar linha se não couber */
-    gap: 30px;             /* espaço entre cards */
-  }
-  }
-
-/* Card visual */
-.card {
-  position: relative;
-  background: #111;
-  border-radius: 1px;
-  width: 100%;
-  max-width: 350px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Imagem dentro do card (inteira) */
-.card img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  z-index: 0;
-}
-/* Cards */
-.card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 45%; /* altura da sombra */
-  background: linear-gradient(to top, rgba(0,0,0,0.70), transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Mapa */
-.mapa-container {
-  max-width: 800px;
-  margin: 30px auto 10px; /* topo 30px, base 10px */
-  text-align: center;
-}
-
-.mapa-img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  border-radius: 12px;
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: all 1.2s ease-out;
-}
-
-/* Responsivo para celular */
-@media (max-width: 768px) {
-  .mapa-img {
-    max-width: 320px;
-    width: 90%;
-  }
-}
-
-/* Espaçamento geral das seções */
-section {
-  padding: 40px 20px 10px 20px; /* cima, lados, baixo */
-  margin: 0;
-}
-.title.referencia {
-  margin-top: 5px;
-  font-size: 1.2rem;
-  color: #fff;
-}
-
 .muted {
-  margin-top: 8px;
-  color: #aaa;
-  font-size: 0.9rem;
-  max-width: 320px;
+  color:var(--muted);
+  font-size:0.95rem;
+  margin-top:8px;
 }
 
-@media (max-width: 640px) {
-  .card {
-    max-width: 90%;
-  }
-}
-.card h4 {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
-  margin: 0;
-  font-weight: 500;
-  color: #fff;
+/* ===========================
+   CARDS
+=========================== */
+.cards {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+  margin-top:22px;
 }
 
-.band-cta{
-background:linear-gradient(180deg, rgba(15,15,15,0.9), rgba(10,10,10,0.92));
-border-top:2px solid var(--brand);
-border-bottom:2px solid var(--brand);
-text-align:center;
-padding:56px 20px;
-border-radius:10px;
+.card {
+  position:relative;
+  background:var(--card);
+  border-radius:6px;
+  max-width:350px;
+  width:100%;
+  overflow:hidden;
 }
-.btn-main{
-display:inline-block;
-width:320px;
-max-width:90%;
-height:38px;
-line-height:38px;
-border-radius:8px;
-border:2px solid var(--brand);
-background:transparent;
-color:#fff;
-font-weight:400;
-text-align:center;
-transition: all 0.3s;
-margin-top:14px;
-}
-.btn-main:hover{background:var(--brand);color:#111;}
-
-.gallery{display:grid;gap:34px;}
-.gallery img{
+.card img {
   width:100%;
   height:auto;
-  object-fit:contain;
-  border:none;
+  object-fit:cover;
 }
-.gallery figure {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0;
+.card::after {
+  content:"";
+  position:absolute;
+  bottom:0;left:0;
+  width:100%;height:40%;
+  background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
 }
-
-footer{padding:28px 0;border-top:2px solid var(--brand);color:var(--muted);}
-.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-@media (max-width:760px){.footer-grid{flex-direction:column;align-items:flex-start;}}
-
-.floating-contact{
-position:fixed;right:18px;bottom:20px;z-index:60;
-display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;
-background:rgba(255,255,0,0.95);color:#111;font-weight:700;border:2px solid var(--brand);
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
-}
-.floating-contact img{width:26px;height:26px;display:block;border-radius:6px;}
-
-img, video {max-width:100%; box-sizing:border-box;}
-
-.whats-btn {
-  position: fixed;
-  right: 18px;
-  bottom: 20px;
-  z-index: 60;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  border-radius: 50px;
-  background-color: #25D366;
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  transition: all 0.3s;
-}
-.whats-btn:hover {background-color:#128C7E;}
-.whats-icon {width:26px;height:26px;display:block;}
-.bold-text {font-weight:700;} 
-
-.mapa-container iframe {
-  display: block;   /* elimina espaços indesejados */
-  margin: 0 auto;   /* centraliza */
+.card h4 {
+  position:absolute;
+  left:16px;
+  bottom:14px;
+  font-weight:500;
+  color:#fff;
 }
 
-.mapa-titulo {
-  color: #fff;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+/* ===========================
+   MAPA
+=========================== */
+.mapa-container {
+  max-width:800px;
+  margin:30px auto 10px;
 }
-
-.mapa-img.show {
-  opacity: 1;
-  transform: translateX(0);
+.mapa-img {
+  width:100%;
+  max-width:600px;
+  height:auto;
+  border-radius:12px;
+  opacity:0;
+  transform:translateX(-100%);
+  transition:all 1.2s ease-out;
 }
+.mapa-img.show {opacity:1;transform:translateX(0);}
 
+/* Texto lateral */
 .texto-lado-esquerdo {
-  text-align: left;        /* texto alinhado à esquerda */
-  max-width: 600px;        /* largura máxima do bloco */
-  margin: 20px auto 20px;     /* centraliza o bloco horizontalmente e espaça embaixo */
-  padding: 0 15px;         /* um pouco de padding lateral */
+  text-align:left;
+  max-width:600px;
+  margin:20px auto;
+  padding:0 15px;
 }
 
-.botao-contato {
-  display: inline-block;
-  padding: 12px 25px;
-  color: #ff6700;
-  border: 2px solid #ff6700;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+/* ===========================
+   BAND CTA
+=========================== */
+.band-cta {
+  background:linear-gradient(180deg,rgba(15,15,15,0.9),rgba(10,10,10,0.92));
+  border-top:2px solid var(--brand);
+  border-bottom:2px solid var(--brand);
+  text-align:center;
+  padding:56px 20px;
+  border-radius:10px;
 }
 
-.botao-contato:hover {
-  background-color: #ff6700;
-  color: #fff;
+/* ===========================
+   GALERIA
+=========================== */
+.gallery {
+  display:grid;
+  gap:34px;
+}
+.gallery img {width:100%;height:auto;}
+.gallery figure {margin:0;}
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  padding:28px 0;
+  border-top:2px solid var(--brand);
+  color:var(--muted);
+}
+.footer-grid {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+@media(max-width:760px) {
+  .footer-grid {flex-direction:column;align-items:flex-start;}
+}
+
+/* ===========================
+   FLOATING WHATSAPP
+=========================== */
+.whats-btn {
+  position:fixed;
+  right:18px;
+  bottom:20px;
+  z-index:60;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:50px;
+  background:#25D366;
+  color:#fff;
+  font-weight:700;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+  transition:.3s;
+}
+.whats-btn:hover {background:#128C7E;}
+.whats-icon {width:26px;height:26px;}
+
+/* ===========================
+   RESPONSIVIDADE EXTRA
+=========================== */
+@media(max-width:640px) {
+  .hero-title {font-size:1.6rem;}
+  .hero-sub {font-size:0.9rem;}
+  .card {max-width:90%;}
+  .mapa-img {max-width:320px;width:90%;}
 }
 </style>
 </head>
 <body>
-<header></header>
 
+<!-- HERO -->
 <section class="hero" id="inicio">
-  <!-- Vídeo de fundo -->
   <video id="bgVideo" class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
     <source src="hero.mp4" type="video/mp4">
     Seu navegador não suporta vídeos em HTML5.
   </video>
+  <div class="bg-poster"></div>
+  <div class="bg-overlay"></div>
 
-  <!-- Overlay escuro -->
-  <div class="bg-overlay" aria-hidden="true"></div>
-
-  <!-- Conteúdo do hero -->
   <div class="hero-content">
-    <img src="Logo2.png" alt="Logo SOS Soluções" style="display:block;margin:0 auto 16px;width:80px;">
-    <h1 class="hero-title">
-      Seu projeto com <span class="bold-text">esquadrias premium</span>
-    </h1>
-    <p class="hero-sub">
-      Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.
-    </p>
+    <img src="Logo2.png" alt="Logo SOS Soluções" style="margin:0 auto 16px;width:80px;">
+    <h1 class="hero-title">Seu projeto com <span class="bold-text">esquadrias premium</span></h1>
+    <p class="hero-sub">Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.</p>
     <a href="#contato" class="cta-hero">Solicite seu orçamento →</a>
   </div>
 
-  <!-- Chevrons de rolagem -->
-  <div class="chev-wrap" aria-hidden="true">
-    <div class="chev"></div>
-  </div>
+  <div class="chev-wrap"><div class="chev"></div></div>
 </section>
 
+<!-- SERVIÇOS -->
 <div class="wrap">
   <p class="muted" style="text-align:center;max-width:70ch;margin:0 auto 18px">
     Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.
   </p>
+  <h2 class="title services">Nossos serviços</h2>
 
-  <h2 class="title.services" style="text-align:center">Nossos serviços</h2>
-
-  <div class="cards" style="margin-top:22px">
-    <article class="card"><img src="servico1.jpg" alt="Serviço 1"><h4></h4></article>
-    <article class="card"><img src="servico2.jpg" alt="Serviço 2"><h4></h4></article>
-    <article class="card"><img src="servico3.jpg" alt="Serviço 3"><h4></h4></article>
+  <div class="cards">
+    <article class="card"><img src="servico1.jpg" alt="Serviço 1"></article>
+    <article class="card"><img src="servico2.jpg" alt="Serviço 2"></article>
+    <article class="card"><img src="servico3.jpg" alt="Serviço 3"></article>
   </div>
 
-  <div style="text-align:center; margin-top:20px;">
-    <a href="#contato" class="cta-herosaibamais">Saiba mais →</a>
+  <a href="#contato" class="cta-herosaibamais">Saiba mais →</a>
+</div>
+
+<!-- REFERÊNCIAS -->
+<div class="wrap">
+  <div class="cards">
+    <article class="card"><img src="servicoref1.jpg" alt="Referência 1"></article>
+  </div>
+  <h2 class="title referencia">Soluções criativas e funcionais</h2>
+  <p class="muted">Desenvolvemos uma solução em ACM para substituir projetos em alvenaria, garantindo mais praticidade e um acabamento de excelência.</p>
+
+  <div class="cards">
+    <article class="card"><img src="servicoref2.jpg" alt="Referência 2"></article>
   </div>
 
-  <div class="cards" style="margin-top:22px">
-    <article class="card"><img src="servicoref1.jpg" alt="Serviço 1"></article>
-  </div>
-  
-    <div class="title.services"
-      style="text-align:center; margin-top:20px;">
-  <h2 class="title.referencia">Soluções criativas e funcionais</h2>
-    <p class="muted">
-      Desenvolvemos uma solução em ACM para substituir projetos em alvenaria, garantindo mais praticidade, menor necessidade de manutenção e um acabamento de excelência.
-</p>
-  </div>
-
-  <div class="cards" style="margin-top:22px">
-    <article class="card"><img src="servicoref2.jpg" alt="Serviço 1"></article>
-  </div>
-
-  <div class="texto-lado-esquerdo"
-    style="margin-top:15px auto 10px">
-    <h2 class="title.referencia">Diversos clientes por todo Sergipe</h2>
-    <p class="muted">
-      Oferecendo soluções de alto padrão em esquadrias que transformam projetos em grandes resultados
-    </p>
-    <h3 class="title.ref">
-      <span class="gradient-text">Atendemos em todo Sergipe!</span>
-    </h3>
+  <div class="texto-lado-esquerdo">
+    <h2 class="title referencia">Diversos clientes por todo Sergipe</h2>
+    <p class="muted">Oferecendo soluções de alto padrão em esquadrias que transformam projetos em grandes resultados</p>
+    <h3><span class="gradient-text">Atendemos em todo Sergipe!</span></h3>
   </div>
 </div>
-  <div class="texto-lado-esquerdo">
+
+<!-- MAPA -->
+<div class="texto-lado-esquerdo">
   <h2>Estamos bem <strong>perto de você!</strong></h2>
-  <p>Avenida general euclides figueiredo, 133 Aracaju, Sergipe</p>
-  <p>Atuamos todo estado de Sergipe, levando qualidade e atendimento próximo a você!</p>
+  <p>Avenida General Euclides Figueiredo, 133 - Aracaju/SE</p>
+  <p>Atuamos em todo o estado de Sergipe, levando qualidade e atendimento próximo a você!</p>
   <a href="#" class="cta-herosaibamais">Saiba como chegar →</a>
-  </div>
+</div>
 
 <div class="mapa-container">
  <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img animate-map">
 </div>
 
+<!-- SOBRE -->
 <section id="sobre">
   <div class="texto-lado-esquerdo">
     <div class="kicker">Quem somos?</div>
     <h3 class="title">Somos inovação & Qualidade!</h3>
-    <p class="muted">
-      Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.
-    </p>
+    <p class="muted">Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.</p>
   </div>
 </section>
 
+<!-- CONTATO -->
 <section class="band-cta" id="contato">
   <div class="wrap">
-    <h3 class="title" style="margin:0">Vamos juntos?</h3>
-    <p class="muted" style="max-width:70ch;margin:8px auto 12px;color:#fff">
-      Entre em contato e garanta soluções profissionais para o seu projeto.
-    </p>
-    <a class="btn-main" href="https://wa.me/5579998954178" target="_blank" rel="noopener">Solicite seu orçamento →</a>
+    <h3 class="title">Vamos juntos?</h3>
+    <p class="muted" style="color:#fff">Entre em contato e garanta soluções profissionais para o seu projeto.</p>
+    <a class="btn-main" href="https://wa.me/5579998954178" target="_blank">Solicite seu orçamento →</a>
   </div>
 </section>
 
+<!-- GALERIA -->
 <section>
   <div class="wrap gallery">
     <figure>
       <img src="img/obra1.jpg" alt="Obra 1">
-      <figcaption class="muted" style="margin-top:8px">Projeto residencial</figcaption>
+      <figcaption class="muted">Projeto residencial</figcaption>
     </figure>
     <figure>
       <img src="img/obra2.jpg" alt="Obra 2">
-      <figcaption class="muted" style="margin-top:8px">Projeto comercial</figcaption>
+      <figcaption class="muted">Projeto comercial</figcaption>
     </figure>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="wrap footer-grid">
     <div>
       <div style="font-weight:700;color:#fff">SOS Soluções</div>
-      <div class="muted" style="margin-top:8px">Rua Exemplo, 123 — Cidade • (00) 0 0000-0000 • contato@sossolucoes.com.br</div>
+      <div class="muted">Rua Exemplo, 123 — Cidade • (00) 0 0000-0000 • contato@sossolucoes.com.br</div>
     </div>
     <div class="muted">© <span id="year"></span> SOS Soluções</div>
   </div>
 </footer>
 
-<a class="whats-btn" href="https://wa.me/5579998954178" target="_blank" rel="noopener" aria-label="WhatsApp">
+<!-- FLOATING WHATSAPP -->
+<a class="whats-btn" href="https://wa.me/5579998954178" target="_blank" aria-label="WhatsApp">
   <img src="whatsapp.png" alt="WhatsApp" class="whats-icon">
   <span>Fale conosco</span>
 </a>
@@ -524,19 +460,9 @@ setTimeout(() => {
   }
 }, 900);
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if(id.length > 1 && document.querySelector(id)){
-      e.preventDefault();
-      document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});
-    }
-  });
-});
-
+// Animação mapa
 document.addEventListener("DOMContentLoaded", () => {
   const mapa = document.querySelector(".mapa-img");
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -545,7 +471,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
   observer.observe(mapa);
 });
 </script>
