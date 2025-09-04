@@ -117,7 +117,6 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 
 section{padding:56px 0;text-align: center;}
 .kicker{margin-bottom:8px;font-size:1.2rem;}
-.title.referencia{margin-bottom:8px;font-size:45px;}
 .title.services{font-weight:700;font-size:25px;font-weight:800;margin:6px 0 14px;}
 .title{background: linear-gradient(
     135deg,
@@ -177,16 +176,48 @@ section{padding:56px 0;text-align: center;}
   display: block;
   z-index: 0;
 }
+/* Cards */
 .card::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 30%; /* altura menor da sombra */
-  background: linear-gradient(to top, rgba(0,0,0,0.40), rgba(0,0,0,0.4), transparent); /* sombra mais leve */
+  height: 30%; /* altura da sombra */
+  background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
   pointer-events: none;
   z-index: 1;
+}
+
+/* Mapa */
+.mapa-container {
+  max-width: 800px;
+  margin: 30px auto 10px; /* topo 30px, base 10px */
+  text-align: center;
+}
+
+.mapa-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 1.2s ease-out;
+}
+
+/* Responsivo para celular */
+@media (max-width: 768px) {
+  .mapa-img {
+    max-width: 320px;
+    width: 90%;
+  }
+}
+
+/* Espaçamento geral das seções */
+section {
+  padding: 40px 20px 10px 20px; /* cima, lados, baixo */
+  margin: 0;
 }
 .title.referencia {
   margin-top: 12px;
@@ -214,16 +245,7 @@ section{padding:56px 0;text-align: center;}
   font-weight: 500;
   color: #fff;
 }
-.card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 25%;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3), transparent);
-  pointer-events: none;
-}
+
 .band-cta{
 background:linear-gradient(180deg, rgba(15,15,15,0.9), rgba(10,10,10,0.92));
 border-top:2px solid var(--brand);
@@ -297,37 +319,10 @@ img, video {max-width:100%; box-sizing:border-box;}
 .whats-btn:hover {background-color:#128C7E;}
 .whats-icon {width:26px;height:26px;display:block;}
 .bold-text {font-weight:700;} 
-.mapa-container {
-  max-width: 800px;
-  margin: 30px auto 10px; /* 30px em cima, 10px embaixo */
-  text-align: center;
-}
 
 .mapa-container iframe {
   display: block;   /* elimina espaços indesejados */
   margin: 0 auto;   /* centraliza */
-}
-
-.mapa-img {
-  width: 100%;
-  max-width: 600px; /* tamanho máximo do mapa em telas grandes */
-  height: auto;
-  border-radius: 12px;
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: all 1.2s ease-out;
-}
-  section {
-  padding: 40px 20px 0 20px; /* cima, lados, baixo = 0 */
-  margin: 0;
-  }
-
-/* Mobile: controla o tamanho no celular */
-@media (max-width: 768px) {
-  .mapa-img {
-    max-width: 320px; /* mantém parecido com o tamanho “normal” */
-    width: 90%;       /* nunca estoura a tela */
-  }
 }
 
 .mapa-titulo {
