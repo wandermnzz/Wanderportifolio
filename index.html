@@ -161,6 +161,14 @@ section{padding:56px 0;text-align: center;}
   margin-top: 22px;
   gap: 30px;
 }
+  @media(min-width: 768px) {
+  .cards {
+    flex-direction: row;   /* coloca os cards lado a lado */
+    justify-content: center;
+    flex-wrap: wrap;       /* permite quebrar linha se não couber */
+    gap: 30px;             /* espaço entre cards */
+  }
+  }
 
 /* Card visual */
 .card {
