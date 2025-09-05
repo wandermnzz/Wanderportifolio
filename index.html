@@ -128,7 +128,7 @@ header {
 
 .bold-text {
   font-weight:700;
-  color: var(--brand);
+  color: #fff;
 }
 
 /* ===========================
@@ -149,6 +149,7 @@ header {
   transition:all 0.3s ease;
   cursor:pointer;
   font-size: 1rem;
+  margin-top: 10px auto 10px;
 }
 
 .cta-hero:hover, .cta-herosaibamais:hover, .btn-main:hover {
@@ -259,7 +260,7 @@ section {
 .card {
   position:relative;
   background:var(--card);
-  border-radius:8px;
+  border-radius:1px;
   max-width:350px;
   width:100%;
   overflow:hidden;
@@ -589,19 +590,6 @@ footer {
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="wrap nav">
-    <a href="#inicio" class="logo">
-      <img src="Logo2.png" alt="SOS Soluções" class="logo-img">
-      <span>SOS Soluções</span>
-    </a>
-    <nav>
-      <!-- Menu pode ser adicionado aqui posteriormente -->
-    </nav>
-  </div>
-</header>
-
 <!-- HERO -->
 <section class="hero" id="inicio">
   <video id="bgVideo" class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
@@ -624,9 +612,8 @@ footer {
 <section>
   <div class="wrap">
     <div class="section-title fade-in">
-      <p class="kicker">Nossos Serviços</p>
-      <h2 class="title gradient">Excelência em cada detalhe</h2>
-      <p class="muted">Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.</p>
+          <p class="muted">Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.</p>
+      <p class="kicker">Nossos Serviços:</p>
     </div>
     
     <div class="cards">
