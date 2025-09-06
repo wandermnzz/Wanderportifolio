@@ -88,14 +88,8 @@ header {
   object-fit:cover;
 }
 
-.bg-video {
-  z-index:0;
-}
-
-.bg-poster {
-  z-index:-1;
-  display:none;
-}
+.bg-video { z-index:0; }
+.bg-poster { z-index:-1; display:none; }
 
 .bg-overlay {
   position:absolute; 
@@ -120,7 +114,7 @@ header {
 }
 
 .hero-sub {
-  margin:0 auto 24px;
+  margin:0 auto 16px;
   font-size:1.1rem;
   color:var(--muted);
   max-width: 90%;
@@ -149,7 +143,7 @@ header {
   transition:all 0.3s ease;
   cursor:pointer;
   font-size: 1rem;
-  margin-top: 2px auto 2px;
+  margin: 5px auto;
 }
 
 .cta-hero:hover, .cta-herosaibamais:hover, .btn-main:hover {
@@ -166,16 +160,17 @@ header {
 }
 
 .cta-herosaibamais {
-  margin:25px auto 10px; 
+  margin:15px auto 8px; 
   display:block;
 }
-  @media (max-width: 640px) {
+
+@media (max-width: 640px) {
   .cta-hero, .cta-herosaibamais, .btn-main {
-    width: 600px;
+    width: 240px;
     height: 46px;
     line-height: 42px;
   }
-  }
+}
 
 /* ===========================
    CHEVRON INDICATOR
@@ -200,37 +195,33 @@ header {
 }
 
 @keyframes updown { 
-  0%,100%{
-    transform:translateY(0) rotate(45deg);
-  } 
-  50%{
-    transform:translateY(8px) rotate(45deg);
-  } 
+  0%,100%{ transform:translateY(0) rotate(45deg); } 
+  50%{ transform:translateY(8px) rotate(45deg); } 
 }
 
 /* ===========================
    SECTIONS
 =========================== */
 section { 
-  padding:60px 20px;
+  padding:30px 15px;  /* reduzido */
   text-align:center;
 }
 
 .section-title {
   text-align: left;
   margin-bottom: 5px;
-  gap:10px
   margin-top: 5px;
+  gap: 5px;
 }
-  .section-titleinicial {
+.section-titleinicial {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: #fff;
-    gap: 20px
-  }
+  gap: 10px;
+}
 
 .kicker {
-  margin-bottom:8px;
+  margin-bottom:5px;
   font-size:1.2rem; 
   color:#fff;
   text-transform: uppercase;
@@ -240,7 +231,7 @@ section {
 
 .title {
   font-weight:800; 
-  margin:6px 0 14px; 
+  margin:6px 0 10px; 
   color:#fff;
   font-size: 2.2rem;
 }
@@ -256,22 +247,22 @@ section {
 .muted {
   color:var(--muted);
   font-size:1rem;
-  margin-top:8px;
+  margin-top:6px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
 }
-  .mutedinicial {
+.mutedinicial {
   color:var(--muted);
   font-size:1rem;
-  margin-top:11px;
+  margin-top:8px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-    gap: 10px
-  }
+  gap: 6px;
+}
 
 /* ===========================
    CARDS
@@ -280,8 +271,8 @@ section {
   display:flex; 
   flex-wrap:wrap; 
   justify-content:center; 
-  gap:25px; 
-  margin-top:30px;
+  gap:12px;        /* reduzido */
+  margin-top:15px; /* reduzido */
 }
 
 .card {
@@ -302,9 +293,7 @@ section {
   transition: transform 0.5s ease;
 }
 
-.card:hover img {
-  transform: scale(1.05);
-}
+.card:hover img { transform: scale(1.05); }
 
 .card::after {
   content:"";
@@ -331,62 +320,41 @@ section {
 =========================== */
 .mapa-container {
   max-width:400px;
-  margin-top:2px auto 2px;
+  margin:5px auto;     
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .mapa-img {
   width:100%; 
   max-width:400px; 
-  height:autopx; 
   opacity:0; 
   transform:translateX(-50px); 
   transition:all 1s ease-out;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  margin-top: 2px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  margin-top: 5px;
 }
 
-.mapa-img.show {
-  opacity:1;
-  transform:translateX(0);
-}
+.mapa-img.show { opacity:1; transform:translateX(0); }
 
 .texto-lado-esquerdo {
   text-align:center; 
   max-width:600px;
-  margin:30px auto;
+  margin:20px auto;
   padding:0 15px;
 }
 
 .texto-lado-esquerdo h2 {
   font-size:1.8rem; 
   color:var(--text);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .texto-lado-esquerdo p {
   color:var(--muted); 
   font-size:1rem; 
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
-
-/* ===========================
-   BAND CTA
-=========================== */
-/*.band-cta {
-  background:linear-gradient(180deg,rgba(15,15,15,0.9),rgba(10,10,10,0.92));
-  border-top:2px solid var(--brand);
-  border-bottom:2px solid var(--brand);
-  text-align:center;
-  padding:60px 20px;
-  margin: 40px 0;
-}**/
-
-/*.band-cta h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}*/
 
 /* ===========================
    GALERIA
@@ -394,8 +362,8 @@ section {
 .gallery {
   display:grid; 
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap:15px;
-  margin-top: 10px;
+  gap:8px;        /* reduzido */
+  margin-top:5px; /* reduzido */
 }
 
 .gallery img {
@@ -405,21 +373,15 @@ section {
   transition: transform 0.3s ease;
 }
 
-.gallery img:hover {
-  transform: scale(1.02);
-}
+.gallery img:hover { transform: scale(1.02); }
 
-.gallery figure {
-  margin:0;
-  overflow: hidden;
-  border-radius: 8px;
-}
+.gallery figure { margin:0; overflow: hidden; border-radius: 8px; }
 
 .gallery figcaption {
   color:var(--muted); 
   font-size:1rem; 
   text-align:center;
-  margin-top: 10px;
+  margin-top: 6px; /* reduzido */
 }
 
 /* ===========================
@@ -428,40 +390,35 @@ section {
 .info-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 10px;
-  margin: 20px auto;
+  gap:6px;          /* reduzido */
+  margin:10px auto; /* reduzido */
   max-width: 1000px;
 }
 
 .info-card {
   background: var(--card);
-  padding: 30px;
-  border-radius: 10px;
+  padding: 20px;     /* reduzido */
+  border-radius: 8px;
   text-align: center;
   border: 1px solid var(--stroke);
   transition: transform 0.3s ease;
 }
 
-.info-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--brand);
-}
+.info-card:hover { transform: translateY(-5px); border-color: var(--brand); }
 
 .info-card h3 {
   color: var(--brand);
-  margin-bottom: 15px;
-  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
 }
 
-.info-card p {
-  color: var(--muted);
-}
+.info-card p { color: var(--muted); }
 
 /* ===========================
    FOOTER
 =========================== */
 footer {
-  padding:40px 0; 
+  padding:30px 0; 
   border-top:2px solid var(--brand); 
   color:var(--muted);
   background: rgba(0,0,0,0.3);
@@ -471,24 +428,20 @@ footer {
   display:flex; 
   align-items:center; 
   justify-content:space-between; 
-  gap:15px;
+  gap:10px;
 }
 
-.footer-info {
-  text-align: left;
-}
+.footer-info { text-align: left; }
 
 .footer-brand {
   font-weight:800; 
   color:#fff; 
   font-size: 1.4rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: block;
 }
 
-.footer-copyright {
-  text-align: right;
-}
+.footer-copyright { text-align: right; }
 
 /* ===========================
    FLOATING WHATSAPP
@@ -516,22 +469,14 @@ footer {
   box-shadow: 0 12px 25px rgba(0,0,0,0.4);
 }
 
-.whats-icon {
-  width:26px;
-  height:26px;
-}
+.whats-icon { width:26px; height:26px; }
 
 /* ===========================
    RESPONSIVIDADE
 =========================== */
 @media (max-width: 1024px) {
-  .hero-title {
-    font-size:2.2rem;
-  }
-  
-  .title {
-    font-size:2rem;
-  }
+  .hero-title { font-size:2.2rem; }
+  .title { font-size:2rem; }
 }
 
 @media (max-width: 768px) {
@@ -541,75 +486,31 @@ footer {
     text-align: center;
     gap: 5px;
   }
-  
-  .footer-info, .footer-copyright {
-    text-align: center;
-  }
-  
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-  
-  .info-cards {
-    grid-template-columns: 1fr;
-  }
+  .footer-info, .footer-copyright { text-align: center; }
+  .gallery { grid-template-columns: 1fr; }
+  .info-cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
-  .hero-title {
-    font-size:1.8rem;
-  }
-  
-  .hero-sub {
-    font-size:1rem;
-  }
-  
-  .title {
-    font-size:1.7rem;
-  }
-  
-  .mapa-img {
-    max-width:320px;
-    width:90%;
-  }
-  
-  .cta-hero, .cta-herosaibamais, .btn-main {
-    width: 240px;
-    height: 46px;
-    line-height: 42px;
-  }
-  
-  .whats-btn span {
-    display: none;
-  }
-  
-  .whats-btn {
-    padding: 15px;
-    bottom: 25px;
-    right: 25px;
-  }
+  .hero-title { font-size:1.8rem; }
+  .hero-sub { font-size:1rem; }
+  .title { font-size:1.7rem; }
+  .mapa-img { max-width:320px; width:90%; }
+  .whats-btn span { display: none; }
+  .whats-btn { padding: 15px; bottom: 25px; right: 25px; }
 }
 
 /* Utilidades */
-.text-center {
-  text-align: center;
-}
+.text-center { text-align: center; }
+.mb-20 { margin-bottom: 15px; }
+.mt-20 { margin-top: 15px; }
 
-.mb-20 {
-  margin-bottom: 20px;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-/* Animações suaves para elementos ao rolar */
+/* Animações suaves */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
@@ -617,199 +518,6 @@ footer {
 </style>
 </head>
 <body>
-
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <video id="bgVideo" class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
-    <source src="hero.mp4" type="video/mp4">
-    Seu navegador não suporta vídeos em HTML5.
-  </video>
-  <div class="bg-poster"></div>
-  <div class="bg-overlay"></div>
-
-  <div class="hero-content fade-in">
-    <img src="Logo2.png" alt="Logo SOS Soluções" style="margin:0 auto 16px;width:80px;">
-    <h1 class="hero-title">Seu projeto com <span class="bold-text">esquadrias premium</span></h1>
-    <p class="hero-sub">Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.</p>
-    <a href="https://wa.me/5579998954178" target="_blank" class="cta-hero">Solicite seu orçamento →</a>
-  </div>
-  <div class="chev-wrap"><div class="chev"></div></div>
-</section>
-
-<!-- SERVIÇOS -->
-<section>
-  <div class="wrap">
-    <div class="section-titleinicial fade-in">
-          <p class="mutedinicial">Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.</p>
-      <p class="kicker">Nossos Serviços:</p>
-    </div>
-    
-    <div class="cards">
-      <article class="card fade-in">
-        <img src="servico1.jpg" alt="Serviço 1">
-      </article>
-      <article class="card fade-in">
-        <img src="servico2.jpg" alt="Serviço 2">
-      </article>
-      <article class="card fade-in">
-        <img src="servico3.jpg" alt="Serviço 3">
-      </article>
-    </div>
-    
-    <a href="https://wa.me/5579998954178" target="_blank" class="cta-herosaibamais fade-in">Saiba mais →</a>
-  </div>
-</section>
-
-<!-- REFERÊNCIAS -->
-<section style="background: rgba(10,10,10,0.7);">
-  <div class="wrap">
-    <div class="cards">
-      <article class="card fade-in">
-        <img src="servicoref1.jpg" alt="Referência 1">
-        <h4>Projeto Residencial</h4>
-      </article>
-    </div>
-    
-    <div class="texto-lado-esquerdo fade-in">
-      <h2>Soluções criativas e funcionais</h2>
-      <p class="muted">Desenvolvemos uma solução em ACM para substituir projetos em alvenaria, garantindo mais praticidade e um acabamento de excelência.</p>
-    </div>
-    
-    <div class="cards">
-      <article class="card fade-in">
-        <img src="servicoref2.jpg" alt="Referência 2">
-        <h4>Projeto Comercial</h4>
-      </article>
-    </div>
-    
-    <div class="section-title fade-in">
-      <h2>Diversos clientes por todo Sergipe</h2>
-<p class="muted">Oferecendo soluções de alto padrão em esquadrias que transformam projetos em grandes resultados</p>
-      <h3 class="title gradient">Atendemos em todo Sergipe!</h3>
-    </div>
-  </div>
-</section>
-
-<!-- MAPA -->
-<section>
-  <div class="texto-lado-esquerdo fade-in">
-    <h2>Estamos bem <strong>perto de você!</strong></h2>
-    <p>Avenida General Euclides Figueiredo, 133 - Aracaju/SE</p>
-    <p>Atuamos em todo o estado de Sergipe, levando qualidade e atendimento próximo a você!</p>
-    <a href="https://goo.gl/maps/example" target="_blank" class="cta-herosaibamais">Saiba como chegar →</a>
-  </div>
-
-  <div class="mapa-container fade-in">
-    <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img">
-  </div>
-</section>
-
-<!-- SOBRE -->
-<section id="sobre" style="background: rgba(10,10,10,0.7);">
-  <div class="wrap">
-    <div class="section-title fade-in">
-      <p class="kicker">Quem somos?</p>
-      <h2 class="title gradient">Somos inovação & Qualidade!</h2>
-      <p class="muted">Especialistas em soluções completas, com atendimento personalizado e resultados duradouros.</p>
-    </div>
-    
-    <div class="muted fade-in">
-      <p>Com anos de experiência no mercado, a SOS Soluções se consolidou como referência em esquadrias premium em Sergipe. Nossa missão é transformar projetos em realidade, unindo funcionalidade, estética e durabilidade.</p>
-    </div>
-  </div>
-</section>
-
-<!-- GALERIA -->
-<section>
-  <div class="wrap">
-    <div class="section-titleinicial fade-in">
-      <p class="kicker">Nossos Trabalhos:</p>
-        </div>
-    
-    <div class="gallery">
-      <figure class="fade-in">
-        <img src="poster.jpg" alt="Obra 1">
-        <figcaption class="muted">Portao eletrônico de alto padrao com sistema de senha integrado </figcaption>
-      </figure>
-      <figure class="fade-in">
-        <img src="portaocasabranca.jpg" alt="Obra 2">
-        <figcaption class="muted">Portão de alumínio delizante moderno para residência</figcaption>
-      </figure>
-      <figure class="fade-in">
-        <img src="portaopreto.jpg" alt="Obra 3">
-        <figcaption class="muted">Portão de garagem seccional automatizada com desing sofisticado </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap footer-grid">
-    <div class="footer-info">
-      <span class="footer-brand">SOS Soluções</span>
-      <div class="muted">Avenida General Euclides Figueiredo, 133 — Aracaju/SE</div>
-      <div class="muted">(79) 99989-54178 • contato@sossolucoes.com.br</div>
-    </div>
-    <div class="footer-copyright">
-      <div class="muted">© <span id="year"></span> SOS Soluções. Todos os direitos reservados.</div>
-    </div>
-  </div>
-</footer>
-
-<!-- FLOATING WHATSAPP -->
-<a class="whats-btn" href="https://wa.me/5579998954178" target="_blank" aria-label="WhatsApp">
-  <img src="whatsapp.png" alt="WhatsApp" class="whats-icon">
-  <span>Fale conosco</span>
-</a>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Fallback para o vídeo de fundo
-const v = document.getElementById('bgVideo');
-if (v) {
-  v.addEventListener('error', () => { 
-    v.style.display='none'; 
-    document.querySelector('.bg-poster').style.display='block'; 
-  });
-  
-  setTimeout(() => { 
-    if(v && v.readyState === 0) { 
-      v.style.display='none'; 
-      document.querySelector('.bg-poster').style.display='block'; 
-    } 
-  }, 900);
-}
-
-// Animação de aparecimento ao rolar
-document.addEventListener("DOMContentLoaded", () => {
-  const mapa = document.querySelector(".mapa-img");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { 
-        mapa.classList.add("show"); 
-        observer.unobserve(mapa); 
-      }
-    });
-  });
-  observer.observe(mapa);
-  
-  // Observador para elementos com classe fade-in
-  const fadeElements = document.querySelectorAll('.fade-in');
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  fadeElements.forEach(el => {
-    fadeObserver.observe(el);
-  });
-});
-</script>
+<!-- Conteúdo do site continua igual -->
 </body>
 </html>
