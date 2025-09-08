@@ -540,28 +540,15 @@ footer a:hover {
   opacity:1;
   transform:translateY(0);
 }
-  #hero-fundo {
+#hero-fundo {
   position: relative;
-  background: url("poster.jpg") no-repeat center center;
+  background: 
+    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), /* camada escura */
+    url("poster.jpg") no-repeat center center;           /* imagem de fundo */
   background-size: cover;
-  overflow: hidden; /* garante que o overlay não escape */
-}
-
-#hero-fundo::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85); /* escurece só o fundo */
-  z-index: 0; /* camada de trás */
-}
-
-#hero-fundo .hero-content {
-  position: relative;
-  z-index: 1; /* conteúdo por cima da camada preta */
-  color: #fff; /* deixa o texto sempre claro */
+  color: #fff; /* garante contraste no texto */
+  text-align: center;
+  padding: 60px 20px; /* espaçamento interno */
 }
 
 </style>
