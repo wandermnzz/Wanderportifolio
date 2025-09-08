@@ -82,126 +82,157 @@ header {
 /* ===========================
    HERO
 =========================== */
+/* HERO */
 .hero {
-  position:relative;
-  overflow:hidden;
-  min-height:80vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
 }
 
-.bg-video, .bg-poster {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -3;
 }
 
-.bg-video { z-index:0; }
-.bg-poster { z-index:-1; display:none; }
+.bg-poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("poster.jpg") no-repeat center center/cover;
+  z-index: -2;
+}
 
 .bg-overlay {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%);
-  z-index:1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* escurece o vídeo */
+  z-index: -1;
 }
 
 .hero-content {
-  position:relative;
-  display: flex;
-  z-index:2;
-  max-width:600px;
-  padding:40px 20px;
-  margin: 0 auto 19px;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
 }
 
 .hero-title {
-  font-size:2.5rem;
-  line-height:1.3;
-  margin-bottom:16px;
-  font-weight:800;
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.bold-text {
+  color: #f7b500;
+  font-weight: bold;
 }
 
 .hero-sub {
-  margin:0 auto 24px;
-  font-size:1.1rem;
-  color:var(--muted);
-  max-width:90%;
-}
-hero-content img{
-margin-bottom: 19px;
-  }
-.bold-text { font-weight:700; color:#fff; }
-
-/* ===========================
-   CTA BUTTONS
-=========================== */
-.cta-hero, .cta-herosaibamais, .btn-main {
-  display:block;
-  width:1000px;
-  height:50px;
-  line-height:46px;
-  border-radius:8px;
-  border:2px solid var(--brand);
-  background:transparent;
-  color:#fff;
-  font-weight:600;
-  text-align:center;
-  transition:all 0.3s ease;
-  cursor:pointer;
-  font-size:1rem;
-  margin:15px auto;
+  font-size: 1.2rem;
+  margin: 1rem 0 2rem;
+  color: #ddd;
 }
 
-.cta-hero:hover, .cta-herosaibamais:hover, .btn-main:hover {
-  background:var(--brand);
-  color:#111;
-  transform: translateY(-2px);
-  box-shadow:0 4px 12px rgba(255,215,0,0.2);
+.cta-hero {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #f7b500;
+  color: #111;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.cta-hero:active, .cta-herosaibamais:active, .btn-main:active {
-  background:var(--brand-hover);
-  border-color:var(--brand-hover);
-  transform:translateY(0);
+.cta-hero:hover {
+  background: #ffcc33;
 }
 
-/* ===========================
-   CHEVRON
-=========================== */
+/* Chevron (setinha de rolagem) */
 .chev-wrap {
-  position:absolute;
-  left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  z-index:2;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .chev {
-  width:26px;
-  height:26px;
-  border-right:3px solid rgba(255,255,255,0.9);
-  border-bottom:3px solid rgba(255,255,255,0.9);
-  transform:rotate(45deg);
-  opacity:.9;
-  animation:updown 1.8s infinite;
+  width: 24px;
+  height: 24px;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(45deg);
+  animation: bounce 1.5s infinite;
 }
 
-@keyframes updown {
-  0%,100%{ transform:translateY(0) rotate(45deg); }
-  50%{ transform:translateY(8px) rotate(45deg); }
+@keyframes bounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(8px); }
 }
 
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 15px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .cta-hero {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+  }
+
+  .cta-hero {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .chev {
+    width: 18px;
+    height: 18px;
+  }
+}
 /* ===========================
    SECTIONS
 =========================== */
