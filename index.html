@@ -413,19 +413,31 @@ section {
 /* ===========================
    FOOTER
 =========================== */
+/* ===========================
+   FOOTER - ESTILO BASE
+=========================== */
 footer {
-  background: #000; /* fundo preto elegante */
-  color: #fff; /* texto branco */
+  background: #000; /* fundo preto */
+  color: #fff;      /* texto branco */
   padding: 50px 20px;
-  text-align: center;
-  font-family: 'Arial', sans-serif;
+  text-align: center; /* centraliza todo o conteúdo */
+  font-family: 'Inter', sans-serif;
 }
 
 footer .footer-grid {
   display: flex;
+  flex-direction: column; /* empilha os elementos verticalmente */
+  align-items: center;    /* centraliza horizontalmente */
+  gap: 15px;              /* espaçamento entre elementos */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+footer .footer-info {
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px; /* espaçamento entre elementos */
+  align-items: center;    /* centraliza os textos da info */
+  gap: 5px;
 }
 
 footer .footer-brand {
@@ -433,7 +445,6 @@ footer .footer-brand {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #fff;
 }
 
 footer .muted {
@@ -441,16 +452,7 @@ footer .muted {
   font-size: 0.95rem;
 }
 
-footer .footer-info {
-  margin-bottom: 15px;
-}
-
-footer .footer-info div {
-  margin: 5px 0;
-}
-
 footer .footer-copyright {
-  margin-top: 20px;
   font-size: 0.85rem;
   color: #888;
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -459,14 +461,45 @@ footer .footer-copyright {
   max-width: 600px;
 }
 
-/* links */
-footer a {
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
+/* ===========================
+   FOOTER - RESPONSIVIDADE
+=========================== */
+@media (max-width:768px) {
+  footer .footer-grid {
+    padding: 20px 10px;
+    gap: 12px;
+  }
+  
+  footer .footer-brand {
+    font-size: 1.2rem;
+  }
+
+  footer .muted {
+    font-size: 0.9rem;
+  }
+
+  footer .footer-copyright {
+    font-size: 0.8rem;
+    padding-top: 10px;
+  }
 }
-footer a:hover {
-  color: #ff6600; /* cor destaque no hover */
+
+@media (max-width:480px) {
+  footer {
+    padding: 25px 10px;
+  }
+
+  footer .footer-brand {
+    font-size: 1rem;
+  }
+
+  footer .muted {
+    font-size: 0.85rem;
+  }
+
+  footer .footer-copyright {
+    font-size: 0.75rem;
+  }
 }
 /* ===========================
    FLOATING WHATSAPP
@@ -543,7 +576,7 @@ footer a:hover {
 #hero-fundo {
   position: relative;
   background: 
-    linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), /* camada escura */
+    linear-gradient(rgba(0,0,0,0.90), rgba(0,0,0,0.90)), /* camada escura */
     url("poster.jpg") no-repeat center center;           /* imagem de fundo */
   background-size: cover;
   color: #fff; /* garante contraste no texto */
@@ -686,9 +719,8 @@ footer a:hover {
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-info">
-      <span class="footer-brand">SOS Soluções</span>
       <div class="muted">Avenida General Euclides Figueiredo, 133 — Aracaju/SE</div>
-      <div class="muted">(79) 99989-54178 • contato@sossolucoes.com.br</div>
+      <div class="muted">(79) 99989-54178 r</div>
     </div>
     <div class="footer-copyright">
       <div class="muted">© <span id="year"></span> SOS Soluções. Todos os direitos reservados.</div>
