@@ -579,9 +579,16 @@ footer .footer-copyright {
     linear-gradient(rgba(0,0,0,0.90), rgba(0,0,0,0.90)), /* camada escura */
     url("poster.jpg") no-repeat center center;           /* imagem de fundo */
   background-size: cover;
-  color: #fff; /* garante contraste no texto */
-  text-align: center;
-  padding: 60px 20px; /* espaçamento interno */
+  color: #fff;
+
+  display: flex;               /* ativa flexbox */
+  flex-direction: column;      /* itens em coluna */
+  align-items: center;         /* centraliza horizontalmente */
+  justify-content: center;     /* centraliza verticalmente */
+  text-align: center;          /* textos centralizados */
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 20px;
 }
 
 /* ===========================
