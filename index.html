@@ -32,7 +32,7 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem}
 .logo-img{width:40px;height:auto}
 
-/* HERO (vídeo ao fundo) */
+/* HERO — vídeo realmente ao fundo */
 .hero{
   position:relative;
   width:100%;
@@ -43,40 +43,27 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
   justify-content:center;
   text-align:center;
 }
-.bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
-.bg-poster{position:absolute;inset:0;width:100%;height:100%;background:url("poster.jpg") center/cover no-repeat;z-index:-2;display:none}
-.bg-overlay{position:absolute;inset:0;z-index:-1;background:transparent}
-.bg-overlay.overlay-dark{background:rgba(0,0,0,0.65)} /* usado no fallback */
+.bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.bg-poster{position:absolute;inset:0;width:100%;height:100%;background:url("poster.jpg") center/cover no-repeat;z-index:0;display:none}
+.bg-overlay{position:absolute;inset:0;z-index:1;background:transparent}
+.bg-overlay.overlay-dark{background:rgba(0,0,0,0.65)}
 
 .hero-content{position:relative;z-index:2;max-width:800px;padding:20px}
 .hero-title{font-size:3rem;line-height:1.2}
 .bold-text{color:#f7b500;font-weight:800}
 .hero-sub{font-size:1.2rem;margin:1rem 0 2rem;color:#ddd}
 
-/* BOTÕES — borda gold, fundo transparente, TEXTO BRANCO e centralizado */
+/* BOTÕES — borda gold, fundo transparente, texto BRANCO e centralizados */
 .cta-hero,.cta-herosaibamais,.btn-main{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-width:260px;
-  padding:14px 28px;
-  border:2px solid var(--brand);
-  background:transparent;
-  color:#fff;             /* <- BRANCO */
-  font-weight:700;
-  border-radius:8px;
-  transition:0.3s;
-  text-align:center;
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:260px;padding:14px 28px;border:2px solid var(--brand);
+  background:transparent;color:#fff;font-weight:700;border-radius:8px;transition:.3s;text-align:center
 }
 .cta-hero:hover,.cta-herosaibamais:hover,.btn-main:hover{
-  background:var(--brand);
-  color:#111;
-  transform:translateY(-2px);
-  box-shadow:0 4px 12px rgba(255,215,0,0.2);
+  background:var(--brand);color:#111;transform:translateY(-2px);box-shadow:0 4px 12px rgba(255,215,0,0.2)
 }
 
-/* Chev */
+/* Chevron */
 .chev-wrap{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2}
 .chev{width:24px;height:24px;border-bottom:3px solid #fff;border-right:3px solid #fff;transform:rotate(45deg);animation:bounce 1.5s infinite}
 @keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(8px)}}
@@ -86,8 +73,8 @@ section{padding:40px 20px;text-align:center}
 .section-title,.section-titleinicial{margin-bottom:20px;text-align:center}
 .section-titleesquerdo{margin-bottom:5px;margin-top:5px}
 @media(min-width:992px){
-  /* Corrige o alinhamento no desktop */
-  .section-titleesquerdo{ text-align:center; }
+  /* Centraliza no desktop o bloco que puxava à esquerda */
+  .section-titleesquerdo, .section-titleesquerdo *{text-align:center}
 }
 .kicker{margin-bottom:13px;font-size:1.2rem;text-transform:uppercase;letter-spacing:1px;font-weight:600}
 .title{font-weight:800;margin:6px 0 14px;font-size:2.2rem;color:#fff}
@@ -99,8 +86,8 @@ section{padding:40px 20px;text-align:center}
 
 /* CARDS */
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-left:auto;margin-right:auto}
-.card{position:relative;background:var(--card);border-radius:6px;max-width:350px;width:100%;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
-.card img{width:100%;height:220px;object-fit:cover;transition:transform .5s ease}
+.card{position:relative;background:var(--card);border-radius:6px;max-width:350px;width:100%;overflow:hidden;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
+.card img{width:100%;height:220px;object-fit:cover;transition:transform .5s}
 .card:hover img{transform:scale(1.05)}
 .card::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:40%;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent)}
 .card h4{position:absolute;left:16px;bottom:14px;font-weight:600;color:#fff;z-index:2;font-size:1.1rem}
@@ -113,58 +100,40 @@ section{padding:40px 20px;text-align:center}
 .texto-lado-esquerdo h2{font-size:1.8rem;margin-bottom:10px}
 .texto-lado-esquerdo p{font-size:1rem;margin-bottom:10px}
 
-/* NOSSOS TRABALHOS — linhas alternadas Img|Texto / Texto|Img / Img|Texto */
+/* NOSSOS TRABALHOS — alternado (Img|Texto / Texto|Img / Img|Texto) */
 .works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
 .work-row{
   display:grid;gap:20px;align-items:center;
   grid-template-columns:1fr; text-align:left;
   border:1px solid var(--stroke);border-radius:10px;padding:16px;
 }
-.work-row img{width:100%;height:auto;border-radius:8px;display:block}
+.work-media img{width:100%;height:auto;border-radius:8px;display:block}
 .work-text .work-title{font-weight:700;font-size:1.2rem;margin-bottom:6px;color:#fff}
 .work-text .work-desc{color:var(--muted)}
-/* Desktop: 2 colunas e alternância */
 @media(min-width:992px){
   .work-row{grid-template-columns:1fr 1fr;padding:22px}
-  .work-row:nth-child(2){direction:rtl}           /* inverte a ordem visual */
-  .work-row:nth-child(2) > *{direction:ltr}       /* corrige direção do texto */
+  /* Linha 2: Texto | Img */
+  .work-row.even .work-media{order:2}
+  .work-row.even .work-text{order:1}
 }
 
-/* BLOCO FINAL (Vamos elevar...) — centralizado em 1920x1080 e afins */
+/* BLOCO FINAL (Vamos elevar...) — centralizado */
 #hero-fundo{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:60px 20px;
-  background:
-    linear-gradient(rgba(0,0,0,0.90),rgba(0,0,0,0.90)),
-    url("poster.jpg") center/cover no-repeat;
+  position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;
+  background:linear-gradient(rgba(0,0,0,0.90),rgba(0,0,0,0.90)), url("poster.jpg") center/cover no-repeat;
 }
-#hero-fundo .hero-content{
-  max-width:900px;margin:0 auto;
-}
+#hero-fundo .hero-content{max-width:900px;margin:0 auto}
 #hero-fundo .hero-title{font-size:2.4rem}
 
 /* FOOTER centralizado */
-footer{
-  background:#000;color:#fff;padding:50px 20px;text-align:center;font-family:'Inter',sans-serif
-}
-footer .footer-grid{
-  max-width:900px;margin:0 auto;
-  display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center
-}
+footer{background:#000;color:#fff;padding:50px 20px;text-align:center;font-family:'Inter',sans-serif}
+footer .footer-grid{max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 footer .footer-brand{font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 footer .muted{color:#ccc;font-size:.95rem}
 footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;width:100%}
 
-/* FLOATING WHATSAPP */
-.whats-btn{
-  position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;
-  padding:12px 20px;border-radius:50px;background:#25D366;color:#fff;font-weight:700;
-  box-shadow:0 10px 20px rgba(0,0,0,0.3);transition:.3s
-}
+/* WHATSAPP */
+.whats-btn{position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:50px;background:#25D366;color:#fff;font-weight:700;box-shadow:0 10px 20px rgba(0,0,0,0.3);transition:.3s}
 .whats-btn:hover{background:#128C7E;transform:translateY(-3px);box-shadow:0 12px 25px rgba(0,0,0,0.4)}
 .whats-icon{width:26px;height:26px}
 
@@ -172,7 +141,6 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 @media(max-width:1024px){.hero-title{font-size:2.5rem}.title{font-size:2rem}}
 @media(max-width:768px){
   .gallery{grid-template-columns:1fr}
-  .info-cards{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .hero-title{font-size:1.9rem}
@@ -232,7 +200,7 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
   <div class="wrap">
     <div class="cards">
       <article class="card fade-in">
-        <img src="servicoref1.jpg" alt="Referência 1">
+        <img src="serviceref1.jpg" alt="Referência 1">
         <h4>Projeto Residencial</h4>
       </article>
       <article class="card fade-in">
@@ -267,7 +235,7 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
   </div>
 </section>
 
-<!-- NOSSOS TRABALHOS (alternado) -->
+<!-- NOSSOS TRABALHOS — alternado (Img|Texto / Texto|Img / Img|Texto) -->
 <section>
   <div class="wrap">
     <div class="section-titleinicial fade-in">
@@ -275,27 +243,27 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
     </div>
 
     <div class="works">
-      <!-- Row 1: IMG | TEXTO -->
+      <!-- 1) IMG | TEXTO -->
       <div class="work-row fade-in">
-        <img src="poster.jpg" alt="Obra 1">
+        <div class="work-media"><img src="poster.jpg" alt="Obra 1"></div>
         <div class="work-text">
           <div class="work-title">Portão eletrônico de alto padrão</div>
           <p class="work-desc">Sistema de senha integrado e acabamento premium, pensado para segurança e estética do projeto.</p>
         </div>
       </div>
 
-      <!-- Row 2: TEXTO | IMG (inverte no desktop) -->
-      <div class="work-row fade-in">
-        <img src="portaocasabranca.jpg" alt="Obra 2">
+      <!-- 2) TEXTO | IMG -->
+      <div class="work-row even fade-in">
+        <div class="work-media"><img src="portaocasabranca.jpg" alt="Obra 2"></div>
         <div class="work-text">
           <div class="work-title">Portão de alumínio deslizante</div>
           <p class="work-desc">Solução moderna para residências, com fluidez de movimento e excelente durabilidade.</p>
         </div>
       </div>
 
-      <!-- Row 3: IMG | TEXTO -->
+      <!-- 3) IMG | TEXTO -->
       <div class="work-row fade-in">
-        <img src="portaopreto.jpg" alt="Obra 3">
+        <div class="work-media"><img src="portaopreto.jpg" alt="Obra 3"></div>
         <div class="work-text">
           <div class="work-title">Portão seccional automatizado</div>
           <p class="work-desc">Automação silenciosa e visual sofisticado, agregando valor e praticidade ao ambiente.</p>
@@ -359,7 +327,7 @@ if(v){
   v.addEventListener('playing', () => { if(overlay) overlay.classList.remove('overlay-dark'); });
 }
 
-// animações de entrada
+// Animações on scroll
 document.addEventListener("DOMContentLoaded", () => {
   const mapa = document.querySelector(".mapa-img");
   if(mapa){
@@ -383,6 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.1 });
+
   fadeElements.forEach(el => fadeObserver.observe(el));
 });
 </script>
