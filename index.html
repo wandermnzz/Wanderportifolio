@@ -544,19 +544,20 @@ footer a:hover {
   position: relative;
   background: url("poster.jpg") no-repeat center center;
   background-size: cover;
+  color: #fff; /* garante contraste */
 }
 
 #hero-fundo::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.7); /* controla a opacidade da escuridão */
+  background: rgba(0,0,0,0.85); /* bem escuro */
   z-index: 0;
 }
 
 #hero-fundo .hero-content {
   position: relative;
-  z-index: 1; /* deixa logo e texto acima da overlay */
+  z-index: 1; /* conteúdo por cima da camada escura */
 }
 
 </style>
