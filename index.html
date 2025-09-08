@@ -142,6 +142,29 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 /* ANIMAÇÃO */
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+/* === OVERRIDE SEÇÃO NOSSOS TRABALHOS (coloque no FINAL do <style>) === */
+.works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
+.work-row{display:grid;grid-template-columns:1fr;gap:24px;align-items:center;
+  text-align:left;border:1px solid var(--stroke);border-radius:12px;
+  padding:16px;max-width:1120px;margin:0 auto;background:#0c0c0c}
+.work-media img{width:100%;height:auto;border-radius:10px;display:block}
+.work-text{padding:6px 4px}
+.work-title{font-weight:800;margin-bottom:6px}
+.work-desc{color:var(--muted)}
+
+/* Mobile: tudo empilhado e texto centralizado */
+@media (max-width: 767px){
+  .work-text{ text-align:center; }
+}
+
+/* Desktop: duas colunas e alternância automática */
+@media (min-width: 1024px){
+  .work-row{ grid-template-columns: 1fr 1fr; }
+  .work-media img{ height:320px; object-fit:cover; }
+  /* Linhas pares: Texto | Imagem (inverte) */
+  .works .work-row:nth-child(2n) .work-media{ order:2; }
+  .works .work-row:nth-child(2n) .work-text{ order:1; }
+}
 </style>
 </head>
 <body>
@@ -223,11 +246,6 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 
 <!-- NOSSOS TRABALHOS -->
 <section>
-  <div class="wrap">
-    <div class="section-titleinicial fade-in">
-      <p class="kicker" style="text-align:center">Nossos Trabalhos:</p>
-    </div>
-
     <div class="works">
       <!-- 1) IMG | TEXTO -->
       <div class="work-row fade-in">
@@ -238,8 +256,8 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
         </div>
       </div>
 
-      <!-- 2) TEXTO | IMG -->
-      <div class="work-row reverse fade-in">
+      <!-- 2) TEXTO | IMG (fica invertido pelo :nth-child no desktop) -->
+      <div class="work-row fade-in">
         <div class="work-media"><img src="portaocasabranca.jpg" alt="Obra 2"></div>
         <div class="work-text">
           <div class="work-title">Portão de alumínio deslizante</div>
