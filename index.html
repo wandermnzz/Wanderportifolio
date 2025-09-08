@@ -14,7 +14,7 @@
   --bg:#050505;
   --text:#ffffff;
   --muted:rgba(255,255,255,0.7);
-  --brand:#FFD700;        /* gold */
+  --brand:#FFD700;
   --brand-hover:#e6c200;
   --card:#111;
   --stroke:rgba(255,255,255,0.06);
@@ -44,7 +44,7 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 .bold-text{color:#f7b500;font-weight:800}
 .hero-sub{font-size:1.2rem;margin:1rem 0 2rem;color:#ddd}
 
-/* BOTÕES — borda gold, fundo transparente, texto branco centralizado */
+/* BOTÕES – borda gold, fundo transparente, texto branco centralizado */
 .cta-hero,.cta-herosaibamais,.btn-main{
   display:inline-flex;align-items:center;justify-content:center;
   min-width:260px;padding:14px 28px;border:2px solid var(--brand);
@@ -67,7 +67,7 @@ section{padding:40px 20px;text-align:center}
 .title.gradient{background:linear-gradient(135deg,#b8860b 0%,#d4af37 30%,#ffd700 50%,#d4af37 70%,#b8860b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
 .muted{color:var(--muted);font-size:1rem;margin-top:8px;max-width:700px;margin-left:auto;margin-right:auto;text-align:left}
 
-/* CARDS – SEMPRE CENTRALIZADOS */
+/* CARDS */
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;max-width:1120px;margin:0 auto}
 .card{position:relative;background:var(--card);border-radius:10px;max-width:350px;width:100%;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid var(--stroke)}
 .card img{width:100%;height:220px;object-fit:cover;transition:transform .5s;display:block}
@@ -75,11 +75,17 @@ section{padding:40px 20px;text-align:center}
 .card::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:40%;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent)}
 .card h4{position:absolute;left:16px;bottom:14px;font-weight:600;color:#fff;z-index:2;font-size:1.1rem}
 
-/* REFERÊNCIAS – grid próprio (evita sumir) */
-.ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:1120px;margin:0 auto}
-.ref-card{background:var(--card);border:1px solid var(--stroke);border-radius:10px;overflow:hidden}
+/* REFERÊNCIAS – centralizadas no desktop E no mobile */
+.ref-grid{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
+  max-width:1120px;margin:0 auto;
+}
+.ref-card{
+  width:min(360px,92vw);background:var(--card);border:1px solid var(--stroke);
+  border-radius:10px;overflow:hidden;margin:0 auto;text-align:center;
+}
 .ref-card img{width:100%;height:220px;object-fit:cover;display:block}
-.ref-card h4{padding:12px 14px;text-align:left}
+.ref-card h4{padding:12px 14px}
 
 /* MAPA */
 .mapa-container{max-width:400px;margin:10px auto;text-align:center}
@@ -91,18 +97,25 @@ section{padding:40px 20px;text-align:center}
 
 /* NOSSOS TRABALHOS — Img|Texto • Texto|Img • Img|Texto */
 .works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
-.work-row{display:grid;gap:24px;align-items:center;grid-template-columns:1fr;text-align:left;border:1px solid var(--stroke);border-radius:12px;padding:16px;max-width:1120px;margin:0 auto;background:#0c0c0c}
+.work-row{
+  display:grid;gap:24px;align-items:center;grid-template-columns:1fr;
+  text-align:left;border:1px solid var(--stroke);border-radius:12px;
+  padding:16px;max-width:1120px;margin:0 auto;background:#0c0c0c;
+}
 .work-media img{width:100%;height:auto;border-radius:10px;display:block}
 .work-text{padding:6px 4px}
 .work-title{font-weight:800;margin-bottom:6px}
 .work-desc{color:var(--muted)}
-
-@media(min-width:992px){
+/* Desktop alternado */
+@media(min-width:1024px){
   .work-media img{height:320px;object-fit:cover}
-  .work-row{grid-template-columns:520px 1fr}
-  .work-row.reverse{grid-template-columns:1fr 520px}
-  .work-row.reverse .work-media{order:2}
-  .work-row.reverse .work-text{order:1}
+  .work-row{grid-template-columns:1fr 1fr}
+  .work-row.reverse .work-media{grid-column:2}
+  .work-row.reverse .work-text{grid-column:1}
+}
+/* Mobile: centralizar textos */
+@media(max-width:767px){
+  .work-text{text-align:center}
 }
 
 /* BLOCO FINAL */
@@ -110,7 +123,7 @@ section{padding:40px 20px;text-align:center}
 #hero-fundo .hero-content{max-width:900px;margin:0 auto}
 #hero-fundo .hero-title{font-size:2.4rem}
 
-/* FOOTER centralizado */
+/* FOOTER */
 footer{background:#000;color:#fff;padding:50px 20px;text-align:center}
 footer .footer-grid{max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px}
 footer .footer-brand{font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
@@ -122,9 +135,8 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 .whats-btn:hover{background:#128C7E;transform:translateY(-3px);box-shadow:0 12px 25px rgba(0,0,0,0.4)}
 .whats-icon{width:26px;height:26px}
 
-/* RESPONSIVO */
+/* TIPOS + MEDIA */
 @media(max-width:1024px){.hero-title{font-size:2.4rem}.title{font-size:2rem}}
-@media(max-width:768px){.gallery{grid-template-columns:1fr}.work-row{grid-template-columns:1fr}.work-media img{height:auto}}
 @media(max-width:640px){.hero-title{font-size:1.9rem}.hero-sub{font-size:1rem}.title{font-size:1.7rem}.mapa-img{max-width:320px;width:90%}.whats-btn span{display:none}.whats-btn{padding:15px;bottom:25px;right:25px}}
 
 /* ANIMAÇÃO */
@@ -284,34 +296,21 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* Fallback do vídeo: se não carregar, mostra o poster + overlay mais escuro */
+/* Fallback do vídeo */
 const v = document.getElementById('bgVideo');
 const poster = document.querySelector('.bg-poster');
 const overlay = document.getElementById('overlay');
+function usarPosterEscuro(){ if(v) v.style.display='none'; if(poster) poster.style.display='block'; if(overlay) overlay.classList.add('poster-dark'); }
+if(v){ v.addEventListener('error', usarPosterEscuro); setTimeout(()=>{ if(v.readyState===0) usarPosterEscuro(); }, 900); }
 
-function usarPosterEscuro(){
-  if(v) v.style.display='none';
-  if(poster) poster.style.display='block';
-  if(overlay){ overlay.classList.add('poster-dark'); }
-}
-if(v){
-  v.addEventListener('error', usarPosterEscuro);
-  setTimeout(() => { if(v.readyState === 0) usarPosterEscuro(); }, 900);
-}
-
-/* Fade-in ao rolar */
+/* Fade-in */
 const fadeElements = document.querySelectorAll('.fade-in');
 const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target);
-    }
-  });
+  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); }});
 },{threshold:0.1});
 fadeElements.forEach(el => fadeObserver.observe(el));
 
-/* Mapa slide-in */
+/* Mapa slide */
 const mapa = document.querySelector(".mapa-img");
 if(mapa){
   const obs = new IntersectionObserver((entries)=>{
@@ -322,4 +321,4 @@ if(mapa){
 </script>
 
 </body>
-</html>
+  </html>
