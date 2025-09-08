@@ -113,11 +113,16 @@ header {
 
 .hero-content {
   position:relative;
-  display: block;
+  display: flex;
   z-index:2;
   max-width:600px;
   padding:40px 20px;
   margin: 0 auto 19px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
 }
 
 .hero-title {
@@ -133,7 +138,9 @@ header {
   color:var(--muted);
   max-width:90%;
 }
-
+hero-content img{
+margin-bottom: 19px;
+  }
 .bold-text { font-weight:700; color:#fff; }
 
 /* ===========================
