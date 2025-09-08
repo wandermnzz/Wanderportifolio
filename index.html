@@ -4,127 +4,113 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>SOS Soluções — Esquadrias Premium</title>
-<meta name="description" content="SOS Soluções — Esquadrias premium em alumínio. Projetos residenciais e comerciais com acabamento de alto padrão." />
+<meta name="description" content="Esquadrias premium em alumínio para projetos residenciais e comerciais." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --bg:#0a0d10;
-  --bg-soft:#0c1116;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.76);
-  --stroke:rgba(255,255,255,.08);
-  --gold:#FFD700;
-  --gold-2:#e6c200;
-  --max:1180px;
+  --bg:#0a0d10; --bg2:#0c1116; --text:#fff; --muted:rgba(255,255,255,.76);
+  --stroke:rgba(255,255,255,.08); --gold:#FFD700; --gold-2:#e6c200; --max:1180px;
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
 body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-
-/* UTIL */
 .wrap{width:min(var(--max),92%);margin-inline:auto}
-.kicker{font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:13px 22px;border:2px solid var(--gold);border-radius:999px;background:transparent;color:#fff;
-  font-weight:700;transition:.25s;text-decoration:none
-}
-.btn:hover{transform:translateY(-1px);box-shadow:0 0 0 2px rgba(255,215,0,.18),0 10px 26px rgba(0,0,0,.35)}
-h1,h2,h3{letter-spacing:.2px;text-shadow:0 0 1px rgba(0,0,0,.2)}
-.muted{color:var(--muted)}
-.section{padding:70px 0}
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
-@media (max-width:1024px){.split{grid-template-columns:1fr;gap:22px}}
+.kicker{color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:.04em}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:2px solid var(--gold);border-radius:8px;background:transparent;color:#fff;font-weight:700;text-decoration:none;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 0 2px rgba(255,215,0,.18)}
+h1,h2,h3{letter-spacing:.2px}
 
-/* HEADER (fixo discreto) */
-header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0));backdrop-filter:blur(8px);border-bottom:1px solid var(--stroke)}
+/* header */
+header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0));border-bottom:1px solid var(--stroke);backdrop-filter:blur(8px)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-.nav .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-.nav img{height:36px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand img{height:34px}
 
-/* HERO — igual ao RD (texto à esq., mídia à dir.) */
-.hero{position:relative;border-bottom:1px solid var(--stroke)}
-.hero .wrap{padding:18px 0}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:stretch;min-height:78vh}
-@media (max-width:1024px){.hero-grid{grid-template-columns:1fr;min-height:auto}}
-.hero-copy{display:flex;flex-direction:column;justify-content:center;padding: clamp(10px,3.5vw,40px) 0}
+/* HERO (estrutura RD: texto à esquerda, mídia à direita) */
+.hero{border-bottom:1px solid var(--stroke)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:stretch;min-height:80vh}
+@media(max-width:1024px){.hero-grid{grid-template-columns:1fr;min-height:auto}}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;max-width:560px}
 .hero h1{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:800;margin:6px 0 10px}
-.hero p{max-width:60ch}
-.hero-media{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--stroke);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.hero p{max-width:60ch;color:var(--muted);margin-bottom:16px}
+.hero-media{position:relative;border:1px solid var(--stroke);border-radius:8px;overflow:hidden;box-shadow:0 16px 36px rgba(0,0,0,.35)}
 .hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,13,16,.75) 0%,rgba(10,13,16,.35) 45%,rgba(10,13,16,0) 90%)}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,13,16,.85) 0%,rgba(10,13,16,.55) 40%,rgba(10,13,16,0) 85%)}
 
-/* BLOCOS DE SERVIÇOS (cards 3 colunas) */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
-@media (max-width:1024px){.cards{grid-template-columns:1fr}}
-.card{border:1px solid var(--stroke);border-radius:14px;overflow:hidden;background:#0f1318;box-shadow:0 12px 28px rgba(0,0,0,.22);transition:transform .25s}
-.card:hover{transform:translateY(-3px)}
+/* seção serviços (cards 3 colunas, cantos 8px) */
+.section{padding:70px 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+@media(max-width:1024px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--stroke);border-radius:8px;background:#0f1318;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.22)}
 .card img{width:100%;height:230px;object-fit:cover}
 .card h4{padding:12px 14px}
 
-/* SEÇÃO DESTAQUE (igual bloco “Diversos clientes…”) */
+/* bloco “Diversos clientes…” (layout RD) */
 .band{background: radial-gradient(800px 380px at 12% 20%, rgba(255,255,255,.05), transparent 60%), linear-gradient(180deg, rgba(12,17,22,.55), rgba(12,17,22,.25));border-block:1px solid var(--stroke)}
-.band .content{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
-@media (max-width:1024px){.band .content{grid-template-columns:1fr}}
+.band-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media(max-width:1024px){.band-grid{grid-template-columns:1fr}}
 .band h2{font-size:clamp(1.8rem,3.2vw,2.4rem);font-weight:800}
-.band .gold{color:var(--gold);font-weight:800}
+.gold{color:var(--gold);font-weight:800}
 
-/* MAPA */
+/* mapa */
 .map-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
-@media (max-width:1024px){.map-grid{grid-template-columns:1fr}}
-.map-figure{justify-self:end}
-.map-figure img{max-width:520px;width:100%;border-radius:16px;box-shadow:0 16px 36px rgba(0,0,0,.3)}
+@media(max-width:1024px){.map-grid{grid-template-columns:1fr}}
+.map-fig{justify-self:end}
+.map-fig img{max-width:520px;width:100%;border-radius:8px;box-shadow:0 16px 36px rgba(0,0,0,.3)}
 
-/* QUEM SOMOS */
+/* quem somos */
 .about{background: radial-gradient(700px 360px at 12% 20%, rgba(255,255,255,.04), transparent 60%), linear-gradient(180deg, rgba(12,17,22,.55), rgba(12,17,22,.25));border-block:1px solid var(--stroke);text-align:center}
 .about h2{font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:800;margin-bottom:8px}
-.about .gold{color:var(--gold)}
-.about p{max-width:78ch;margin-inline:auto}
+.about p{max-width:78ch;margin-inline:auto;color:var(--muted)}
 
-/* GALERIA */
+/* galeria */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media (max-width:1024px){.gallery{grid-template-columns:1fr}}
-.gallery figure{border:1px solid var(--stroke);border-radius:12px;overflow:hidden;background:#0f1318;box-shadow:0 12px 28px rgba(0,0,0,.22)}
+@media(max-width:1024px){.gallery{grid-template-columns:1fr}}
+.gallery figure{border:1px solid var(--stroke);border-radius:8px;background:#0f1318;overflow:hidden}
 .gallery img{width:100%;height:240px;object-fit:cover}
 .gallery figcaption{padding:10px 12px;color:var(--muted)}
 
-/* CTA FINAL */
+/* CTA final */
 .cta-final{position:relative;text-align:center;padding:80px 0;border-top:1px solid var(--stroke);background:linear-gradient(rgba(10,13,16,.92), rgba(10,13,16,.92)), url("poster.jpg") center/cover no-repeat}
 .cta-final h2{font-size:clamp(1.8rem,3.2vw,2.3rem);font-weight:800;margin-bottom:8px}
-.cta-final p{max-width:72ch;margin:0 auto 16px}
+.cta-final p{max-width:72ch;margin:0 auto 16px;color:var(--muted)}
 
-/* FOOTER */
+/* footer */
 footer{background:#000;border-top:1px solid var(--stroke);padding:40px 0}
 .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:18px}
-@media (max-width:768px){.footer-grid{flex-direction:column;text-align:center}}
+@media(max-width:768px){.footer-grid{flex-direction:column;text-align:center}}
 footer .muted{color:rgba(255,255,255,.75)}
 
-/* FLOAT WHATSAPP */
-.whats-btn{position:fixed;right:20px;bottom:20px;z-index:50;display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background:#25D366;color:#fff;font-weight:700;box-shadow:0 12px 28px rgba(0,0,0,.3);text-decoration:none}
-.whats-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
-.whats-btn img{width:22px;height:22px}
-@media (max-width:640px){.whats-btn span{display:none}}
+/* whatsapp float */
+.whats{position:fixed;right:20px;bottom:20px;z-index:50;display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;background:#25D366;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.3)}
+.whats img{width:20px;height:20px}
+@media(max-width:640px){.whats span{display:none}}
 
-/* Entradas suaves */
-.fade-in{opacity:0;transform:translateY(16px);transition:opacity .8s ease, transform .8s ease}
+/* animação leve */
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity .7s ease, transform .7s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="Logo2.png" alt="SOS">SOS Soluções</div>
+    <a class="btn" href="https://wa.me/5579998954178" target="_blank">Solicitar orçamento →</a>
+  </div>
+</header>
+
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <img src="Logo2.png" alt="Logo SOS" style="height:54px;margin-bottom:8px">
+      <img src="Logo2.png" alt="Logo SOS" style="height:52px;margin-bottom:6px">
       <h1>Seu projeto com <span style="color:#fff;font-weight:800">esquadrias premium</span></h1>
-      <p class="muted" style="margin:8px 0 18px">Projetamos e executamos <strong>portas, janelas e revestimentos</strong> em alumínio de alto padrão para projetos residenciais e comerciais.</p>
+      <p>Projetamos e executamos <strong>portas, janelas e revestimentos</strong> em alumínio de alto padrão para projetos residenciais e comerciais.</p>
       <a class="btn" href="https://wa.me/5579998954178" target="_blank">Solicite seu orçamento →</a>
     </div>
-
     <figure class="hero-media">
       <video autoplay muted loop playsinline poster="poster.jpg">
         <source src="hero.mp4" type="video/mp4">
@@ -145,20 +131,18 @@ footer .muted{color:rgba(255,255,255,.75)}
       <article class="card fade-in"><img src="servico2.jpg" alt=""><h4>Revestimentos em ACM</h4></article>
       <article class="card fade-in"><img src="servico3.jpg" alt=""><h4>Fechamentos & Fachadas</h4></article>
     </div>
-    <div style="margin-top:22px"><a class="btn" href="https://wa.me/5579998954178" target="_blank">Saiba mais →</a></div>
   </div>
 </section>
 
-<!-- DESTAQUE (clientes) -->
+<!-- “DIVERSOS CLIENTES…” -->
 <section class="section band">
-  <div class="wrap content">
-    <div class="content">
-      <figure class="card" style="margin:0"><img src="servicoref1.jpg" alt="Projeto"></figure>
-      <div>
-        <h2>Diversos clientes por todo <span class="gold">Sergipe</span></h2>
-        <p class="muted" style="margin:8px 0 10px">Soluções de alto padrão em esquadrias que transformam projetos em grandes resultados.</p>
-        <p class="gold" style="font-weight:800">Atendemos em todo Sergipe.</p>
-      </div>
+  <div class="wrap band-grid">
+    <figure class="card" style="margin:0"><img src="serviceref1.jpg" alt="Projeto"></figure>
+    <div>
+      <h2>Diversos clientes por todo <span class="gold">Sergipe</span></h2>
+      <p class="muted" style="margin:8px 0 10px">Soluções de alto padrão em esquadrias que transformam projetos em grandes resultados.</p>
+      <p class="gold">Atendemos em todo Sergipe.</p>
+      <div style="margin-top:12px"><a class="btn" href="https://wa.me/5579998954178" target="_blank">Saiba mais →</a></div>
     </div>
   </div>
 </section>
@@ -173,15 +157,15 @@ footer .muted{color:rgba(255,255,255,.75)}
       <p class="muted" style="margin:4px 0 16px">Atuamos em todo o estado de Sergipe, com atendimento próximo e ágil.</p>
       <a class="btn" href="https://goo.gl/maps/example" target="_blank">Saiba como chegar →</a>
     </div>
-    <figure class="map-figure"><img src="mapasergipe4.png" alt="Mapa de Sergipe"></figure>
+    <figure class="map-fig"><img src="mapasergipe4.png" alt="Mapa de Sergipe"></figure>
   </div>
 </section>
 
 <!-- QUEM SOMOS -->
 <section class="section about">
-  <div class="wrap">
+  <div class="wrap" style="text-align:center">
     <h2>Quem somos? <span class="gold">Somos inovação!</span></h2>
-    <p class="muted" style="margin-top:10px">Especialistas em esquadrias de alumínio para projetos residenciais e comerciais, unindo tecnologia de ponta, acabamento de alto padrão e atendimento próximo a cada detalhe.</p>
+    <p style="margin-top:10px">Especialistas em esquadrias de alumínio para projetos residenciais e comerciais, unindo tecnologia de ponta, acabamento de alto padrão e atendimento próximo a cada detalhe.</p>
   </div>
 </section>
 
@@ -202,7 +186,7 @@ footer .muted{color:rgba(255,255,255,.75)}
 <section class="cta-final">
   <div class="wrap">
     <h2>Então, vamos elevar seu projeto?</h2>
-    <p class="muted">Entre em contato e dê o primeiro passo para ter esquadrias de alto padrão, feitas sob medida para valorizar cada detalhe.</p>
+    <p>Entre em contato e dê o primeiro passo para ter esquadrias de alto padrão, feitas sob medida para valorizar cada detalhe.</p>
     <a class="btn" href="https://wa.me/5579998954178" target="_blank">Solicite seu orçamento →</a>
   </div>
 </section>
@@ -212,7 +196,7 @@ footer .muted{color:rgba(255,255,255,.75)}
   <div class="wrap footer-grid">
     <div>
       <div style="display:flex;align-items:center;gap:10px;font-weight:800;margin-bottom:6px">
-        <img src="Logo2.png" alt="SOS" style="height:26px"> SOS Soluções
+        <img src="Logo2.png" alt="SOS" style="height:24px"> SOS Soluções
       </div>
       <div class="muted">Av. General Euclides Figueiredo, 133 — Aracaju/SE</div>
       <div class="muted">(79) 99989-54178</div>
@@ -221,20 +205,15 @@ footer .muted{color:rgba(255,255,255,.75)}
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a class="whats-btn" href="https://wa.me/5579998954178" target="_blank" aria-label="WhatsApp">
-  <img src="whatsapp.png" alt="WhatsApp"><span>Fale conosco</span>
+<!-- WhatsApp flutuante -->
+<a class="whats" href="https://wa.me/5579998954178" target="_blank" aria-label="WhatsApp">
+  <img src="whatsapp.png" alt=""> <span>Fale conosco</span>
 </a>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-
-// fade-in simples
-const els = document.querySelectorAll('.fade-in');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
-},{threshold:.15});
-els.forEach(el=>io.observe(el));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
