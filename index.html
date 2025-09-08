@@ -32,28 +32,22 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem}
 .logo-img{width:40px;height:auto}
 
-/* HERO — vídeo realmente ao fundo */
+/* HERO — vídeo ao fundo + overlay sempre */
 .hero{
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  position:relative;width:100%;height:100vh;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;text-align:center;
 }
 .bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .bg-poster{position:absolute;inset:0;width:100%;height:100%;background:url("poster.jpg") center/cover no-repeat;z-index:0;display:none}
-.bg-overlay{position:absolute;inset:0;z-index:1;background:transparent}
-.bg-overlay.overlay-dark{background:rgba(0,0,0,0.65)}
+.bg-overlay{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.55)}
+.bg-overlay.poster-dark{background:rgba(0,0,0,.75)}
 
 .hero-content{position:relative;z-index:2;max-width:800px;padding:20px}
 .hero-title{font-size:3rem;line-height:1.2}
 .bold-text{color:#f7b500;font-weight:800}
 .hero-sub{font-size:1.2rem;margin:1rem 0 2rem;color:#ddd}
 
-/* BOTÕES — borda gold, fundo transparente, texto BRANCO e centralizados */
+/* BOTÕES — borda gold, fundo transparente, texto branco e centralizados */
 .cta-hero,.cta-herosaibamais,.btn-main{
   display:inline-flex;align-items:center;justify-content:center;
   min-width:260px;padding:14px 28px;border:2px solid var(--brand);
@@ -73,7 +67,6 @@ section{padding:40px 20px;text-align:center}
 .section-title,.section-titleinicial{margin-bottom:20px;text-align:center}
 .section-titleesquerdo{margin-bottom:5px;margin-top:5px}
 @media(min-width:992px){
-  /* Centraliza no desktop o bloco que puxava à esquerda */
   .section-titleesquerdo, .section-titleesquerdo *{text-align:center}
 }
 .kicker{margin-bottom:13px;font-size:1.2rem;text-transform:uppercase;letter-spacing:1px;font-weight:600}
@@ -100,21 +93,27 @@ section{padding:40px 20px;text-align:center}
 .texto-lado-esquerdo h2{font-size:1.8rem;margin-bottom:10px}
 .texto-lado-esquerdo p{font-size:1rem;margin-bottom:10px}
 
-/* NOSSOS TRABALHOS — alternado (Img|Texto / Texto|Img / Img|Texto) */
-.works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
+/* NOSSOS TRABALHOS — alternado, controlado (nada gigante) */
+.works{display:flex;flex-direction:column;gap:26px;margin-top:10px}
 .work-row{
   display:grid;gap:20px;align-items:center;
   grid-template-columns:1fr; text-align:left;
   border:1px solid var(--stroke);border-radius:10px;padding:16px;
+  max-width:1120px;margin:0 auto; /* controla largura */
 }
-.work-media img{width:100%;height:auto;border-radius:8px;display:block}
-.work-text .work-title{font-weight:700;font-size:1.2rem;margin-bottom:6px;color:#fff}
-.work-text .work-desc{color:var(--muted)}
+.work-media img{
+  width:100%;height:340px; /* altura fixa desktop */
+  object-fit:cover;border-radius:8px;display:block
+}
+.work-text{padding:6px 4px}
+.work-text .work-title{font-weight:700;font-size:1.15rem;margin-bottom:6px;color:#fff}
+.work-text .work-desc{color:var(--muted);font-size:1rem;line-height:1.6}
+
 @media(min-width:992px){
-  .work-row{grid-template-columns:1fr 1fr;padding:22px}
-  /* Linha 2: Texto | Img */
+  .work-row{grid-template-columns:1.1fr 0.9fr;padding:20px}
+  /* Linha 2: Texto | Img (invertida) */
   .work-row.even .work-media{order:2}
-  .work-row.even .work-text{order:1}
+  .work-row.even .work-text{order:1;text-align:left}
 }
 
 /* BLOCO FINAL (Vamos elevar...) — centralizado */
@@ -141,6 +140,8 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 @media(max-width:1024px){.hero-title{font-size:2.5rem}.title{font-size:2rem}}
 @media(max-width:768px){
   .gallery{grid-template-columns:1fr}
+  .work-media img{height:auto} /* no mobile imagem segue natural */
+  .work-row{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .hero-title{font-size:1.9rem}
@@ -252,7 +253,7 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
         </div>
       </div>
 
-      <!-- 2) TEXTO | IMG -->
+      <!-- 2) TEXTO | IMG (invertida no desktop) -->
       <div class="work-row even fade-in">
         <div class="work-media"><img src="portaocasabranca.jpg" alt="Obra 2"></div>
         <div class="work-text">
@@ -310,24 +311,22 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Fallback do vídeo: se não carregar / iniciar, mostra poster ESCURO
+/* Fallback do vídeo: se não carregar, mostra o poster + overlay mais escuro */
 const v = document.getElementById('bgVideo');
 const poster = document.querySelector('.bg-poster');
 const overlay = document.getElementById('overlay');
 
-function ativarPosterEscuro(){
+function usarPosterEscuro(){
   if(v) v.style.display='none';
   if(poster) poster.style.display='block';
-  if(overlay) overlay.classList.add('overlay-dark');
+  if(overlay){ overlay.classList.add('poster-dark'); }
 }
-
 if(v){
-  v.addEventListener('error', ativarPosterEscuro);
-  setTimeout(() => { if(v.readyState === 0) ativarPosterEscuro(); }, 900);
-  v.addEventListener('playing', () => { if(overlay) overlay.classList.remove('overlay-dark'); });
+  v.addEventListener('error', usarPosterEscuro);
+  setTimeout(() => { if(v.readyState === 0) usarPosterEscuro(); }, 900);
 }
 
-// Animações on scroll
+/* Animações on scroll */
 document.addEventListener("DOMContentLoaded", () => {
   const mapa = document.querySelector(".mapa-img");
   if(mapa){
