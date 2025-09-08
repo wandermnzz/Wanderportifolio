@@ -39,8 +39,8 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 }
 .bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .bg-poster{position:absolute;inset:0;width:100%;height:100%;background:url("poster.jpg") center/cover no-repeat;z-index:0;display:none}
-.bg-overlay{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.55)}
-.bg-overlay.poster-dark{background:rgba(0,0,0,.75)}
+.bg-overlay{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.55)}        /* camada preta no vídeo */
+.bg-overlay.poster-dark{background:rgba(0,0,0,.8)}                                   /* mais escura no poster */
 
 .hero-content{position:relative;z-index:2;max-width:800px;padding:20px}
 .hero-title{font-size:3rem;line-height:1.2}
@@ -66,9 +66,7 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0
 section{padding:40px 20px;text-align:center}
 .section-title,.section-titleinicial{margin-bottom:20px;text-align:center}
 .section-titleesquerdo{margin-bottom:5px;margin-top:5px}
-@media(min-width:992px){
-  .section-titleesquerdo, .section-titleesquerdo *{text-align:center}
-}
+@media(min-width:992px){ .section-titleesquerdo, .section-titleesquerdo *{text-align:center} }
 .kicker{margin-bottom:13px;font-size:1.2rem;text-transform:uppercase;letter-spacing:1px;font-weight:600}
 .title{font-weight:800;margin:6px 0 14px;font-size:2.2rem;color:#fff}
 .title.gradient{
@@ -77,8 +75,11 @@ section{padding:40px 20px;text-align:center}
 }
 .muted{color:var(--muted);font-size:1rem;margin-top:8px;max-width:700px;margin-left:auto;margin-right:auto;text-align:left}
 
-/* CARDS */
-.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-left:auto;margin-right:auto}
+/* CARDS — centralizados */
+.cards{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
+  max-width:1120px;margin:0 auto; /* garante centralização */
+}
 .card{position:relative;background:var(--card);border-radius:6px;max-width:350px;width:100%;overflow:hidden;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
 .card img{width:100%;height:220px;object-fit:cover;transition:transform .5s}
 .card:hover img{transform:scale(1.05)}
@@ -93,27 +94,30 @@ section{padding:40px 20px;text-align:center}
 .texto-lado-esquerdo h2{font-size:1.8rem;margin-bottom:10px}
 .texto-lado-esquerdo p{font-size:1rem;margin-bottom:10px}
 
-/* NOSSOS TRABALHOS — alternado, controlado (nada gigante) */
-.works{display:flex;flex-direction:column;gap:26px;margin-top:10px}
+/* NOSSOS TRABALHOS — desktop: Img|Texto • Texto|Img • Img|Texto */
+.works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
 .work-row{
-  display:grid;gap:20px;align-items:center;
+  display:grid;gap:24px;align-items:center;
   grid-template-columns:1fr; text-align:left;
   border:1px solid var(--stroke);border-radius:10px;padding:16px;
-  max-width:1120px;margin:0 auto; /* controla largura */
+  max-width:1120px;margin:0 auto;
 }
-.work-media img{
-  width:100%;height:340px; /* altura fixa desktop */
-  object-fit:cover;border-radius:8px;display:block
-}
+.work-media img{width:100%;height:auto;border-radius:8px;display:block}
 .work-text{padding:6px 4px}
 .work-text .work-title{font-weight:700;font-size:1.15rem;margin-bottom:6px;color:#fff}
 .work-text .work-desc{color:var(--muted);font-size:1rem;line-height:1.6}
 
+/* Alternância e tamanho controlado só no desktop */
 @media(min-width:992px){
-  .work-row{grid-template-columns:1.1fr 0.9fr;padding:20px}
-  /* Linha 2: Texto | Img (invertida) */
-  .work-row.even .work-media{order:2}
-  .work-row.even .work-text{order:1;text-align:left}
+  .work-media img{height:320px;object-fit:cover}
+  /* Linha 1: Img | Texto */
+  .works .work-row:nth-child(1){grid-template-columns:520px 1fr}
+  /* Linha 2: Texto | Img */
+  .works .work-row:nth-child(2){grid-template-columns:1fr 520px}
+  .works .work-row:nth-child(2) .work-media{order:2}
+  .works .work-row:nth-child(2) .work-text{order:1}
+  /* Linha 3: Img | Texto */
+  .works .work-row:nth-child(3){grid-template-columns:520px 1fr}
 }
 
 /* BLOCO FINAL (Vamos elevar...) — centralizado */
@@ -140,8 +144,8 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
 @media(max-width:1024px){.hero-title{font-size:2.5rem}.title{font-size:2rem}}
 @media(max-width:768px){
   .gallery{grid-template-columns:1fr}
-  .work-media img{height:auto} /* no mobile imagem segue natural */
   .work-row{grid-template-columns:1fr}
+  .work-media img{height:auto}
 }
 @media(max-width:640px){
   .hero-title{font-size:1.9rem}
@@ -236,7 +240,7 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
   </div>
 </section>
 
-<!-- NOSSOS TRABALHOS — alternado (Img|Texto / Texto|Img / Img|Texto) -->
+<!-- NOSSOS TRABALHOS — Img|Texto • Texto|Img • Img|Texto -->
 <section>
   <div class="wrap">
     <div class="section-titleinicial fade-in">
@@ -253,8 +257,8 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
         </div>
       </div>
 
-      <!-- 2) TEXTO | IMG (invertida no desktop) -->
-      <div class="work-row even fade-in">
+      <!-- 2) TEXTO | IMG -->
+      <div class="work-row fade-in">
         <div class="work-media"><img src="portaocasabranca.jpg" alt="Obra 2"></div>
         <div class="work-text">
           <div class="work-title">Portão de alumínio deslizante</div>
@@ -292,9 +296,7 @@ footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255
       <div class="muted">avenida general Euclides Figueiredo 133 — Aracaju/SE</div>
       <div class="muted">CNPJ: 30.752.823/0001-34</div>
       <div class="muted">WhatsApp: (79) 9 9831-6184</div>
-      <div class="muted">
-        Instagram: <a href="https://www.instagram.com/s.o.s_esquadrias?igsh=MWlhbnNvZXg5cjA5cg==" target="_blank" rel="noopener">@s.o.s_esquadrias</a>
-      </div>
+      <div class="muted">Instagram: <a href="https://www.instagram.com/s.o.s_esquadrias?igsh=MWlhbnNvZXg5cjA5cg==" target="_blank" rel="noopener">@s.o.s_esquadrias</a></div>
     </div>
     <div class="footer-copyright">
       <div class="muted">© <span id="year"></span> SOS Soluções. Todos os direitos reservados.</div>
