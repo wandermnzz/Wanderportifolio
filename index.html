@@ -1,340 +1,515 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SOS Soluções</title>
-<meta name="description" content="Soluções premium em esquadrias — vídeo de fundo e design elegante." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-
+<title>Tech WM — Loja</title>
 <style>
-:root{
-  --bg:#050505;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,0.7);
-  --brand:#FFD700;
-  --brand-hover:#e6c200;
-  --card:#111;
-  --stroke:rgba(255,255,255,0.06);
-}
+  :root{
+    --bg:#0b0f13;
+    --card:#0f1720;
+    --accent:#0ea5ff;
+    --muted:#94a3b8;
+    --success:#10b981;
+    --danger:#ef4444;
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #02040a 0%, #071226 100%);
+    color:#e6eef8;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    min-height:100vh;
+    padding-bottom:120px;
+  }
 
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;line-height:1.6}
-a{color:inherit;text-decoration:none}
-.wrap{width:min(1120px,94vw);margin:0 auto}
+  /* Container */
+  .wrap{
+    max-width:980px;
+    margin:16px auto;
+    padding:16px;
+  }
 
-/* HEADER */
-header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0));border-bottom:1px solid var(--stroke);backdrop-filter:blur(8px)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.2rem}
-.logo-img{width:40px;height:auto}
+  header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .logo{
+    width:56px;
+    height:56px;
+    border-radius:10px;
+    background:var(--glass);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .logo img{width:100%;height:100%;object-fit:contain}
+  h1{font-size:20px;margin:0}
+  p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
 
-/* HERO */
-.hero{position:relative;width:100%;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
-.bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.bg-poster{position:absolute;inset:0;width:100%;height:100%;background:url("poster.jpg") center/cover no-repeat;z-index:0;display:none}
-.bg-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:1}
-.bg-overlay.poster-dark{background:rgba(0,0,0,.82)} /* mais escura no fallback */
+  /* Hero / main card */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;
+    padding:16px;
+    box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .main-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:12px;
+  }
+  .cta-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .btn{
+    background:linear-gradient(90deg,var(--accent),#0088ff);
+    border:none;
+    color:white;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    box-shadow: 0 6px 18px rgba(14,165,255,0.12);
+  }
+  .btn.secondary{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);
+    font-weight:600;
+  }
 
-.hero-content{position:relative;z-index:2;max-width:800px;padding:20px}
-.hero-title{font-size:3rem;line-height:1.2}
-.bold-text{color:#f7b500;font-weight:800}
-.hero-sub{font-size:1.2rem;margin:1rem 0 2rem;color:#ddd}
+  /* Floating revendedor button */
+  .rev-btn{
+    position:fixed;
+    right:14px;
+    bottom:22px;
+    z-index:1200;
+    width:64px;
+    height:64px;
+    border-radius:999px;
+    background:linear-gradient(180deg, #06b6d4, #0ea5ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#022;
+    font-weight:700;
+    box-shadow: 0 10px 30px rgba(14,165,255,0.18);
+    cursor:pointer;
+    border:2px solid rgba(255,255,255,0.06);
+  }
+  .rev-btn small{display:block;font-size:11px; color:rgba(1,6,12,0.8)}
 
-/* BOTÕES – borda gold, fundo transparente, texto branco centralizado */
-.cta-hero,.cta-herosaibamais,.btn-main{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:260px;padding:14px 28px;border:2px solid var(--brand);
-  background:transparent;color:#fff;font-weight:700;border-radius:8px;transition:.3s;text-align:center
-}
-.cta-hero:hover,.cta-herosaibamais:hover,.btn-main:hover{background:var(--brand);color:#111;transform:translateY(-2px);box-shadow:0 4px 12px rgba(255,215,0,0.2)}
+  /* Open/Closed badge fixed bottom-left */
+  .status-badge{
+    position:fixed;
+    left:12px;
+    bottom:18px;
+    z-index:1200;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    padding:10px 12px;
+    border-radius:12px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    border:1px solid rgba(255,255,255,0.04);
+    min-width:120px;
+  }
+  .dot{width:12px;height:12px;border-radius:50%}
+  .dot.open{background:var(--success)}
+  .dot.closed{background:var(--danger)}
+  .status-text{font-weight:700;font-size:13px}
+  .status-sub{font-size:12px;color:var(--muted)}
 
-/* Chevron */
-.chev-wrap{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2}
-.chev{width:24px;height:24px;border-bottom:3px solid #fff;border-right:3px solid #fff;transform:rotate(45deg);animation:bounce 1.5s infinite}
-@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(8px)}}
+  /* Modal */
+  .modal-back{
+    position:fixed;inset:0;background:rgba(0,0,0,0.55);display:none;align-items:center;justify-content:center;z-index:1300;
+  }
+  .modal{
+    max-width:420px;width:94%;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);
+  }
+  .modal h3{margin:8px 0 12px}
+  input, textarea, select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.04);
+    background:rgba(255,255,255,0.02);
+    color:inherit;
+  }
 
-/* SECTIONS */
-section{padding:40px 20px;text-align:center}
-.section-title,.section-titleinicial{margin-bottom:20px;text-align:center}
-.section-titleesquerdo{margin-bottom:5px;margin-top:5px}
-@media(min-width:992px){.section-titleesquerdo,.section-titleesquerdo *{text-align:center}}
-.kicker{margin-bottom:13px;font-size:1.2rem;text-transform:uppercase;letter-spacing:1px;font-weight:600}
-.title{font-weight:800;margin:6px 0 14px;font-size:2.2rem;color:#fff}
-.title.gradient{background:linear-gradient(135deg,#b8860b 0%,#d4af37 30%,#ffd700 50%,#d4af37 70%,#b8860b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
-.muted{color:var(--muted);font-size:1rem;margin-top:8px;max-width:700px;margin-left:auto;margin-right:auto;text-align:left}
+  /* Panel */
+  .panel{
+    margin-top:12px;
+  }
+  .panel .box{
+    background:rgba(255,255,255,0.02);
+    padding:12px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.03)
+  }
+  .small{font-size:13px;color:var(--muted)}
+  .req-item{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
+  .status-pill{padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px}
+  .status-Aguardando{background:rgba(255,255,255,0.03)}
+  .status-Em\ análise{background:rgba(255,255,255,0.03)}
+  .status-Aprovado{background:rgba(16,185,129,0.12);color:var(--success)}
+  .status-Negado{background:rgba(239,68,68,0.08);color:var(--danger)}
 
-/* CARDS */
-.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;max-width:1120px;margin:0 auto}
-.card{position:relative;background:var(--card);border-radius:10px;max-width:350px;width:100%;overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid var(--stroke)}
-.card img{width:100%;height:220px;object-fit:cover;transition:transform .5s;display:block}
-.card:hover img{transform:scale(1.05)}
-.card::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:40%;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent)}
-.card h4{position:absolute;left:16px;bottom:14px;font-weight:600;color:#fff;z-index:2;font-size:1.1rem}
+  footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center;padding:20px 0}
 
-/* REFERÊNCIAS – centralizadas no desktop E no mobile */
-.ref-grid{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
-  max-width:1120px;margin:0 auto;
-}
-.ref-card{
-  width:min(360px,92vw);background:var(--card);border:1px solid var(--stroke);
-  border-radius:10px;overflow:hidden;margin:0 auto;text-align:center;
-}
-.ref-card img{width:100%;height:220px;object-fit:cover;display:block}
-.ref-card h4{padding:12px 14px}
-
-/* MAPA */
-.mapa-container{max-width:400px;margin:10px auto;text-align:center}
-.mapa-img{width:100%;max-width:400px;height:auto;opacity:0;transform:translateX(-50px);transition:all 1s ease-out;box-shadow:0 8px 16px rgba(0,0,0,0.2)}
-.mapa-img.show{opacity:1;transform:translateX(0)}
-.texto-lado-esquerdo{max-width:700px;margin:20px auto;padding:0 10px}
-.texto-lado-esquerdo h2{font-size:1.8rem;margin-bottom:10px}
-.texto-lado-esquerdo p{font-size:1rem;margin-bottom:10px}
-
-/* NOSSOS TRABALHOS — Img|Texto • Texto|Img • Img|Texto */
-.works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
-.work-row{
-  display:grid;gap:24px;align-items:center;grid-template-columns:1fr;
-  text-align:left;border:1px solid var(--stroke);border-radius:12px;
-  padding:16px;max-width:1120px;margin:0 auto;background:#0c0c0c;
-}
-.work-media img{width:100%;height:auto;border-radius:10px;display:block}
-.work-text{padding:6px 4px}
-.work-title{font-weight:800;margin-bottom:6px}
-.work-desc{color:var(--muted)}
-/* Desktop alternado */
-@media(min-width:1024px){
-  .work-media img{height:320px;object-fit:cover}
-  .work-row{grid-template-columns:1fr 1fr}
-  .work-row.reverse .work-media{grid-column:2}
-  .work-row.reverse .work-text{grid-column:1}
-}
-/* Mobile: centralizar textos */
-@media(max-width:767px){
-  .work-text{text-align:center}
-}
-
-/* BLOCO FINAL */
-#hero-fundo{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;background:linear-gradient(rgba(0,0,0,0.90),rgba(0,0,0,0.90)), url("poster.jpg") center/cover no-repeat}
-#hero-fundo .hero-content{max-width:900px;margin:0 auto}
-#hero-fundo .hero-title{font-size:2.4rem}
-
-/* FOOTER */
-footer{background:#000;color:#fff;padding:50px 20px;text-align:center}
-footer .footer-grid{max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px}
-footer .footer-brand{font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-footer .muted{color:#ccc;font-size:.95rem}
-footer .footer-copyright{font-size:1rem;color:#ccc;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;width:100%}
-
-/* WHATSAPP */
-.whats-btn{position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:50px;background:#25D366;color:#fff;font-weight:700;box-shadow:0 10px 20px rgba(0,0,0,0.3);transition:.3s}
-.whats-btn:hover{background:#128C7E;transform:translateY(-3px);box-shadow:0 12px 25px rgba(0,0,0,0.4)}
-.whats-icon{width:26px;height:26px}
-
-/* TIPOS + MEDIA */
-@media(max-width:1024px){.hero-title{font-size:2.4rem}.title{font-size:2rem}}
-@media(max-width:640px){.hero-title{font-size:1.9rem}.hero-sub{font-size:1rem}.title{font-size:1.7rem}.mapa-img{max-width:320px;width:90%}.whats-btn span{display:none}.whats-btn{padding:15px;bottom:25px;right:25px}}
-
-/* ANIMAÇÃO */
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-/* === OVERRIDE SEÇÃO NOSSOS TRABALHOS (coloque no FINAL do <style>) === */
-.works{display:flex;flex-direction:column;gap:28px;margin-top:10px}
-.work-row{display:grid;grid-template-columns:1fr;gap:24px;align-items:center;
-  text-align:left;border:1px solid var(--stroke);border-radius:12px;
-  padding:16px;max-width:1120px;margin:0 auto;background:#0c0c0c}
-.work-media img{width:100%;height:auto;border-radius:10px;display:block}
-.work-text{padding:6px 4px}
-.work-title{font-weight:800;margin-bottom:6px}
-.work-desc{color:var(--muted)}
-
-/* Mobile: tudo empilhado e texto centralizado */
-@media (max-width: 767px){
-  .work-text{ text-align:center; }
-}
-
-/* Desktop: duas colunas e alternância automática */
-@media (min-width: 1024px){
-  .work-row{ grid-template-columns: 1fr 1fr; }
-  .work-media img{ height:320px; object-fit:cover; }
-  /* Linhas pares: Texto | Imagem (inverte) */
-  .works .work-row:nth-child(2n) .work-media{ order:2; }
-  .works .work-row:nth-child(2n) .work-text{ order:1; }
-}
+  @media(min-width:720px){
+    .main-grid{grid-template-columns: 1fr 360px}
+    .logo{width:64px;height:64px}
+  }
 </style>
 </head>
 <body>
-
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <video id="bgVideo" class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
-    <source src="hero.mp4" type="video/mp4">
-    Seu navegador não suporta vídeos em HTML5.
-  </video>
-  <div class="bg-poster" aria-hidden="true"></div>
-  <div class="bg-overlay" id="overlay" aria-hidden="true"></div>
-
-  <div class="hero-content fade-in">
-    <img src="Logo2.png" alt="Logo SOS Soluções" style="margin:0 auto 16px;width:80px;">
-    <h1 class="hero-title">Seu projeto com <span class="bold-text">esquadrias premium</span></h1>
-    <p class="hero-sub">Oferecemos serviços profissionais e personalizados para o seu negócio ou residência.</p>
-    <a href="https://wa.me/5579998316184" target="_blank" class="cta-hero">Solicite seu orçamento →</a>
-  </div>
-
-  <div class="chev-wrap"><div class="chev"></div></div>
-</section>
-
-<!-- SERVIÇOS -->
-<section>
   <div class="wrap">
-    <div class="section-titleinicial fade-in">
-      <p class="muted" style="text-align:center">Cuidamos de cada etapa, do planejamento à execução, com segurança e qualidade.</p>
-      <p class="kicker" style="text-align:center">Nossos Serviços:</p>
-    </div>
+    <header>
+      <div class="logo" id="logoPlace">
+        <!-- Substitua por sua imagem local "logo.png" na mesma pasta para aparecer aqui -->
+        <img src="logo.png" alt="Tech WM" onerror="this.style.display='none'">
+        <svg id="logoSVG" viewBox="0 0 24 24" width="34" height="34" style="display:block">
+          <rect x="1" y="1" width="22" height="22" rx="6" fill="#08232d"></rect>
+          <path d="M6 16 L10 8 L14 16" stroke="#0ea5ff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div>
+        <h1>Tech WM</h1>
+        <p class="lead">Peças, acessórios e atendimento para revenda técnica</p>
+      </div>
+    </header>
 
-    <div class="cards">
-      <article class="card fade-in"><img src="servico1.jpg" alt="Serviço 1"></article>
-      <article class="card fade-in"><img src="servico2.jpg" alt="Serviço 2"></article>
-      <article class="card fade-in"><img src="servico3.jpg" alt="Serviço 3"></article>
-    </div>
+    <div class="card main-grid">
+      <div>
+        <h2 style="margin-top:0">Bem-vindo à Tech WM</h2>
+        <p class="small">Compre acessórios ou acesse a área do revendedor para preços especiais e solicitações de garantia.</p>
 
-    <a href="https://wa.me/5579998316184" target="_blank" class="cta-herosaibamais fade-in">Saiba mais →</a>
-  </div>
-</section>
-
-<!-- REFERÊNCIAS -->
-<section style="background: rgba(10,10,10,0.7);">
-  <div class="wrap">
-    <div class="ref-grid">
-      <article class="ref-card fade-in">
-        <img src="servicoref1.jpg" alt="Referência 1">
-      </article>
-      <article class="ref-card fade-in">
-        <img src="servicoref2.jpg" alt="Referência 2">
-      </article>
-    </div>
-
-    <div class="texto-lado-esquerdo fade-in" style="margin-top:18px">
-      <h2 style="text-align:center">Soluções criativas e funcionais</h2>
-      <p class="muted">Desenvolvemos uma solução em ACM para substituir projetos em alvenaria, garantindo mais praticidade e um acabamento de excelência.</p>
-    </div>
-
-    <div class="section-titleesquerdo fade-in">
-      <h2 class="title" style="text-align:center">Diversos clientes por todo Sergipe</h2>
-      <p class="muted" style="text-align:center">Oferecendo soluções de alto padrão em esquadrias que transformam projetos em grandes resultados</p>
-      <h3 class="title gradient" style="text-align:center">Atendemos em todo Sergipe!</h3>
-    </div>
-  </div>
-</section>
-
-<!-- MAPA -->
-<section>
-  <div class="texto-lado-esquerdo fade-in">
-    <h2>Estamos bem <strong>perto de você!</strong></h2>
-    <p>avenida general Euclides Figueiredo 133 - Aracaju/SE</p>
-    <p>Atuamos em todo o estado de Sergipe, levando qualidade e atendimento próximo a você!</p>
-    <a href="https://goo.gl/maps/example" target="_blank" class="cta-herosaibamais">Saiba como chegar →</a>
-  </div>
-  <div class="mapa-container fade-in">
-    <img src="mapasergipe4.png" alt="Mapa de Sergipe" class="mapa-img">
-  </div>
-</section>
-
-<!-- NOSSOS TRABALHOS -->
-<section>
-    <div class="works">
-      <!-- 1) IMG | TEXTO -->
-      <div class="work-row fade-in">
-        <div class="work-media"><img src="poster.jpg" alt="Obra 1"></div>
-        <div class="work-text">
-          <div class="work-title">Portão eletrônico de alto padrão</div>
-          <p class="work-desc">Sistema de senha integrado e acabamento premium, pensado para segurança e estética do projeto.</p>
+        <div style="margin-top:12px" class="cta-row">
+          <button class="btn" onclick="openProducts()">Ver produtos</button>
+          <button class="btn secondary" onclick="openInfo()">Como funciona a garantia</button>
         </div>
+
+        <div style="margin-top:14px" class="box" id="quickInfo">
+          <p class="small"><strong>Dica:</strong> Para revendedores técnicos, crie sua conta na planilha (coluna <em>tipo</em> = <code>revendedor</code>) e entre pelo botão flutuante à direita.</p>
+        </div>
+
+        <div id="panelArea" style="display:none" class="panel">
+          <div class="box">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div class="small" id="welcomeUser">Olá, —</div>
+                <div style="font-weight:700" id="userEmail">—</div>
+              </div>
+              <div>
+                <button class="btn secondary" onclick="logout()">Sair</button>
+              </div>
+            </div>
+            <hr style="opacity:0.04;margin:12px 0">
+            <h4 style="margin:6px 0">Solicitar garantia</h4>
+            <form id="garForm">
+              <input type="text" id="gar_prod" placeholder="Produto (ex: Tela Redmi Note 8)" required>
+              <input type="text" id="gar_order" placeholder="Código do pedido / nota (opcional)">
+              <textarea id="gar_desc" placeholder="Descreva o defeito (fotos são recomendadas)"></textarea>
+              <select id="gar_tipo">
+                <option value="revendedor">Revendedor Técnico</option>
+                <option value="cliente">Cliente Comum</option>
+              </select>
+              <button class="btn" type="submit">Enviar solicitação</button>
+            </form>
+          </div>
+
+          <div class="box">
+            <h4 style="margin:6px 0">Histórico de solicitações</h4>
+            <div id="requestsList">
+              <div class="small">Carregando...</div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- 2) TEXTO | IMG (fica invertido pelo :nth-child no desktop) -->
-      <div class="work-row fade-in">
-        <div class="work-media"><img src="portaocasabranca.jpg" alt="Obra 2"></div>
-        <div class="work-text">
-          <div class="work-title">Portão de alumínio deslizante</div>
-          <p class="work-desc">Solução moderna para residências, com fluidez de movimento e excelente durabilidade.</p>
+      <aside>
+        <div class="card" style="padding:12px">
+          <h3 style="margin-top:0">Atendimento</h3>
+          <p class="small">Horário: <strong>08:00 — 18:00</strong> (Domingo fechado)</p>
+          <p class="small" style="margin-top:8px">Suporte rápido via WhatsApp</p>
+          <a class="btn" href="https://wa.me/559999999999" target="_blank" rel="noopener">Abrir WhatsApp</a>
         </div>
-      </div>
 
-      <!-- 3) IMG | TEXTO -->
-      <div class="work-row fade-in">
-        <div class="work-media"><img src="portaopreto.jpg" alt="Obra 3"></div>
-        <div class="work-text">
-          <div class="work-title">Portão seccional automatizado</div>
-          <p class="work-desc">Automação silenciosa e visual sofisticado, agregando valor e praticidade ao ambiente.</p>
+        <div class="card" style="margin-top:12px;padding:12px">
+          <h4 style="margin:0 0 8px 0">Painel rápido</h4>
+          <div class="small" style="margin-bottom:8px">Acesso ao painel do revendedor pelo botão flutuante.</div>
+          <button class="btn secondary" onclick="openLoginModal()">Entrar como revendedor</button>
         </div>
+      </aside>
+    </div>
+
+    <footer>
+      Tech WM — Loja de peças e acessórios • Desenvolvido para uso móvel
+    </footer>
+  </div>
+
+  <!-- Floating revendedor button -->
+  <div class="rev-btn" title="Área do revendedor" onclick="openLoginModal()">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="transform:translateY(-1px)">
+      <path d="M12 2C8.7 2 6 4.7 6 8c0 3.3 2.7 6 6 6s6-2.7 6-6c0-3.3-2.7-6-6-6zM4 20c0-2.2 3.6-4 8-4s8 1.8 8 4v1H4v-1z" fill="#022"/>
+    </svg>
+    <small style="line-height:10px;color:#022">Rev</small>
+  </div>
+
+  <!-- Status badge (open/closed) -->
+  <div class="status-badge" id="statusBadge" aria-live="polite">
+    <div class="dot closed" id="statusDot"></div>
+    <div>
+      <div class="status-text" id="statusMain">Fechado</div>
+      <div class="status-sub" id="statusSub">Hoje: fechada</div>
+    </div>
+  </div>
+
+  <!-- Modal (login) -->
+  <div class="modal-back" id="modalBack" onclick="if(event.target===this)closeModal()">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <h3 id="loginTitle">Login - Revendedor</h3>
+      <div id="loginArea">
+        <input id="emailField" type="email" placeholder="E-mail" />
+        <input id="senhaField" type="password" placeholder="Senha" />
+        <div style="display:flex;gap:8px">
+          <button class="btn" onclick="performLogin()">Entrar</button>
+          <button class="btn secondary" onclick="closeModal()">Cancelar</button>
+        </div>
+        <p class="small" style="margin-top:8px">Se você for um revendedor, certifique-se que sua linha <code>tipo</code> = <strong>revendedor</strong> na planilha.</p>
       </div>
+      <div id="modalMsg" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
     </div>
   </div>
-</section>
-
-<!-- BLOCO FINAL -->
-<section id="hero-fundo">
-  <div class="hero-content fade-in">
-    <img src="Logo2.png" alt="Logo SOS Soluções" style="width:120px;margin:0 auto 14px;display:block">
-    <h1 class="hero-title" style="margin-bottom:10px">Então, vamos elevar seu projeto?</h1>
-    <p class="muted" style="text-align:center;margin-bottom:18px">Entre em contato e dê o primeiro passo para ter esquadrias de alto padrão, feitas sob medida.</p>
-    <a href="https://wa.me/5579998316184" target="_blank" class="cta-hero">Solicite seu orçamento →</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-info">
-      <div class="footer-brand">SOS Soluções</div>
-      <div class="muted">avenida general Euclides Figueiredo 133 — Aracaju/SE</div>
-      <div class="muted">CNPJ: 30.752.823/0001-34</div>
-      <div class="muted">WhatsApp: (79) 9 9831-6184</div>
-      <div class="muted">Instagram: <a href="https://www.instagram.com/s.o.s_esquadrias?igsh=MWlhbnNvZXg5cjA5cg==" target="_blank" rel="noopener">@s.o.s_esquadrias</a></div>
-    </div>
-    <div class="footer-copyright">
-      <div class="muted">© <span id="year"></span> SOS Soluções. Todos os direitos reservados.</div>
-    </div>
-  </div>
-</footer>
-
-<!-- WHATSAPP FLUTUANTE -->
-<a class="whats-btn" href="https://wa.me/5579998316184" target="_blank" aria-label="WhatsApp">
-  <img src="whatsapp.png" alt="WhatsApp" class="whats-icon">
-  <span>Fale conosco</span>
-</a>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+/* ==========================
+   CONFIGURAÇÕES
+   ========================== */
+const API_SHEET = "https://api.sheetbest.com/sheets/72421926-ffa9-462c-9f89-59863c864884";
 
-/* Fallback do vídeo */
-const v = document.getElementById('bgVideo');
-const poster = document.querySelector('.bg-poster');
-const overlay = document.getElementById('overlay');
-function usarPosterEscuro(){ if(v) v.style.display='none'; if(poster) poster.style.display='block'; if(overlay) overlay.classList.add('poster-dark'); }
-if(v){ v.addEventListener('error', usarPosterEscuro); setTimeout(()=>{ if(v.readyState===0) usarPosterEscuro(); }, 900); }
-
-/* Fade-in */
-const fadeElements = document.querySelectorAll('.fade-in');
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); }});
-},{threshold:0.1});
-fadeElements.forEach(el => fadeObserver.observe(el));
-
-/* Mapa slide */
-const mapa = document.querySelector(".mapa-img");
-if(mapa){
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ mapa.classList.add("show"); obs.unobserve(mapa);} });
-  });
-  obs.observe(mapa);
+/* Horário de funcionamento fixo:
+   Aberto a partir de 08:00 até 18:00 (não inclusivo de 18:00 -> fecha às 18:00).
+   Domingo = fechado
+*/
+function isOpenNow() {
+  try{
+    const now = new Date();
+    const day = now.getDay(); // 0 = domingo
+    const hour = now.getHours();
+    if (day === 0) return {open:false, reason:"Domingo"};
+    if (hour >= 8 && hour < 18) return {open:true, reason:"Dentro do horário"};
+    return {open:false, reason:"Fora do horário"};
+  }catch(e){
+    return {open:false, reason:"Erro horário"};
+  }
 }
-</script>
 
+/* Atualiza o badge de aberto/fechado */
+function updateStatusBadge(){
+  const s = isOpenNow();
+  const dot = document.getElementById('statusDot');
+  const main = document.getElementById('statusMain');
+  const sub = document.getElementById('statusSub');
+  if (s.open) {
+    dot.classList.remove('closed'); dot.classList.add('open');
+    main.textContent = "Aberto";
+    sub.textContent = "Atendendo: 08:00 — 18:00";
+  } else {
+    dot.classList.remove('open'); dot.classList.add('closed');
+    main.textContent = "Fechado";
+    if (s.reason === "Domingo") sub.textContent = "Hoje: fechado (domingo)";
+    else sub.textContent = "Atendimento: 08:00 — 18:00";
+  }
+}
+/* atualizar na carga e a cada minuto (pra manter atualizado) */
+updateStatusBadge();
+setInterval(updateStatusBadge, 60_000);
+
+/* ==========================
+   Modais e navegação simples
+   ========================== */
+function openLoginModal(){ document.getElementById('modalBack').style.display='flex'; document.getElementById('emailField').focus(); }
+function closeModal(){ document.getElementById('modalBack').style.display='none'; document.getElementById('modalMsg').textContent=''; }
+
+/* Simula navegação: mostra o painel se o usuário já estiver logado */
+function showPanelIfLogged(){
+  const raw = localStorage.getItem('usuario');
+  if (!raw) return;
+  try{
+    const user = JSON.parse(raw);
+    document.getElementById('panelArea').style.display = 'block';
+    document.getElementById('welcomeUser').textContent = `Bem-vindo, ${user.nome || 'Revendedor'}`;
+    document.getElementById('userEmail').textContent = user.email || '';
+    // pre-seleciona tipo no formulário com base no user.tipo
+    document.getElementById('gar_tipo').value = user.tipo || 'revendedor';
+    // carregar histórico
+    loadMyRequests(user.email);
+  }catch(e){
+    console.error(e);
+  }
+}
+
+/* Logout */
+function logout(){
+  localStorage.removeItem('usuario');
+  document.getElementById('panelArea').style.display = 'none';
+  alert('Você saiu da sessão.');
+}
+
+/* ==========================
+   LOGIN (via SheetBest GET)
+   ========================== */
+async function performLogin(){
+  const email = (document.getElementById('emailField').value || '').trim();
+  const senha = (document.getElementById('senhaField').value || '').trim();
+  const modalMsg = document.getElementById('modalMsg');
+  if (!email || !senha) { modalMsg.textContent = 'Preencha e-mail e senha.'; return; }
+  modalMsg.textContent = 'Conectando...';
+  try{
+    const res = await fetch(API_SHEET);
+    if (!res.ok) throw new Error('Erro ao acessar a planilha');
+    const data = await res.json();
+    // procurar usuário com e-mail+senha
+    const user = data.find(u => (u.email||'').toString().trim().toLowerCase() === email.toLowerCase() && (u.senha||'').toString().trim() === senha);
+    if (!user) {
+      modalMsg.textContent = 'Usuário ou senha inválidos.';
+      return;
+    }
+    // sucesso: gravar no localStorage
+    localStorage.setItem('usuario', JSON.stringify(user));
+    modalMsg.textContent = '';
+    closeModal();
+    showPanelIfLogged();
+    alert('Login realizado com sucesso. Bem-vindo, ' + (user.nome||user.email));
+  }catch(err){
+    console.error(err);
+    modalMsg.textContent = 'Erro ao conectar. Verifique a internet.';
+  }
+}
+
+/* ==========================
+   GARANTIA: enviar e listar
+   ========================== */
+
+document.getElementById('garForm').addEventListener('submit', async (ev) => {
+  ev.preventDefault();
+  const userRaw = localStorage.getItem('usuario');
+  if (!userRaw) { alert('Faça login como revendedor antes de enviar.'); return; }
+  const user = JSON.parse(userRaw);
+  const prod = (document.getElementById('gar_prod').value||'').trim();
+  const order = (document.getElementById('gar_order').value||'').trim();
+  const desc = (document.getElementById('gar_desc').value||'').trim();
+  const tipo = (document.getElementById('gar_tipo').value||'revendedor').trim();
+
+  if (!prod) { alert('Descreva o produto.'); return; }
+
+  const payload = {
+    tipo_registro: 'garantia',
+    pedido: order || '',
+    produto: prod,
+    descricao: desc || '',
+    solicitante_email: user.email || '',
+    solicitante_nome: user.nome || '',
+    tipo_cliente: tipo,
+    status: 'Aguardando',
+    data_solicitacao: new Date().toISOString()
+  };
+
+  try{
+    // POST para a planilha (SheetBest aceita POST no endpoint)
+    const res = await fetch(API_SHEET, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Erro ao enviar solicitação');
+    // limpa form
+    document.getElementById('gar_prod').value='';
+    document.getElementById('gar_order').value='';
+    document.getElementById('gar_desc').value='';
+    alert('Solicitação enviada com sucesso! Aguarde análise.');
+    // recarregar historico
+    loadMyRequests(user.email);
+  }catch(err){
+    console.error(err);
+    alert('Erro ao enviar. Verifique a conexão.');
+  }
+});
+
+/* Carrega todas as solicitações e mostra apenas as do usuário */
+async function loadMyRequests(email){
+  const list = document.getElementById('requestsList');
+  list.innerHTML = '<div class="small">Carregando solicitações…</div>';
+  try{
+    const res = await fetch(API_SHEET);
+    if (!res.ok) throw new Error('Erro ao buscar dados');
+    const rows = await res.json();
+    // filtrar só registros de garantia e do solicitante
+    const my = rows.filter(r => (r.tipo_registro || '').toString().toLowerCase() === 'garantia' && (r.solicitante_email||'').toString().toLowerCase() === (email||'').toLowerCase());
+    if (my.length === 0) {
+      list.innerHTML = '<div class="small">Nenhuma solicitação encontrada.</div>';
+      return;
+    }
+    // ordenar por data (mais recente primeiro) se tiver campo data_solicitacao
+    my.sort((a,b)=>( (b.data_solicitacao||'') > (a.data_solicitacao||'') ? 1 : -1 ));
+    list.innerHTML = '';
+    my.forEach(r=>{
+      const item = document.createElement('div');
+      item.className = 'req-item';
+      const left = document.createElement('div');
+      left.style.flex='1';
+      left.innerHTML = `<div style="font-weight:700">${escapeHtml(r.produto || r.produto || '—')}</div><div class="small">${escapeHtml(r.pedido || '')}</div><div class="small">${formatShortDate(r.data_solicitacao)}</div>`;
+      const right = document.createElement('div');
+      const status = (r.status || 'Aguardando').replace(/\s/g,' ');
+      right.innerHTML = `<div class="status-pill status-${status}">${escapeHtml(r.status || 'Aguardando')}</div>`;
+      item.appendChild(left);
+      item.appendChild(right);
+      list.appendChild(item);
+    });
+  }catch(err){
+    console.error(err);
+    list.innerHTML = '<div class="small">Erro ao carregar solicitações.</div>';
+  }
+}
+
+/* ==========================
+   Helpers & utilitários
+   ========================== */
+function escapeHtml(s){ if (!s) return ''; return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m]; }); }
+function formatShortDate(d){
+  if (!d) return '';
+  try{
+    const dt = new Date(d);
+    if (isNaN(dt)) return d;
+    return dt.toLocaleString();
+  }catch(e){return d;}
+}
+
+/* ==========================
+   Funções demo (não feitas)
+   ========================== */
+function openProducts(){
+  alert('Área de produtos — em breve aqui você verá a lista de acessórios e peças.');
+}
+function openInfo(){
+  alert('A política de garantia: revendedores técnicos e clientes comuns têm prazos diferentes. Você pode abrir solicitações pelo painel.');
+}
+
+/* on load */
+document.addEventListener('DOMContentLoaded', ()=>{
+  showPanelIfLogged();
+});
+</script>
 </body>
 </html>
