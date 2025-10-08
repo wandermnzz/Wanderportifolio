@@ -300,8 +300,8 @@
   <div class="status-badge" id="statusBadge" aria-live="polite">
     <div class="dot closed" id="statusDot"></div>
     <div>
-      <div class="status-text" id="statusMain">Fechado</div>
-      <div class="status-sub" id="statusSub">Hoje: fechada</div>
+      <div class="status-text" id="LojaStatus">Fechado</div>
+      <div class="status-sub" id="LojaStatus">Hoje: fechada</div>
     </div>
   </div>
 
@@ -581,6 +581,46 @@ async function cadastrarUsuario(){
     msg.textContent = "Erro ao cadastrar. Verifique a conexão.";
   }
 }
+    function verificarHorario() {
+    const agora = new Date();
+
+    // Ajusta para horário de São Paulo (GMT-3, sem horário de verão)
+    const options = { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit", weekday: "long" };
+    const formatter = new Intl.DateTimeFormat("pt-BR", options);
+    const partes = formatter.formatToParts(agora);
+
+    let hora = 0;
+    let minuto = 0;
+    let diaSemana = "";
+
+    partes.forEach(p => {
+      if (p.type === "hour") hora = parseInt(p.value);
+      if (p.type === "minute") minuto = parseInt(p.value);
+      if (p.type === "weekday") diaSemana = p.value.toLowerCase();
+    });
+
+    const aberto = document.getElementById("lojaStatus");
+
+    // Verifica se é domingo
+    if (diaSemana === "domingo") {
+      aberto.textContent = "Fechado ";
+      aberto.style.backgroundColor = "red";
+      return;
+    }
+
+    // Verifica se está dentro do horário de funcionamento
+    if (hora >= 9 && (hora < 22 || (hora === 22 && minuto === 0))) {
+      aberto.textContent = "Aberto ";
+      aberto.style.backgroundColor = "green";
+    } else {
+      aberto.textContent = "Fechado 📕";
+      aberto.style.backgroundColor = "red";
+    }
+  }
+
+  // Atualiza ao carregar e a cada minuto
+  verificarHorario();
+  setInterval(verificarHorario, 60000);
 </script>
 </body>
 </html>
