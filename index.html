@@ -169,6 +169,21 @@
     .main-grid{grid-template-columns: 1fr 360px}
     .logo{width:64px;height:64px}
   }
+  #cadastroRevendedor input,
+#cadastroRevendedor select {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:rgba(255,255,255,0.02);
+  color:inherit;
+}
+#cadastroRevendedor button.btn {
+  width:100%;
+  margin-top:6px;
+}
+  
 </style>
 </head>
 <body>
@@ -196,6 +211,21 @@
         <div style="margin-top:12px" class="cta-row">
           <button class="btn" onclick="openProducts()">Ver produtos</button>
           <button class="btn secondary" onclick="openInfo()">Como funciona a garantia</button>
+        </div>
+        <div id="cadastroRevendedor" style="display:none; max-width:400px; margin:0 auto; padding:16px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.03);">
+  <h3>Cadastro - Revendedor</h3>
+  <input type="text" id="cad_nome" placeholder="Nome completo" required>
+  <input type="email" id="cad_email" placeholder="E-mail" required>
+  <input type="password" id="cad_senha" placeholder="Senha" required>
+  <select id="cad_tipo">
+    <option value="revendedor">Revendedor Técnico</option>
+    <option value="cliente">Cliente Comum</option>
+  </select>
+  <label style="display:flex;align-items:center;gap:6px; font-size:13px; margin-bottom:12px;">
+    <input type="checkbox" id="cad_termos" required> Aceito os termos
+  </label>
+  <button class="btn" onclick="cadastrarUsuario()">Cadastrar</button>
+  <div id="cad_msg" style="margin-top:8px; font-size:13px; color:var(--muted)"></div>
         </div>
 
         <div style="margin-top:14px" class="box" id="quickInfo">
@@ -510,6 +540,47 @@ function openInfo(){
 document.addEventListener('DOMContentLoaded', ()=>{
   showPanelIfLogged();
 });
+  const API_SHEET = "https://api.sheetbest.com/sheets/72421926-ffa9-462c-9f89-59863c864884";
+
+async function cadastrarUsuario(){
+  const nome = (document.getElementById('cad_nome').value||'').trim();
+  const email = (document.getElementById('cad_email').value||'').trim();
+  const senha = (document.getElementById('cad_senha').value||'').trim();
+  const tipo = document.getElementById('cad_tipo').value;
+  const termos = document.getElementById('cad_termos').checked;
+  const msg = document.getElementById('cad_msg');
+
+  if(!nome || !email || !senha){ msg.textContent = "Preencha todos os campos."; return; }
+  if(!termos){ msg.textContent = "Você precisa aceitar os termos."; return; }
+
+  const payload = {
+    email: email,
+    senha: senha,
+    nome: nome,
+    tipo: tipo
+  };
+
+  try{
+    msg.textContent = "Cadastrando...";
+    const res = await fetch(API_SHEET, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error("Erro ao enviar cadastro.");
+    msg.style.color = "var(--success)";
+    msg.textContent = "Cadastro realizado com sucesso! Agora faça login.";
+    // opcional: limpar campos
+    document.getElementById('cad_nome').value='';
+    document.getElementById('cad_email').value='';
+    document.getElementById('cad_senha').value='';
+    document.getElementById('cad_termos').checked=false;
+  }catch(err){
+    console.error(err);
+    msg.style.color = "var(--danger)";
+    msg.textContent = "Erro ao cadastrar. Verifique a conexão.";
+  }
+}
 </script>
 </body>
 </html>
