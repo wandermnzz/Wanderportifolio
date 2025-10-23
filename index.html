@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acompanhar Pedido</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    body { font-family: Arial; text-align: center; padding: 20px; background: #f5f5f5; }
-    #map { height: 450px; width: 100%; margin-top: 20px; border-radius: 10px; }
-    #status { font-size: 18px; margin-top: 10px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acompanhar Pedido - Moto</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+  body { font-family: Arial; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
+  header { background: #ff2d2d; color: white; text-align: center; padding: 15px; font-size: 20px; }
+  #map { flex: 1; }
+</style>
 </head>
 <body>
-  <h2>🍔 Acompanhar Pedido</h2>
-  <p>Veja a localização da sua entrega em tempo real.</p>
-  <div id="status">⏳ Aguardando rastreamento...</div>
-  <div id="map"></div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    const SHEET_URL = "https://api.sheetbest.com/sheets/3198fc28-4ca0-4fde-86b1-cb1791fbe8d3";
-    let map, marker;
+<header>🍔 Acompanhar Pedido</header>
+<div id="map"></div>
 
-    async function buscarLocalizacao() {
-      const response = await fetch(SHEET_URL);
-      const data = await response.json();
-      if (data.length === 0) return;
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+const SHEET_URL = "https://api.sheetbest.com/sheets/3198fc28-4ca0-4fde-86b1-cb1791fbe8d3";
 
-      const ultima = data[data.length - 1];
-      const status = ultima.status;
-      const lat = parseFloat(ultima.latitude);
-      const lon = parseFloat(ultima.longitude);
+let map = L.map('map').setView([-23.55, -46.63], 15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap'
+}).addTo(map);
 
-      const statusDiv = document.getElementById("status");
+// Ícone da moto
+const motoIcon = L.icon({
+  iconUrl: 'https://i.imgur.com/5a6fTLE.png', // substitua pelo seu ícone
+  iconSize: [50, 50],
+  iconAnchor: [25, 25],
+  popupAnchor: [0, -20]
+});
 
-      if (status === "ativo" && !isNaN(lat) && !isNaN(lon)) {
-        statusDiv.textContent = "🟢 Entrega em andamento...";
-        if (!map) {
-          map = L.map('map').setView([lat, lon], 16);
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-          }).addTo(map);
-          marker = L.marker([lat, lon]).addTo(map).bindPopup("Entregador está aqui!");
-        } else {
-          marker.setLatLng([lat, lon]);
-          map.setView([lat, lon], 16);
-        }
-      } else {
-        statusDiv.textContent = "🔴 Rastreamento ainda não liberado.";
-      }
+let marker = null;
+
+// Função para atualizar mapa
+async function atualizarMapa() {
+  try {
+    const response = await fetch(SHEET_URL);
+    const data = await response.json();
+    if (!data.length) return;
+
+    const ultima = data[data.length - 1];
+
+    if (ultima.status !== "ativo") return;
+
+    const lat = parseFloat(ultima.latitude);
+    const lon = parseFloat(ultima.longitude);
+    if (isNaN(lat) || isNaN(lon)) return;
+
+    if (!marker) {
+      marker = L.marker([lat, lon], {icon: motoIcon}).addTo(map).bindPopup("Entregador aqui!");
+      map.setView([lat, lon], 16);
+    } else {
+      // Movimento suave
+      const currentLatLng = marker.getLatLng();
+      const newLatLng = L.latLng(lat, lon);
+      marker.setLatLng(currentLatLng.interpolateTo(newLatLng, 0.2));
+      map.setView(newLatLng, 16);
     }
 
-    // Atualiza a cada 5 segundos
-    setInterval(buscarLocalizacao, 5000);
-  </script>
+  } catch(e) {
+    console.error("Erro ao buscar dados da API:", e);
+  }
+}
+
+// Atualiza a cada 5 segundos
+setInterval(atualizarMapa, 5000);
+</script>
+
 </body>
 </html>
