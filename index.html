@@ -6,9 +6,9 @@
 <title>Acompanhar Pedido - Moto</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
-  body { font-family: Arial; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
+  body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
   header { background: #ff2d2d; color: white; text-align: center; padding: 15px; font-size: 20px; }
-  #map { flex: 1; }
+  #map { width: 100%; height: 100vh; }
 </style>
 </head>
 <body>
@@ -18,16 +18,19 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-const SHEET_URL = "https://api.sheetbest.com/sheets/3198fc28-4ca0-4fde-86b1-cb1791fbe8d3";
+const SHEET_URL = "https://api.sheetbest.com/sheets/3198fc28-4ca0-4fde-86b1-fbe8d3"; // Sua API
+let map = L.map('map').setView([-23.55, -46.63], 16);
 
-let map = L.map('map').setView([-23.55, -46.63], 15);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap'
+// Mapa estilo moderno (Carto Light)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
 }).addTo(map);
 
 // Ícone da moto
 const motoIcon = L.icon({
-  iconUrl: 'https://i.imgur.com/5a6fTLE.png', // substitua pelo seu ícone
+  iconUrl: 'https://cdn-icons-png.flaticon.com/512/2972/2972185.png', // PNG transparente de moto
   iconSize: [50, 50],
   iconAnchor: [25, 25],
   popupAnchor: [0, -20]
@@ -35,30 +38,43 @@ const motoIcon = L.icon({
 
 let marker = null;
 
-// Função para atualizar mapa
+// Função para interpolar movimento suave
+function moveMarkerSmooth(marker, newLatLng, steps = 10, duration = 500) {
+  if (!marker) return;
+  const start = marker.getLatLng();
+  let i = 0;
+  const deltaLat = (newLatLng.lat - start.lat) / steps;
+  const deltaLng = (newLatLng.lng - start.lng) / steps;
+
+  const interval = duration / steps;
+  const move = setInterval(() => {
+    if (i >= steps) { clearInterval(move); return; }
+    marker.setLatLng([start.lat + deltaLat*(i+1), start.lng + deltaLng*(i+1)]);
+    i++;
+  }, interval);
+}
+
+// Atualiza posição da moto
 async function atualizarMapa() {
   try {
-    const response = await fetch(SHEET_URL);
-    const data = await response.json();
+    const res = await fetch(SHEET_URL);
+    const data = await res.json();
     if (!data.length) return;
 
-    const ultima = data[data.length - 1];
-
+    const ultima = data[data.length-1];
     if (ultima.status !== "ativo") return;
 
     const lat = parseFloat(ultima.latitude);
     const lon = parseFloat(ultima.longitude);
     if (isNaN(lat) || isNaN(lon)) return;
 
+    const pos = L.latLng(lat, lon);
+
     if (!marker) {
-      marker = L.marker([lat, lon], {icon: motoIcon}).addTo(map).bindPopup("Entregador aqui!");
-      map.setView([lat, lon], 16);
+      marker = L.marker(pos, {icon: motoIcon}).addTo(map).bindPopup("🚀 Entregador aqui!");
+      map.setView(pos, 16);
     } else {
-      // Movimento suave
-      const currentLatLng = marker.getLatLng();
-      const newLatLng = L.latLng(lat, lon);
-      marker.setLatLng(currentLatLng.interpolateTo(newLatLng, 0.2));
-      map.setView(newLatLng, 16);
+      moveMarkerSmooth(marker, pos, 20, 1000); // animação suave
     }
 
   } catch(e) {
@@ -67,8 +83,9 @@ async function atualizarMapa() {
 }
 
 // Atualiza a cada 5 segundos
+atualizarMapa();
 setInterval(atualizarMapa, 5000);
-</script>
 
+</script>
 </body>
 </html>
