@@ -6,9 +6,9 @@
 <title>Acompanhar Pedido - Moto</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
-  body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-  header { background: #ff2d2d; color: white; text-align: center; padding: 15px; font-size: 20px; }
-  #map { width: 100%; height: 100vh; }
+  body { margin:0; padding:0; font-family: Arial,sans-serif; }
+  header { background:#ff2d2d; color:white; text-align:center; padding:15px; font-size:20px; }
+  #map { width:100%; height:100vh; }
 </style>
 </head>
 <body>
@@ -19,9 +19,13 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 const SHEET_URL = "https://api.sheetbest.com/sheets/3198fc28-4ca0-4fde-86b1-fbe8d3"; // Sua API
-let map = L.map('map').setView([-23.55, -46.63], 16);
 
-// Mapa estilo moderno (Carto Light)
+let map = L.map('map');
+let marker = null;
+let rota = null;
+let lastPos = null;
+
+// Tiles Carto Light (gratuito)
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
   subdomains: 'abcd',
@@ -30,61 +34,84 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 // Ícone da moto
 const motoIcon = L.icon({
-  iconUrl: 'https://cdn-icons-png.flaticon.com/512/2972/2972185.png', // PNG transparente de moto
-  iconSize: [50, 50],
-  iconAnchor: [25, 25],
-  popupAnchor: [0, -20]
+  iconUrl: 'https://cdn-icons-png.flaticon.com/512/2972/2972185.png',
+  iconSize: [50,50],
+  iconAnchor: [25,25],
+  popupAnchor: [0,-20]
 });
 
-let marker = null;
+// Função para calcular ângulo da moto
+function calcularAngulo(from, to){
+  const dx = to.lng - from.lng;
+  const dy = to.lat - from.lat;
+  return Math.atan2(dy, dx) * 180 / Math.PI;
+}
 
-// Função para interpolar movimento suave
-function moveMarkerSmooth(marker, newLatLng, steps = 10, duration = 500) {
-  if (!marker) return;
+// Movimento suave e rotação
+function moverMoto(marker, newLatLng){
+  if(!marker) return;
   const start = marker.getLatLng();
-  let i = 0;
-  const deltaLat = (newLatLng.lat - start.lat) / steps;
-  const deltaLng = (newLatLng.lng - start.lng) / steps;
+  const steps = 20;
+  const duration = 1000;
+  let i=0;
+  const deltaLat = (newLatLng.lat-start.lat)/steps;
+  const deltaLng = (newLatLng.lng-start.lng)/steps;
+  const angulo = calcularAngulo(start,newLatLng);
 
-  const interval = duration / steps;
-  const move = setInterval(() => {
-    if (i >= steps) { clearInterval(move); return; }
-    marker.setLatLng([start.lat + deltaLat*(i+1), start.lng + deltaLng*(i+1)]);
+  const interval = duration/steps;
+  const move = setInterval(()=>{
+    if(i>=steps){ clearInterval(move); return; }
+    const lat = start.lat+deltaLat*(i+1);
+    const lng = start.lng+deltaLng*(i+1);
+    marker.setLatLng([lat,lng]);
+    marker.getElement()?.style.setProperty('transform', `rotate(${angulo}deg)`);
     i++;
   }, interval);
 }
 
-// Atualiza posição da moto
-async function atualizarMapa() {
-  try {
+// Atualiza mapa
+async function atualizarMapa(){
+  try{
     const res = await fetch(SHEET_URL);
     const data = await res.json();
-    if (!data.length) return;
+    if(!data.length) return;
 
     const ultima = data[data.length-1];
-    if (ultima.status !== "ativo") return;
+    if(ultima.status!=="ativo") return;
 
     const lat = parseFloat(ultima.latitude);
     const lon = parseFloat(ultima.longitude);
-    if (isNaN(lat) || isNaN(lon)) return;
+    if(isNaN(lat)||isNaN(lon)) return;
 
-    const pos = L.latLng(lat, lon);
+    const pos = L.latLng(lat,lon);
 
-    if (!marker) {
-      marker = L.marker(pos, {icon: motoIcon}).addTo(map).bindPopup("🚀 Entregador aqui!");
-      map.setView(pos, 16);
+    if(!marker){
+      marker = L.marker(pos,{icon:motoIcon}).addTo(map).bindPopup("🚀 Entregador aqui!");
+      map.setView(pos,16);
+      lastPos = pos;
     } else {
-      moveMarkerSmooth(marker, pos, 20, 1000); // animação suave
+      moverMoto(marker,pos);
+      map.panTo(pos,{animate:true,duration:1});
     }
 
-  } catch(e) {
+    // Desenhar rota entre último ponto e novo
+    if(rota){
+      map.removeLayer(rota);
+    }
+    if(lastPos){
+      rota = L.polyline([lastPos,pos],{color:'red',weight:4}).addTo(map);
+    }
+    lastPos = pos;
+
+  } catch(e){
     console.error("Erro ao buscar dados da API:", e);
   }
 }
 
-// Atualiza a cada 5 segundos
+// Primeiro fetch
 atualizarMapa();
-setInterval(atualizarMapa, 5000);
+// Atualização contínua
+setInterval(atualizarMapa,5000);
 
 </script>
 </body>
